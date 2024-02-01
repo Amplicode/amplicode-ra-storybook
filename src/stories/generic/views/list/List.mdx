@@ -1,0 +1,31 @@
+import { Meta, Story, Primary, Controls } from '@storybook/blocks';
+
+import * as ListStories from './List.stories';
+
+<Meta of={ListStories} />
+
+# List
+
+The `<List>` component is the root component for list pages. It fetches a list of records from the data provider, puts it in a ListContext, renders the default list page layout (title, buttons, filters, pagination), and renders its children. Usual children of `<List>`, like `<Datagrid>`, are responsible for displaying the list of records. [More information](https://marmelab.com/react-admin/List.html).
+
+<Controls />
+
+## Default
+
+<Story of={ListStories.Default} />
+
+## Filter
+
+<Story of={ListStories.Filter} />
+
+## PermanentFilter
+
+<Story of={ListStories.PermanentFilter} />
+
+## Aside
+
+<Story of={ListStories.Aside} />
+
+## Infinite
+
+<Story of={ListStories.Infinite} />

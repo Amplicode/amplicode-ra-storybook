@@ -1,0 +1,23 @@
+import { Meta, Story, Primary, Controls } from '@storybook/blocks';
+
+import * as NumberFieldStories from './NumberField.stories';
+
+<Meta of={NumberFieldStories} />
+
+# NumberField
+
+Displays a number formatted according to the browser locale, right aligned. Ideal for floats, currencies, percentages, units, etc. [More information](https://marmelab.com/react-admin/NumberField.html).
+
+<Controls />
+
+## Default
+
+<Story of={NumberFieldStories.Default} />
+
+## Currency
+
+<Story of={NumberFieldStories.Currency} />
+
+## Unit
+
+<Story of={NumberFieldStories.Unit} />

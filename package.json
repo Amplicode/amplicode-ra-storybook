@@ -1,10 +1,11 @@
 {
   "name": "@amplicode/amplicode-ra-storybook",
-  "version": "0.0.1",
+  "version": "0.0.1+1",
   "description": "Amplicode Storybook for React Admin",
   "files": [
     "src/*",
-    "storybook-static/*"
+    "storybook-static/*",
+    "tsconfig.json"
   ],
   "scripts": {
     "storybook": "storybook dev -p 6006",

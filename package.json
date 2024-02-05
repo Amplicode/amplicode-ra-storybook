@@ -1,19 +1,15 @@
 {
   "name": "amplicode-ra-storybook",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "Amplicode Storybook for React Admin",
+  "files": [
+    "src/*",
+    "storybook-static/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@git.haulmont.com:amplicode-frontend/amplicode-ra-storybook.git"
-  },
-  "author": "Haulmont",
-  "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
@@ -34,5 +30,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.6.10"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Amplicode",
+  "license": "Apache-2.0"
 }

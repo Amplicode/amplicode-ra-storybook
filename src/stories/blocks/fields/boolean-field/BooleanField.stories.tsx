@@ -41,7 +41,25 @@ export const Custom: Story = {
   args: {
     valueLabelTrue: "User is active",
     valueLabelFalse: "User is banned",
+    TrueIcon: AlarmOnIcon,
+    FalseIcon: AlarmOffIcon,
   },
+  argTypes: {
+    TrueIcon: {
+      options: ['AlarmOnIcon', 'AlarmOffIcon'],
+      mapping: {
+        'AlarmOnIcon': AlarmOnIcon,
+        'AlarmOffIcon': AlarmOffIcon,
+      }
+    },
+    FalseIcon: {
+      options: ['AlarmOnIcon', 'AlarmOffIcon'],
+      mapping: {
+        'AlarmOnIcon': AlarmOnIcon,
+        'AlarmOffIcon': AlarmOffIcon,
+      }
+    }
+  }
 };
 
 const defaultDecorator = (Story: () => JSX.Element) => {

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, DateField, Labeled, defaultI18nProvider } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
+import React from "react";
 
 const meta = {
   title: "Blocks/Fields/DateField",
@@ -46,10 +47,12 @@ export const Custom: Story = {
   }
 };
 
-const defaultDecorator = (Story: () => JSX.Element) => {
+const defaultDecorator = (Story: () => React.JSX.Element) => {
   return (
     <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-      <Labeled>{Story()}</Labeled>
+      <Labeled>
+        <Story/>
+      </Labeled>
     </AdminContext>
   );
 };

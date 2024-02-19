@@ -34,7 +34,7 @@ const defaultDecorator = (Story: () => JSX.Element) => {
       dataProvider={dataProvider}
       i18nProvider={defaultI18nProvider}
     >
-      <Labeled>{Story()}</Labeled>
+      <Labeled><Story/></Labeled>
     </AdminContext>
   );
 };

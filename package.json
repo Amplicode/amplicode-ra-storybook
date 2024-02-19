@@ -17,7 +17,8 @@
     "@mui/material": "^5.15.7",
     "ra-data-fakerest": "^4.16.3",
     "react-admin": "^4.16.7",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "amplicode-storybook": "file:../amplicode-storybook"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.10",

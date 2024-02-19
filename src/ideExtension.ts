@@ -1,0 +1,1 @@
+export const resourceName = (storyResource: string, title: string = "Resource Name") => storyResource;

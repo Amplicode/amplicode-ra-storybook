@@ -19,20 +19,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (props) => {
-    const functionReneder = (record: any) => {
+    const render = (record: any) => {
       return (
-        <div>Custom render: {record.name} {record.role}</div>
+        <div>Custom render: {record.name}</div>
       )
     }
 
-    return <FunctionField source="name" render={functionReneder} {...props} />;
+    return <FunctionField source="name" render={render} {...props} />;
   }
 };
 
 const defaultDecorator = (Story: () => JSX.Element) => {
   return (
     <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-      <Labeled>{Story()}</Labeled>
+      <Labeled><Story/></Labeled>
     </AdminContext>
   );
 };

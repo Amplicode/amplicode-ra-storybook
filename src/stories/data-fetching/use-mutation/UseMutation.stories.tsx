@@ -8,6 +8,7 @@ import {
 import { useMutation, QueryClient } from "react-query";
 import { dataProvider, users } from "../../../dataProvider";
 import { Typography } from "@mui/material";
+import React from "react";
 
 const meta = {
   title: "Blocks/DataFetching/UseMutation",
@@ -55,7 +56,7 @@ export const Default: Story = {
   }
 };
 
-const defaultDecorator = (Story: () => JSX.Element) => {
+const defaultDecorator = (Story: () => React.JSX.Element) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {

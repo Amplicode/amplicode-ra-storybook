@@ -26,7 +26,7 @@ export const Default: Story = {
 const defaultDecorator = (Story: () => JSX.Element) => {
   return (
     <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-      <Labeled>{Story()}</Labeled>
+      <Labeled><Story/></Labeled>
     </AdminContext>
   );
 };

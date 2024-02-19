@@ -13,10 +13,11 @@ import {
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import { dataProvider } from "../../../../dataProvider";
+import { dataProvider } from "../../../dataProvider";
+import React from "react";
 
 const meta = {
-  title: "Generic/Views/Edit",
+  title: "Pages/Edit",
   component: Edit as any,
   decorators: [(Story) => defaultDecorator(Story)],
   args: {
@@ -26,11 +27,10 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
 export const Default: Story = {
   render: (props) => {
     return (
-      <Edit {...props}>
+      <Edit resource={'users'} {...props}>
         <SimpleForm>
           <TextInput source="id" />
           <TextInput source="name" />
@@ -88,7 +88,7 @@ export const Aside: Story = {
   },
 };
 
-const defaultDecorator = (Story: () => JSX.Element) => (
+const defaultDecorator = (Story: () => React.JSX.Element) => (
   <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
     <ResourceContextProvider value="users">
       <Story />

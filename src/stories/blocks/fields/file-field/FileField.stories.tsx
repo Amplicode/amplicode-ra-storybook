@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, FileField, Labeled, Show, SimpleShowLayout, defaultI18nProvider } from "react-admin";
+import { AdminContext, FileField, defaultI18nProvider, RecordContextProvider } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
+import React from "react";
 
 const meta = {
   title: "Blocks/Fields/FileField",
@@ -16,14 +17,23 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (props) => {
-    return <FileField source="name" title="Presentation" {...{...props, record: users[0]}}/>;
-  }
+    return <FileField source="url" title="Presentation"/>;
+  },
+  decorators: [
+    (Story) => {
+      return (
+          <RecordContextProvider value={{url: 'http://google.com'}}>
+            <Story/>
+          </RecordContextProvider>
+      );
+    }
+  ]
 };
 
-const defaultDecorator = (Story: () => JSX.Element) => {
+const defaultDecorator = (Story: () => React.JSX.Element) => {
   return (
     <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-      {Story()}
+      <Story/>
     </AdminContext>
   );
 };

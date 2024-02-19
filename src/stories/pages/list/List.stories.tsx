@@ -14,7 +14,7 @@ import {
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { dataProvider } from "../../../../dataProvider";
+import { dataProvider } from "../../../dataProvider";
 
 const defaultDecorator = (Story: () => JSX.Element) => (
   <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
@@ -29,7 +29,7 @@ const infiniteDecorator = (Story: () => JSX.Element) => (
 );
 
 const meta = {
-  title: "Generic/Views/List",
+  title: "Pages/List",
   component: List as any,
   // tags: ['autodocs'],
   decorators: [(Story) => defaultDecorator(Story)],
@@ -88,7 +88,6 @@ export const PermanentFilter: Story = {
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
-          <TextField source="role" />
           <DateField source="birthday" />
         </Datagrid>
       </List>

@@ -5,11 +5,11 @@ import {
     Labeled,
     RecordContextProvider,
     ReferenceField,
-    TextField,
-    useResourceDefinitionContext
+    TextField
 } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import React from "react";
+import { ResourceContextHelper } from "../../../../utils";
 
 const meta = {
     title: "Blocks/Fields/ReferenceField",
@@ -65,23 +65,16 @@ export const WithEmptyText: Story = {
 }
 
 const defaultDecorator = (Story: () => React.JSX.Element) => {
-    const ResourceContext = ({ children }: { children: React.JSX.Element }) => {
-        let definitionContext = useResourceDefinitionContext();
-        definitionContext.register({
-            name: "departments",
-            recordRepresentation: "name",
-        });
-
-        return children;
-    };
-
     return (
         <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-            <ResourceContext>
+            <ResourceContextHelper resources={{
+                name: "departments",
+                recordRepresentation: "name",
+            }}>
                 <Labeled>
                     <Story/>
                 </Labeled>
-            </ResourceContext>
+            </ResourceContextHelper>
         </AdminContext>
     );
 };

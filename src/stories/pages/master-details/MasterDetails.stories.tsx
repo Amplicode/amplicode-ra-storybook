@@ -15,7 +15,6 @@ import {
     TextInput,
     useGetOne,
     useListContext,
-    useResourceDefinitionContext,
     useUpdate,
     WithListContext,
 } from "react-admin";
@@ -23,6 +22,7 @@ import { dataProvider } from "../../../dataProvider";
 import React from "react";
 import { ListControllerResult } from "ra-core/src/controller/list/useListController";
 import { FieldValues } from "react-hook-form";
+import { ResourceContextHelper } from "../../../utils";
 
 const meta = {
     title: "Pages/MasterDetails",
@@ -97,21 +97,16 @@ export const Default: Story = {
 };
 
 const defaultDecorator = (Story: () => React.JSX.Element) => {
-    const ResourceContext = ({ children }: { children: React.JSX.Element }) => {
-        let definitionContext = useResourceDefinitionContext();
-        definitionContext.register({
-            name: "departments",
-            recordRepresentation: "name",
-        });
-
-        return children;
-    };
-
     return (
-        <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-            <ResourceContext>
+        <AdminContext
+            dataProvider={dataProvider}
+            i18nProvider={defaultI18nProvider}>
+            <ResourceContextHelper resources={{
+                name: "departments",
+                recordRepresentation: "name",
+            }}>
                 <Resource name="users" list={Story}/>
-            </ResourceContext>
+            </ResourceContextHelper>
         </AdminContext>
     );
 };

@@ -36,6 +36,7 @@ export const Custom: Story = {
                 valueLabelFalse={valueLabelFalse}
                 TrueIcon={AlarmOnIcon}
                 FalseIcon={AlarmOffIcon}
+                title={"Active"}
                 {...props}
             />
         );
@@ -68,9 +69,7 @@ export const Custom: Story = {
 const defaultDecorator = (Story: () => React.JSX.Element) => {
     return (
         <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-            <Labeled>
-                <Story/>
-            </Labeled>
+            <Labeled>{Story()}</Labeled>
         </AdminContext>
     );
 };

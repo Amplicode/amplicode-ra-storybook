@@ -41,7 +41,7 @@ const defaultDecorator = (Story: () => JSX.Element) => {
     return (
         <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
             <SimpleForm record={users[0]} toolbar={false}>
-                <Labeled><Story/></Labeled>
+                <Labeled>{Story()}</Labeled>
             </SimpleForm>
         </AdminContext>
     );

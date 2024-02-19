@@ -1,15 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
-    AdminContext, ChipField,
+    AdminContext,
+    ChipField,
     defaultI18nProvider,
     Labeled,
-    RecordContextProvider,
-    ReferenceArrayField, SingleFieldList,
-    TextField,
-    useResourceDefinitionContext
+    ReferenceArrayField, Resource,
+    SingleFieldList,
+    TextField
 } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import React from "react";
+import { ResourceContextHelper } from "../../../../utils";
 
 const meta = {
     title: "Blocks/Fields/ReferenceArrayField",
@@ -41,7 +42,7 @@ export const ManualChips: Story = {
             User roles:
             <ReferenceArrayField reference="roles" source="role_ids" {...props}>
                 <SingleFieldList>
-                    <ChipField source="name" />
+                    <ChipField source="name"/>
                 </SingleFieldList>
             </ReferenceArrayField>
         </>;
@@ -54,7 +55,7 @@ export const ManualTextField: Story = {
             User roles:
             <ReferenceArrayField reference="roles" source="role_ids" {...props}>
                 <SingleFieldList>
-                    <TextField source="name" />
+                    <TextField source="name"/>
                 </SingleFieldList>
             </ReferenceArrayField>
         </>;
@@ -62,23 +63,16 @@ export const ManualTextField: Story = {
 };
 
 const defaultDecorator = (Story: () => React.JSX.Element) => {
-    const ResourceContext = ({ children }: { children: React.JSX.Element }) => {
-        let definitionContext = useResourceDefinitionContext();
-        definitionContext.register({
-            name: "roles",
-            recordRepresentation: "name",
-        });
-
-        return children;
-    };
-
     return (
         <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-            <ResourceContext>
+            <ResourceContextHelper resources={{
+                name: "roles",
+                recordRepresentation: "name"
+            }}>
                 <Labeled>
                     <Story/>
                 </Labeled>
-            </ResourceContext>
+            </ResourceContextHelper>
         </AdminContext>
     );
 };

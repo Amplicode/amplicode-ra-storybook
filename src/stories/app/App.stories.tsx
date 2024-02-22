@@ -12,9 +12,8 @@ import {
 } from "react-admin";
 import React from "react";
 import { dataProvider } from "../../dataProvider";
-import { parameters } from "../../../../amplicode-storybook";
 import fakeDataProvider from "ra-data-fakerest";
-import sampleParam = parameters.sampleParam;
+import { replaceOnGenerate } from "../../../../amplicode-storybook";
 
 const meta = {
     title: "Admin Application",
@@ -30,7 +29,7 @@ export type WizardInfo = {
 }
 
 export type CreateAppWizardParams = {
-    
+
 };
 
 export const Default: Story & WizardInfo = {
@@ -45,7 +44,7 @@ export const Default: Story & WizardInfo = {
 
         return (
             <Admin dataProvider={
-                sampleParam(
+                replaceOnGenerate(
                     dataProvider,
                     fakeDataProvider({})
                 )

@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, Button, defaultI18nProvider, useGetOne, useUpdate, } from "react-admin";
 import { dataProvider } from "../../../dataProvider";
 import React from "react";
-//
+import { GenerationInstructions } from "amplicode-storybook";
+
 const meta = {
     title: "Blocks/DataProvider/UseUpdate",
     parameters: {
@@ -25,11 +26,11 @@ export const Default: Story = {
             update,
         ] = useUpdate('users', { id: data?.id, data: { name: 'New name' } });
 
-        return <>
+        return <GenerationInstructions.Exclude>
             <Button label="Update" onClick={() => update()}/>
             <p/>
             <>Data: {data?.name}</>
-        </>;
+        </GenerationInstructions.Exclude>;
     },
 };
 
@@ -39,7 +40,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
             dataProvider={dataProvider}
             i18nProvider={defaultI18nProvider}
         >
-            <Story/>
+            {Story()}
         </AdminContext>
     );
 };

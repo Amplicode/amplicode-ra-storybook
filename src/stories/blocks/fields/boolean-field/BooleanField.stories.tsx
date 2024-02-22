@@ -5,6 +5,7 @@ import AlarmOnIcon from "@mui/icons-material/AlarmOn";
 import AlarmOffIcon from "@mui/icons-material/AlarmOff";
 import React from "react";
 import { Controls } from "@storybook/blocks";
+import { attributeName } from "../../../../ideExtension";
 
 const meta = {
     title: "Blocks/Fields/BooleanField",
@@ -23,7 +24,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     render: (props) => {
-        return <BooleanField source="active" {...props} />;
+        return <BooleanField source={attributeName("active")} {...props} />;
     }
 };
 
@@ -31,7 +32,7 @@ export const Custom: Story = {
     render: ({ valueLabelTrue, valueLabelFalse, ...props }) => {
         return (
             <BooleanField
-                source="active"
+                source={attributeName("active")}
                 valueLabelTrue={valueLabelTrue}
                 valueLabelFalse={valueLabelFalse}
                 TrueIcon={AlarmOnIcon}

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, defaultI18nProvider, ReferenceInput, SimpleForm } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import { ResourceContextHelper } from "../../../../utils";
+import { attributeName, resourceName } from "../../../../ideExtension";
 
 const meta = {
     title: "Blocks/Inputs/ReferenceInput",
@@ -18,7 +19,22 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     render: (props) => {
         return (
-            <ReferenceInput source="department_id" reference="departments" {...props} />
+            <ReferenceInput
+                source={attributeName(
+                    "department_id",
+                    {
+                        resourceSelectTitle: "Source Resource Name",
+                        attributeSelectTitle: "Reference Id Attribute",
+                    }
+                )}
+                reference={resourceName(
+                    "departments",
+                    {
+                        title: "Referenced Resource",
+                        allowContext: false,
+                    }
+                )}
+                {...props} />
         );
     }
 };

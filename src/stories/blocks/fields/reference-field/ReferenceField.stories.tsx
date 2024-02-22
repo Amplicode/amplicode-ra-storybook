@@ -10,6 +10,7 @@ import {
 import { dataProvider, users } from "../../../../dataProvider";
 import React from "react";
 import { ResourceContextHelper } from "../../../../utils";
+import { attributeName, resourceName } from "../../../../ideExtension";
 
 const meta = {
     title: "Blocks/Fields/ReferenceField",
@@ -30,7 +31,17 @@ export const DisplayByRecordRepresentation: Story = {
     render: (props) => {
         return <>
             User department:
-            <ReferenceField reference="departments" source="department_id" {...props} />
+            <ReferenceField source={
+                attributeName("department_id", {
+                    resourceSelectTitle: "Parent Resource Name",
+                    attributeSelectTitle: "Reference Attribute Name"
+                })
+            } reference={
+                resourceName("departments", {
+                    title: "Child Resource Name",
+                    allowContext: false
+                })
+            } {...props} />
         </>;
     }
 };
@@ -39,7 +50,15 @@ export const DisplayByCustomField: Story = {
     render: (props) => {
         return <>
             User department:
-            <ReferenceField reference="departments" source="department_id" {...props}>
+            <ReferenceField source={attributeName("department_id", {
+                resourceSelectTitle: "Parent Resource Name",
+                attributeSelectTitle: "Reference Attribute Name"
+            })} reference={
+                resourceName("departments", {
+                    title: "Child Resource Name",
+                    allowContext: false
+                })
+            } {...props}>
                 <Labeled>
                     <TextField source="name"/>
                 </Labeled>
@@ -51,14 +70,21 @@ export const WithEmptyText: Story = {
     render: () => {
         return <>
             User department:
-            <ReferenceField reference="departments" source="department_id"
-                            emptyText="No department"/>
+            <ReferenceField source={attributeName("department_id", {
+                resourceSelectTitle: "Parent Resource Name",
+                attributeSelectTitle: "Reference Attribute Name"
+            })} reference={
+                resourceName("departments", {
+                    title: "Child Resource Name",
+                    allowContext: false
+                })
+            } emptyText="No department"/>
         </>;
     },
     decorators: [
         (Story) => {
             return <RecordContextProvider value={{ id: 1 }}>
-                <Story/>
+                {Story()}
             </RecordContextProvider>;
         }
     ]
@@ -72,7 +98,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
                 recordRepresentation: "name",
             }}>
                 <Labeled>
-                    <Story/>
+                    {Story()}
                 </Labeled>
             </ResourceContextHelper>
         </AdminContext>

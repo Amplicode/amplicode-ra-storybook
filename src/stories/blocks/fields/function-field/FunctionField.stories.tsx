@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, FunctionField, Labeled, defaultI18nProvider } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
+import { attributeName } from "../../../../ideExtension";
 
 const meta = {
   title: "Blocks/Fields/FunctionField",
@@ -25,7 +26,7 @@ export const Default: Story = {
       )
     }
 
-    return <FunctionField source="name" render={render} {...props} />;
+    return <FunctionField source={attributeName("name")} render={render} {...props} />;
   }
 };
 

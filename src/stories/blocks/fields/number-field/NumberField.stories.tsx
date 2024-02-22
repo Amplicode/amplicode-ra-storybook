@@ -6,6 +6,7 @@ import {
   defaultI18nProvider,
 } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
+import { attributeName } from "../../../../ideExtension";
 
 const meta = {
   title: "Blocks/Fields/NumberField",
@@ -24,13 +25,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (props) => {
-    return <NumberField source="day_offs" {...props} />;
+    return <NumberField source={attributeName("day_offs")} {...props} />;
   },
 };
 
 export const Currency: Story = {
   render: ({currency, ...props}) => {
-    return <NumberField source="day_offs" options={{style: 'currency', currency}} {...props} />;
+    return <NumberField source={attributeName("day_offs")} options={{style: 'currency', currency}} {...props} />;
   },
   args: {
     currency: 'USD'
@@ -45,7 +46,7 @@ export const Currency: Story = {
 
 export const Unit: Story = {
   render: ({unit, unitDisplay, ...props}) => {
-    return <NumberField source="day_offs" options={{style: 'unit', unit, unitDisplay}} {...props} />;
+    return <NumberField source={attributeName("day_offs")} options={{style: 'unit', unit, unitDisplay}} {...props} />;
   },
   args: {
     unit: 'liter',

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, Button, defaultI18nProvider, useDelete, useGetOne, } from "react-admin";
 import { delayDataProvider } from "../../../dataProvider";
 import React from "react";
+import { GenerationInstructions } from "amplicode-storybook";
 //
 const meta = {
     title: "Blocks/DataProvider/UseDelete",
@@ -28,7 +29,7 @@ export const Default: Story = {
             mutationMode: 'undoable'
         });
 
-        return <>
+        return <GenerationInstructions.Exclude>
             <Button label="Delete" onClick={async () => {
                 data = undefined;
                 await deleteOne();
@@ -40,7 +41,7 @@ export const Default: Story = {
             {isError && 'isError'}
             {isLoadingError && 'isLoadingError'}
             {isLoading && 'isLoading'}
-        </>;
+        </GenerationInstructions.Exclude>;
     },
 };
 
@@ -50,7 +51,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
             dataProvider={delayDataProvider}
             i18nProvider={defaultI18nProvider}
         >
-            <Story/>
+            {Story()}
         </AdminContext>
     );
 };

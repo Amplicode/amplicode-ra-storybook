@@ -7,8 +7,7 @@ import {
 import { delayDataProvider } from "../../../dataProvider";
 import React from "react";
 // import { resourceName } from "@/ideExtension";
-import { GenerationInstructions, parameters } from "amplicode-storybook";
-import sampleParam = parameters.sampleParam;
+import { GenerationInstructions, replaceOnGenerate } from "amplicode-storybook";
 
 const meta = {
     title: "Blocks/DataProvider/UseGetMany",
@@ -25,7 +24,7 @@ export const Default: Story = {
     render: () => {
         let { data, isLoading, refetch } = useGetMany(
             'users',
-            { ids: sampleParam([1, 2, 3], []) },
+            { ids: replaceOnGenerate([1, 2, 3], []) },
         );
 
         return <GenerationInstructions.Exclude>
@@ -45,7 +44,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
             dataProvider={delayDataProvider}
             i18nProvider={defaultI18nProvider}
         >
-            <Story/>
+            {Story()}
         </AdminContext>
     );
 };

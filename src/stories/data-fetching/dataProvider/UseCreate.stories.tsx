@@ -2,9 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, Button, defaultI18nProvider, useCreate, } from "react-admin";
 import { delayDataProvider } from "../../../dataProvider";
 import React from "react";
-import { GenerationInstructions, parameters } from "amplicode-storybook";
+import { GenerationInstructions, replaceOnGenerate } from "amplicode-storybook";
 import { resourceName } from "../../../ideExtension";
-import Exclude = GenerationInstructions.Exclude;
 
 const meta = {
     title: "Blocks/DataProvider/UseCreate",
@@ -23,18 +22,18 @@ export const Default: Story = {
             create,
             { data, isLoading },
         ] = useCreate(
-            resourceName('users'),
+            resourceName('users', { allowContext: false }),
             {
-                data: parameters.sampleParam({ name: 'New user' }, {})
+                data: replaceOnGenerate({ name: 'New user' }, {})
             }
         );
 
-        return <Exclude>
+        return <GenerationInstructions.Exclude>
             <Button label="Create" onClick={() => create()}/>
             <p/>
             {isLoading && 'Loading'}
             {data && <>Created: {data.name}</>}
-        </Exclude>;
+        </GenerationInstructions.Exclude>;
     },
 };
 
@@ -44,7 +43,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
             dataProvider={delayDataProvider}
             i18nProvider={defaultI18nProvider}
         >
-            <Story/>
+            {Story()}
         </AdminContext>
     );
 };

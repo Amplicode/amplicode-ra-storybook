@@ -6,6 +6,7 @@ import {
   defaultI18nProvider,
 } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
+import { attributeName } from "../../../../ideExtension";
 
 const meta = {
   title: "Blocks/Fields/TextField",
@@ -24,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (props) => {
-    return <TextField source="name" {...props} />;
+    return <TextField source={attributeName("name")} {...props} />;
   },
 };
 

@@ -3,14 +3,14 @@ import {
     AdminContext,
     ChipField,
     defaultI18nProvider,
-    Labeled,
-    ReferenceArrayField, Resource,
+    ReferenceArrayField,
     SingleFieldList,
     TextField
 } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import React from "react";
 import { ResourceContextHelper } from "../../../../utils";
+import { attributeName, resourceName } from "../../../../ideExtension";
 
 const meta = {
     title: "Blocks/Fields/ReferenceArrayField",
@@ -29,37 +29,70 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     render: (props) => {
-        return <>
-            User roles:
-            <ReferenceArrayField reference="roles" source="role_ids" {...props} />
-        </>;
+        return <ReferenceArrayField source={
+                attributeName("role_ids", {
+                    resourceSelectTitle: "Parent Resource Name",
+                    attributeSelectTitle: "Reference Attribute Name"
+                })
+            } reference={
+                resourceName("roles", {
+                    title: "Child Resource Name",
+                    allowContext: false,
+                })
+            } {...props} />;
     }
 };
 
 export const ManualChips: Story = {
     render: (props) => {
-        return <>
-            User roles:
-            <ReferenceArrayField reference="roles" source="role_ids" {...props}>
+        return <ReferenceArrayField source={
+                attributeName("role_ids", {
+                    resourceSelectTitle: "Parent Resource Name",
+                    attributeSelectTitle: "Reference Attribute Name"
+                })
+            } reference={
+                resourceName("roles", {
+                    title: "Child Resource Name",
+                    allowContext: false,
+                    resourceId: "referenced_resource"
+                })
+            } {...props}>
                 <SingleFieldList>
-                    <ChipField source="name"/>
+                    <ChipField source={
+                        attributeName("name", {
+                            attributeSelectTitle: "Child Resource Representation Attribute",
+                            resourceId: "referenced_resource"
+                        })
+                    }/>
                 </SingleFieldList>
-            </ReferenceArrayField>
-        </>;
+            </ReferenceArrayField>;
     }
 };
 
 export const ManualTextField: Story = {
     render: (props) => {
-        return <>
-            User roles:
-            <ReferenceArrayField reference="roles" source="role_ids" {...props}>
+        return <ReferenceArrayField source={
+                attributeName("role_ids", {
+                    resourceSelectTitle: "Parent Resource Name",
+                    attributeSelectTitle: "Reference Attribute Name"
+                })
+            } reference={
+                resourceName("roles", {
+                    title: "Child Resource Name",
+                    allowContext: false,
+                    resourceId: "referenced_resource"
+                })
+            } {...props}>
                 <SingleFieldList>
-                    <TextField source="name"/>
+                    <TextField source={
+                        attributeName("name", {
+                            attributeSelectTitle: "Child Resource Representation Attribute",
+                            resourceId: "referenced_resource"
+                        })
+                    }/>
                 </SingleFieldList>
-            </ReferenceArrayField>
-        </>;
-    }
+            </ReferenceArrayField>;
+    },
 };
 
 const defaultDecorator = (Story: () => React.JSX.Element) => {
@@ -69,9 +102,10 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
                 name: "roles",
                 recordRepresentation: "name"
             }}>
-                <Labeled>
-                    <Story/>
-                </Labeled>
+                <>
+                User roles:
+                {Story()}
+                </>
             </ResourceContextHelper>
         </AdminContext>
     );

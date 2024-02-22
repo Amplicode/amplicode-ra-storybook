@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, BooleanInput, defaultI18nProvider, Labeled, SimpleForm } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
-import AlarmOnIcon from "@mui/icons-material/AlarmOn";
-import AlarmOffIcon from "@mui/icons-material/AlarmOff";
+import { attributeName } from "../../../../ideExtension";
 
 const meta = {
     title: "Blocks/Inputs/BooleanInput",
@@ -18,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     render: (props) => {
-        return <BooleanInput source="active" {...props} />;
+        return <BooleanInput source={attributeName("active")} {...props} />;
     }
 };
 
@@ -26,7 +25,7 @@ export const CustomLabel: Story = {
     render: ({ label, ...props }) => {
         return (
             <BooleanInput
-                source="active"
+                source={attributeName("active")}
                 label={label}
                 {...props}
             />

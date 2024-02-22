@@ -2,8 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, defaultI18nProvider, required, SelectInput, SimpleForm } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import React from "react";
-import { parameters } from "../../../../../../amplicode-storybook";
-import sampleParam = parameters.sampleParam;
+import { replaceOnGenerate } from "../../../../../../amplicode-storybook";
 
 const meta = {
     title: "Blocks/Inputs/SelectInput",
@@ -19,11 +18,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     render: (props) => {
-        let choices = sampleParam([
+        let choices = replaceOnGenerate([
             { id: 'Moscow', name: 'Moscow' },
             { id: 'Samara', name: 'Samara' },
             { id: 'Tokyo', name: 'Tokyo' },
-        ], []);
+        ], [/*<ampl:cursor>*/]);
 
         return <SelectInput
             source="city"
@@ -52,7 +51,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
     return (
         <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
             <SimpleForm record={users[0]} toolbar={false}>
-                <Story/>
+                {Story()}
             </SimpleForm>
         </AdminContext>
     );

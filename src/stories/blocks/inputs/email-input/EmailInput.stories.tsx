@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, defaultI18nProvider, email, Labeled, SimpleForm, TextInput } from "react-admin";
+import { AdminContext, defaultI18nProvider, email, SimpleForm, TextInput } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import React from "react";
+import { attributeName } from "../../../../ideExtension";
 
 const meta = {
     title: "Blocks/Inputs/EmailInput",
@@ -17,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     render: (props) => {
-        return <TextInput source="email" validate={email()} {...props} />;
+        return <TextInput source={attributeName("email")} validate={email()} {...props} />;
     }
 };
 
@@ -25,7 +26,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
     return (
         <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
             <SimpleForm record={users[0]} toolbar={false}>
-                <Story/>
+                {Story()}
             </SimpleForm>
         </AdminContext>
     );

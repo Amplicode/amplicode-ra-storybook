@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, EmailField, Labeled, Show, SimpleShowLayout, defaultI18nProvider } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
+import { attributeName } from "../../../../ideExtension";
 
 const meta = {
   title: "Blocks/Fields/EmailField",
@@ -19,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (props) => {
-    return <EmailField source="email" {...props} />;
+    return <EmailField source={attributeName("email")} {...props} />;
   }
 };
 

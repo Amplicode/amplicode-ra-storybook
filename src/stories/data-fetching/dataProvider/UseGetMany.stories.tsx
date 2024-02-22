@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-    AdminContext, Button,
-    defaultI18nProvider, TextField, useGetMany,
-    useGetOne,
-} from "react-admin";
+import { AdminContext, Button, defaultI18nProvider, TextField, useGetMany, } from "react-admin";
 import { delayDataProvider } from "../../../dataProvider";
 import React from "react";
 // import { resourceName } from "@/ideExtension";
@@ -29,10 +25,12 @@ export const Default: Story = {
 
         return <GenerationInstructions.Exclude>
             {isLoading && <div>Loading</div>}
-            {!isLoading && (data || []).map(value => {
-                return (<><TextField record={value} source="name"/>
-                    <p/></>);
-            })}
+            {!isLoading && (data || []).map(value =>
+                <>
+                    <TextField record={value} source="name"/>
+                    <p/>
+                </>
+            )}
             {!isLoading && <Button label="Reload" onClick={() => refetch()}/>}
         </GenerationInstructions.Exclude>;
     },
@@ -44,7 +42,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
             dataProvider={delayDataProvider}
             i18nProvider={defaultI18nProvider}
         >
-            {Story()}
+            <Story />
         </AdminContext>
     );
 };

@@ -40,7 +40,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
             dataProvider={dataProvider}
             i18nProvider={defaultI18nProvider}
         >
-            {Story()}
+            <Story/>
         </AdminContext>
     );
 };

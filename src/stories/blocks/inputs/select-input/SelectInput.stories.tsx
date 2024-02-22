@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, defaultI18nProvider, required, SelectInput, SimpleForm } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import React from "react";
-import { replaceOnGenerate } from "../../../../../../amplicode-storybook";
+import { replaceOnGenerate } from "@amplicode/storybook-extensions";
 
 const meta = {
     title: "Blocks/Inputs/SelectInput",

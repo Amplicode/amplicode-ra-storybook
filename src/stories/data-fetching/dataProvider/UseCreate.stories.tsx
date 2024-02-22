@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, Button, defaultI18nProvider, useCreate, } from "react-admin";
 import { delayDataProvider } from "../../../dataProvider";
 import React from "react";
-import { GenerationInstructions, replaceOnGenerate } from "amplicode-storybook";
+import { GenerationInstructions, replaceOnGenerate } from "@amplicode/storybook-extensions";
 import { resourceName } from "../../../ideExtension";
 
 const meta = {

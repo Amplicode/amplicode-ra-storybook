@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, Button, defaultI18nProvider, useDelete, useGetOne, } from "react-admin";
 import { delayDataProvider } from "../../../dataProvider";
 import React from "react";
-import { GenerationInstructions } from "amplicode-storybook";
-//
+import { GenerationInstructions } from "@amplicode/storybook-extensions";
+import { resourceName } from "../../../ideExtension";
+
 const meta = {
     title: "Blocks/DataProvider/UseDelete",
     parameters: {
@@ -18,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     render: () => {
         let { data, refetch, isError, isLoadingError, isLoading } = useGetOne(
-            'users',
+            resourceName('users', { allowContext: false }),
             { id: 1 },
             { cacheTime: -1 }
         );

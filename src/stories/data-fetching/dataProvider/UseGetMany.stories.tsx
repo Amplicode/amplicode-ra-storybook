@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AdminContext, Button, defaultI18nProvider, TextField, useGetMany, } from "react-admin";
 import { delayDataProvider } from "../../../dataProvider";
 import React from "react";
-// import { resourceName } from "@/ideExtension";
-import { GenerationInstructions, replaceOnGenerate } from "amplicode-storybook";
+import { GenerationInstructions, replaceOnGenerate } from "@amplicode/storybook-extensions";
+import { resourceName } from "../../../ideExtension";
 
 const meta = {
     title: "Blocks/DataProvider/UseGetMany",
@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     render: () => {
         let { data, isLoading, refetch } = useGetMany(
-            'users',
+            resourceName('users', { allowContext: false }),
             { ids: replaceOnGenerate([1, 2, 3], []) },
         );
 

@@ -13,7 +13,7 @@ import {
 import React from "react";
 import { dataProvider } from "../../dataProvider";
 import fakeDataProvider from "ra-data-fakerest";
-import { replaceOnGenerate } from "../../../../amplicode-storybook";
+import { replaceOnGenerate } from "@amplicode/storybook-extensions";
 
 const meta = {
     title: "Admin Application",

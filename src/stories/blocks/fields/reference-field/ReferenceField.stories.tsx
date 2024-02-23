@@ -29,9 +29,7 @@ type Story = StoryObj<typeof meta>;
 
 export const DisplayByRecordRepresentation: Story = {
     render: (props) => {
-        return <>
-            User department:
-            <ReferenceField source={
+        return <ReferenceField source={
                 attributeName("department_id", {
                     resourceSelectTitle: "Parent Resource Name",
                     attributeSelectTitle: "Reference Attribute Name"
@@ -41,16 +39,13 @@ export const DisplayByRecordRepresentation: Story = {
                     title: "Child Resource Name",
                     allowContext: false
                 })
-            } {...props} />
-        </>;
+            } {...props} />;
     }
 };
 
 export const DisplayByCustomField: Story = {
     render: (props) => {
-        return <>
-            User department:
-            <ReferenceField source={attributeName("department_id", {
+        return <ReferenceField source={attributeName("department_id", {
                 resourceSelectTitle: "Parent Resource Name",
                 attributeSelectTitle: "Reference Attribute Name"
             })} reference={
@@ -62,15 +57,12 @@ export const DisplayByCustomField: Story = {
                 <Labeled>
                     <TextField source="name"/>
                 </Labeled>
-            </ReferenceField>
-        </>;
+            </ReferenceField>;
     }
 };
 export const WithEmptyText: Story = {
     render: () => {
-        return <>
-            User department:
-            <ReferenceField source={attributeName("department_id", {
+        return <ReferenceField source={attributeName("department_id", {
                 resourceSelectTitle: "Parent Resource Name",
                 attributeSelectTitle: "Reference Attribute Name"
             })} reference={
@@ -78,8 +70,7 @@ export const WithEmptyText: Story = {
                     title: "Child Resource Name",
                     allowContext: false
                 })
-            } emptyText="No department"/>
-        </>;
+            } emptyText="No department"/>;
     },
     decorators: [
         (Story) => {
@@ -97,9 +88,10 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
                 name: "departments",
                 recordRepresentation: "name",
             }}>
-                <Labeled>
+                <>
+                    User department:
                     {Story()}
-                </Labeled>
+                </>
             </ResourceContextHelper>
         </AdminContext>
     );

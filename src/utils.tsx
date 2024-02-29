@@ -1,5 +1,19 @@
 import React from "react";
-import { ResourceDefinition, useResourceDefinitionContext } from "react-admin";
+import {
+    DataProvider,
+    DataProviderContext,
+    defaultI18nProvider,
+    I18nContextProvider,
+    ResourceDefinition,
+    ResourceDefinitionContextProvider,
+    StoreContextProvider,
+    ThemeProvider,
+    useResourceDefinitionContext
+} from "react-admin";
+import { I18nProvider } from "ra-core/src/types";
+import { memoryStore } from "ra-core/src/store";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { dataProvider as defaultDataProvider } from "./dataProvider";
 
 /**
  * Helper component to register react-admin resources. Only for use in stories.
@@ -19,4 +33,39 @@ export const ResourceContextHelper = ({ children, resources }: {
     }
 
     return children;
+};
+
+
+type AdminStoryContextProps = {
+    children: React.JSX.Element | React.JSX.Element[];
+    dataProvider?: DataProvider;
+    i18nProvider?: I18nProvider;
+    resources?: ResourceDefinition[] | ResourceDefinition;
+};
+
+export const AdminStoryContext = (
+    {
+        children,
+        dataProvider = defaultDataProvider,
+        i18nProvider = defaultI18nProvider,
+        resources = []
+    }: AdminStoryContextProps
+) => {
+    return <ThemeProvider>
+        <StoreContextProvider value={memoryStore()}>
+            <DataProviderContext.Provider value={dataProvider}>
+                <I18nContextProvider value={i18nProvider}>
+                    <QueryClientProvider client={new QueryClient()}>
+                        <ResourceDefinitionContextProvider>
+                            <ResourceContextHelper resources={resources}>
+                                <>
+                                    {children}
+                                </>
+                            </ResourceContextHelper>
+                        </ResourceDefinitionContextProvider>
+                    </QueryClientProvider>
+                </I18nContextProvider>
+            </DataProviderContext.Provider>
+        </StoreContextProvider>
+    </ThemeProvider>;
 };

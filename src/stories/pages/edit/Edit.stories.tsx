@@ -15,6 +15,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { dataProvider } from "../../../dataProvider";
 import React from "react";
+import { CreatePageWizardInfo, WizardInfo } from "@amplicode/storybook-extensions";
 
 const meta = {
   title: "Pages/Edit",
@@ -27,7 +28,7 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Default: Story = {
+export const Default: Story & WizardInfo<CreatePageWizardInfo> = {
   render: (props) => {
     return (
       <Edit resource={'users'} {...props}>
@@ -39,6 +40,12 @@ export const Default: Story = {
       </Edit>
     );
   },
+
+  wizardName: 'pageWizard',
+  info: {
+    pageType: 'Edit',
+    readonlyPageType: true,
+  }
 };
 
 export const CustomActions: Story = {

@@ -23,6 +23,7 @@ export function attributeName(
         resourceSelectTitle?: string,
         attributeSelectTitle?: string,
         resourceId?: string,
+        attributeId?: string,
         allowResourceContext?: boolean
     } = {
         resourceSelectTitle: "Resource Name",

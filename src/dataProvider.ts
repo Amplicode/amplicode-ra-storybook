@@ -23,7 +23,7 @@ export const users = [
         email: "test@gmail.com",
         name: "Jack",
         day_offs: 20,
-        department_id: 1,
+        department_id: 2,
         role_ids: [1, 2, 3]
     },
     {
@@ -35,7 +35,7 @@ export const users = [
         email: "test@gmail.com",
         name: "Samantha",
         day_offs: 30,
-        department_id: 1,
+        department_id: 3,
         role_ids: [1, 2, 3]
     },
     {
@@ -59,7 +59,7 @@ export const users = [
         email: "test@gmail.com",
         name: "Rosa",
         day_offs: 50,
-        department_id: 1,
+        department_id: 2,
         role_ids: [1, 2, 3]
     },
     {
@@ -71,7 +71,7 @@ export const users = [
         email: "test@gmail.com",
         name: "Amber",
         day_offs: 60,
-        department_id: 1,
+        department_id: 3,
         role_ids: [1, 2, 3]
     },
     {

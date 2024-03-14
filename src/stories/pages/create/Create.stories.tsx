@@ -19,6 +19,7 @@ import { dataProvider } from "../../../dataProvider";
 import React, { useState } from "react";
 import { Dialog, DialogTitle } from "@mui/material";
 import { FieldValues } from "react-hook-form";
+import { CreatePageWizardInfo, WizardInfo } from "@amplicode/storybook-extensions";
 
 const meta = {
     title: "Pages/Create",
@@ -29,18 +30,24 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-    render: (props) => {
-        return (
-            <Create {...props}>
-                <SimpleForm>
-                    <TextInput source="id"/>
-                    <TextInput source="name"/>
-                    <DateInput source="birthday"/>
-                </SimpleForm>
-            </Create>
-        );
-    },
+export const Default: Story & WizardInfo<CreatePageWizardInfo> = {
+  render: (props) => {
+    return (
+      <Create {...props}>
+        <SimpleForm>
+          <TextInput source="id" />
+          <TextInput source="name" />
+          <DateInput source="birthday" />
+        </SimpleForm>
+      </Create>
+    );
+  },
+
+  wizardName: 'pageWizard',
+  info: {
+    pageType: 'Create',
+    readonlyPageType: true,
+  }
 };
 
 export const CustomActions: Story = {

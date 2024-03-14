@@ -15,6 +15,7 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { dataProvider } from "../../../dataProvider";
+import { CreatePageWizardInfo, WizardInfo } from "ideExtension";
 
 const defaultDecorator = (Story: () => JSX.Element) => (
   <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
@@ -47,7 +48,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default: Story & WizardInfo<CreatePageWizardInfo> = {
   render: (props) => {
     return (
       <List {...props}>
@@ -59,6 +60,12 @@ export const Default: Story = {
       </List>
     );
   },
+
+  wizardName: 'pageWizard',
+  info: {
+    pageType: 'List',
+    readonlyPageType: true,
+  }
 };
 
 export const Filter: Story = {

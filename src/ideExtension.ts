@@ -33,3 +33,17 @@ export function attributeName(
 ) {
     return storyAttribute;
 }
+
+/**
+ * Additional info for integration stories with RA Page Wizard
+ */
+
+export type WizardInfo<T> = {
+    wizardName: string;
+    info: T;
+}
+
+export type CreatePageWizardInfo = {
+    pageType: string;
+    readonlyPageType?: boolean;
+}

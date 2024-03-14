@@ -22,6 +22,7 @@ import { Drawer, IconButton, SxProps, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import CloseIcon from '@mui/icons-material/Close';
+import { CreatePageWizardInfo, WizardInfo } from "ideExtension";
 
 const meta = {
     title: "Pages/MasterDetails",
@@ -41,7 +42,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default: Story & WizardInfo<CreatePageWizardInfo> = {
     render: (props) => {
         const location = useLocation();
         const navigate = useNavigate();
@@ -117,6 +118,12 @@ export const Default: Story = {
             </Box>
         );
     },
+
+    wizardName: 'pageWizard',
+    info: {
+        pageType: 'MasterDetails',
+        readonlyPageType: true,
+    }
 };
 
 const defaultDecorator = (Story: () => React.JSX.Element) => {

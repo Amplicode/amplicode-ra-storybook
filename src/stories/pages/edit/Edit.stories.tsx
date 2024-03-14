@@ -20,6 +20,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { dataProvider } from "../../../dataProvider";
 import React from "react";
+import { CreatePageWizardInfo, WizardInfo } from "ideExtension";
 
 const meta = {
     title: "Pages/Edit",
@@ -31,19 +32,25 @@ const meta = {
 } satisfies Meta<typeof Edit>;
 
 export default meta;
-type Story = StoryObj<typeof meta> ;
-export const Default: Story = {
-    render: (props) => {
-        return (
-            <Edit resource={'users'} {...props}>
-                <SimpleForm>
-                    <TextInput source="id"/>
-                    <TextInput source="name"/>
-                    <DateInput source="birthday"/>
-                </SimpleForm>
-            </Edit>
-        );
-    },
+type Story = StoryObj<typeof meta>;
+export const Default: Story & WizardInfo<CreatePageWizardInfo> = {
+  render: (props) => {
+    return (
+      <Edit resource={'users'} {...props}>
+        <SimpleForm>
+          <TextInput source="id" />
+          <TextInput source="name" />
+          <DateInput source="birthday" />
+        </SimpleForm>
+      </Edit>
+    );
+  },
+
+  wizardName: 'pageWizard',
+  info: {
+    pageType: 'Edit',
+    readonlyPageType: true,
+  }
 };
 
 export const CustomActions: Story = {

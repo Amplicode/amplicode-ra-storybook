@@ -14,6 +14,7 @@ import React from "react";
 import { dataProvider } from "../../dataProvider";
 import fakeDataProvider from "ra-data-fakerest";
 import { replaceOnGenerate } from "@amplicode/storybook-extensions";
+import { WizardInfo } from "ideExtension";
 
 const meta = {
     title: "Admin Application",
@@ -22,11 +23,6 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-export type WizardInfo<T> = {
-    wizardName: string;
-    wizardParams: T;
-}
 
 export type CreateAppWizardParams = {
 

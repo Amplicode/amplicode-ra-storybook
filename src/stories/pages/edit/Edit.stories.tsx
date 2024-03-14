@@ -20,7 +20,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { dataProvider } from "../../../dataProvider";
 import React from "react";
-import { CreatePageWizardInfo, WizardInfo } from "@amplicode/storybook-extensions";
+import { CreatePageWizardInfo, WizardInfo } from "ideExtension";
 
 const meta = {
     title: "Pages/Edit",

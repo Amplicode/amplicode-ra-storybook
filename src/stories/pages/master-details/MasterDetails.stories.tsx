@@ -22,7 +22,7 @@ import { Drawer, IconButton, SxProps, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import CloseIcon from '@mui/icons-material/Close';
-import { CreatePageWizardInfo, WizardInfo } from "@amplicode/storybook-extensions";
+import { CreatePageWizardInfo, WizardInfo } from "ideExtension";
 
 const meta = {
     title: "Pages/MasterDetails",

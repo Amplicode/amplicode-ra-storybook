@@ -15,7 +15,7 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { dataProvider } from "../../../dataProvider";
-import { CreatePageWizardInfo, WizardInfo } from "@amplicode/storybook-extensions";
+import { CreatePageWizardInfo, WizardInfo } from "ideExtension";
 
 const defaultDecorator = (Story: () => JSX.Element) => (
   <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>

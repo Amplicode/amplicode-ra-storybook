@@ -14,7 +14,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { dataProvider } from "../../../dataProvider";
-import { CreatePageWizardInfo, WizardInfo } from "ideExtension";
+import { CreatePageWizardParams } from "ideExtension";
+import { WizardInfo } from "@amplicode/storybook-extensions";
 
 const meta = {
   title: "Pages/Show",
@@ -28,7 +29,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story & WizardInfo<CreatePageWizardInfo> = {
+export const Default: Story & WizardInfo<CreatePageWizardParams> = {
   render: (props) => {
     return (
       <Show {...props}>

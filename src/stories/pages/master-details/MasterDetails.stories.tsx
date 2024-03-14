@@ -22,7 +22,8 @@ import { Drawer, IconButton, SxProps, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import CloseIcon from '@mui/icons-material/Close';
-import { CreatePageWizardInfo, WizardInfo } from "ideExtension";
+import { CreatePageWizardParams } from "ideExtension";
+import { WizardInfo } from "@amplicode/storybook-extensions";
 
 const meta = {
     title: "Pages/MasterDetails",
@@ -42,7 +43,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story & WizardInfo<CreatePageWizardInfo> = {
+export const Default: Story & WizardInfo<CreatePageWizardParams> = {
     render: (props) => {
         const location = useLocation();
         const navigate = useNavigate();

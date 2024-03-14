@@ -23,16 +23,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export type WizardInfo = {
+export type WizardInfo<T> = {
     wizardName: string;
-    wizardParams: any;
+    wizardParams: T;
 }
 
 export type CreateAppWizardParams = {
 
 };
 
-export const Default: Story & WizardInfo = {
+export const Default: Story & WizardInfo<CreateAppWizardParams> = {
     render: (props) => {
         const MainMenu = () => {
             return <Menu>

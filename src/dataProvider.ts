@@ -23,7 +23,7 @@ export const users = [
         email: "test@gmail.com",
         name: "Jack",
         day_offs: 20,
-        department_id: 1,
+        department_id: 2,
         role_ids: [1, 2, 3]
     },
     {
@@ -35,7 +35,7 @@ export const users = [
         email: "test@gmail.com",
         name: "Samantha",
         day_offs: 30,
-        department_id: 1,
+        department_id: 3,
         role_ids: [1, 2, 3]
     },
     {
@@ -59,7 +59,7 @@ export const users = [
         email: "test@gmail.com",
         name: "Rosa",
         day_offs: 50,
-        department_id: 1,
+        department_id: 2,
         role_ids: [1, 2, 3]
     },
     {
@@ -71,7 +71,7 @@ export const users = [
         email: "test@gmail.com",
         name: "Amber",
         day_offs: 60,
-        department_id: 1,
+        department_id: 3,
         role_ids: [1, 2, 3]
     },
     {
@@ -85,259 +85,7 @@ export const users = [
         day_offs: 70,
         department_id: 1,
         role_ids: [1, 2, 3]
-    },
-    {
-        id: 11,
-        role: "customer",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Bill",
-        day_offs: 90,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 12,
-        role: "admin",
-        active: true,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Jack",
-        day_offs: 20,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 13,
-        role: "admin",
-        active: false,
-        city: "NY",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Samantha",
-        day_offs: 30,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 14,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Derek",
-        day_offs: 40,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 15,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Rosa",
-        day_offs: 50,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 16,
-        role: "admin",
-        active: false,
-        city: "NY",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Amber",
-        day_offs: 60,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 17,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "John",
-        day_offs: 70,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 21,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Bill",
-        day_offs: 90,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 22,
-        role: "customer",
-        active: true,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Jack",
-        day_offs: 20,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 23,
-        role: "admin",
-        active: false,
-        city: "NY",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Samantha",
-        day_offs: 30,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 24,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Derek",
-        day_offs: 40,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 25,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Rosa",
-        day_offs: 50,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 26,
-        role: "admin",
-        active: false,
-        city: "NY",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Amber",
-        day_offs: 60,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 27,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "John",
-        day_offs: 70,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 31,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Bill",
-        day_offs: 90,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 32,
-        role: "admin",
-        active: true,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Jack",
-        day_offs: 20,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 33,
-        role: "customer",
-        active: false,
-        city: "NY",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Samantha",
-        day_offs: 30,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 34,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Derek",
-        day_offs: 40,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 35,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Rosa",
-        day_offs: 50,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 36,
-        role: "admin",
-        active: false,
-        city: "NY",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "Amber",
-        day_offs: 60,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
-    {
-        id: 37,
-        role: "admin",
-        active: false,
-        city: "Tokyo",
-        birthday: "01/08/1991",
-        email: "test@gmail.com",
-        name: "John",
-        day_offs: 70,
-        department_id: 1,
-        role_ids: [1, 2, 3]
-    },
+    }
 ];
 
 export const departments = [
@@ -374,10 +122,35 @@ export const roles = [
     }
 ];
 
+export const tasks = [
+    { id: 1, name: 'Win a Nobel Prize', user_id: 2, done: true },
+    { id: 2, name: 'Win a Nobel Prize', user_id: 1, done: false },
+    { id: 3, name: 'Race a Rocket', user_id: 2, done: true },
+    { id: 4, name: 'Dance on a Volcano', user_id: 2, done: true },
+    { id: 5, name: 'Design a Spaceship', user_id: 4, done: false },
+    { id: 6, name: 'Dance on a Volcano', user_id: 5, done: false },
+    { id: 7, name: 'Discover a New Element', user_id: 1, done: false },
+    { id: 8, name: 'Write a Bestseller', user_id: 2, done: true },
+    { id: 9, name: 'Paint a Masterpiece', user_id: 3, done: true },
+    { id: 10, name: 'Tame a Dragon', user_id: 2, done: false },
+    { id: 11, name: 'Dance on a Volcano', user_id: 2, done: true },
+    { id: 12, name: 'Win a Nobel Prize', user_id: 1, done: true },
+    { id: 13, name: 'Sing with Whales', user_id: 3, done: true },
+    { id: 14, name: 'Design a Spaceship', user_id: 2, done: false },
+    { id: 15, name: 'Build a Robot', user_id: 1, done: true },
+    { id: 16, name: 'Dance on a Volcano', user_id: 2, done: false },
+    { id: 17, name: 'Win a Nobel Prize', user_id: 4, done: false },
+    { id: 18, name: 'Solve World Peace', user_id: 5, done: true },
+    { id: 19, name: 'Tame a Dragon', user_id: 1, done: false },
+    { id: 20, name: 'Paint a Masterpiece', user_id: 5, done: true }
+];
+
+
 export const dataProvider = fakeDataProvider({
     users,
     departments,
-    roles
+    roles,
+    tasks
 });
 
 async function delay() {

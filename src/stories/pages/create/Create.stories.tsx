@@ -19,7 +19,8 @@ import { dataProvider } from "../../../dataProvider";
 import React, { useState } from "react";
 import { Dialog, DialogTitle } from "@mui/material";
 import { FieldValues } from "react-hook-form";
-import { CreatePageWizardInfo, WizardInfo } from "@amplicode/storybook-extensions";
+import { WizardInfo } from "@amplicode/storybook-extensions";
+import { CreatePageWizardParams } from "ideExtension";
 
 const meta = {
     title: "Pages/Create",
@@ -30,7 +31,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story & WizardInfo<CreatePageWizardInfo> = {
+export const Default: Story & WizardInfo<CreatePageWizardParams> = {
   render: (props) => {
     return (
       <Create {...props}>

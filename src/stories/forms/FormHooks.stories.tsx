@@ -20,7 +20,7 @@ export const ResetForm: Story = {
             reset();
         }, [reset]);
 
-        return <Button onClick={resetForm} label="Reset name"/>;
+        return <Button onClick={resetForm} label="Reset form"/>;
     },
     decorators: [
         (Story) => {

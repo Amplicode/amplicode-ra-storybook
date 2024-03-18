@@ -42,19 +42,19 @@ export const Default: Story = {
 };
 
 export const DependentFields: Story = {
-    render: () => {
+    render: ({ parentId, attributeId }) => {
 
         const DependentInput = () => {
             const { watch, resetField } = useFormContext();
-            const parentId = watch(replaceOnGenerate('user_id', 'parentId'), null);
+            const parentIdValue = watch(parentId, null);
 
-            const filter = parentId ? replaceOnGenerate({ 'user_id': parentId }, { 'parent_id': parentId }) : {};
+            const filter = parentIdValue ? replaceOnGenerate({ 'user_id': parentIdValue }, { 'parent_id': parentIdValue }) : {};
 
             useEffect(() => {
-                resetField(replaceOnGenerate('task_id', 'childId'));
-            }, [parentId, resetField]);
+                resetField(attributeId);
+            }, [parentIdValue, resetField]);
 
-            return <ReferenceInput source={replaceOnGenerate('task_id', 'childId')} reference="tasks" filter={filter}/>;
+            return <ReferenceInput source={attributeId} reference="tasks" filter={filter}/>;
         };
 
         return (
@@ -67,6 +67,10 @@ export const DependentFields: Story = {
                 </SimpleForm>
             </GenerationInstructions.Exclude>
         );
+    },
+    args: {
+        parentId: replaceOnGenerate('user_id', 'parentId'),
+        attributeId: replaceOnGenerate('task_id', 'childId')
     }
 }
 

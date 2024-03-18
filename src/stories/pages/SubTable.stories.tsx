@@ -32,7 +32,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 export const Default: Story = {
-    render: ({subresourceName, subresourceBackReference}) => {
+    render: ({subresourceName, subresourceBackReference, ...props}) => {
         const SubTable = () => {
             const { record } = useEditContext();
 
@@ -48,6 +48,7 @@ export const Default: Story = {
                         actions={<>
                             <CreateButton state={{ record: { [subresourceBackReference]: record.id } }}/>
                         </>}
+                        {...props}
                     >
                         <Datagrid>
                             <TextField source="id"/>
@@ -88,7 +89,7 @@ export const Default: Story = {
         subresourceName: resourceName("users", {
             title: 'Child Resource',
             resourceId: 'subresource',
-            allowContext: false
+            allowContext: false,
         }),
         subresourceBackReference: attributeName("department_id",
             {

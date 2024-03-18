@@ -4,7 +4,6 @@ import { dataProvider, users } from "../../../../dataProvider";
 import AlarmOnIcon from "@mui/icons-material/AlarmOn";
 import AlarmOffIcon from "@mui/icons-material/AlarmOff";
 import React from "react";
-import { Controls } from "@storybook/blocks";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {

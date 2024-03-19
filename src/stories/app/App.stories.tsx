@@ -23,11 +23,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export type CreateAppWizardParams = {
-
-};
-
-export const Default: Story & WizardInfo<CreateAppWizardParams> = {
+export const Default: Story = {
     render: (props) => {
         const MainMenu = () => {
             return <Menu>
@@ -69,8 +65,4 @@ export const Default: Story & WizardInfo<CreateAppWizardParams> = {
             </Admin>
         );
     },
-    wizardName: "amplicode.createAdminApp",
-    wizardParams: {
-
-    } satisfies CreateAppWizardParams
 };

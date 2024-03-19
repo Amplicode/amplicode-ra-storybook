@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
-    Admin,
     BooleanInput,
     Datagrid,
     DateInput,
@@ -55,7 +54,7 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
         const match = matchPath('/users/:id', location.pathname);
 
         const DetailsView = ({ id }: { id: string}) => {
-            return <div style={{ padding: "0px 20px 0px 20px", width: "360px" }}>
+            return <div style={{ padding: "64px 20px 0px 20px", width: "360px" }}>
                 <EditBase id={id}>
                     <Stack direction="row" p={2}>
                         <Typography variant="h6" flex="1">

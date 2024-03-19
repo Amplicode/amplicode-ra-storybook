@@ -9,9 +9,10 @@ import {
     Labeled,
     List,
     ResourceContextProvider,
+    Show,
     SimpleForm,
     TextField,
-    useEditContext,
+    useShowContext,
 } from "react-admin";
 import { dataProvider } from "../../dataProvider";
 import React from "react";
@@ -32,39 +33,41 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 export const Default: Story = {
-    render: ({subresourceName, subresourceBackReference, ...props}) => {
+    render: ({ subresourceName, subresourceBackReference, ...props }) => {
         const SubTable = () => {
-            const { record } = useEditContext();
+            const { record } = useShowContext(); // replace with useEditContext for Edit screens
+
+            if (!record) {
+                return <></>;
+            }
 
             return (
-                <>
-                    <List
-                        disableSyncWithLocation
-                        resource={subresourceName}
-                        filter={{
-                            [subresourceBackReference]: record.id
-                        }}
-                        sx={{ width: "100%" }}
-                        actions={<>
-                            <CreateButton state={{ record: { [subresourceBackReference]: record.id } }}/>
-                        </>}
-                        {...props}
-                    >
-                        <Datagrid>
-                            <TextField source="id"/>
-                            <GenerationInstructions.Exclude>
-                                <TextField source="name"/>
-                                <DateField source="birthday"/>
-                            </GenerationInstructions.Exclude>
-                        </Datagrid>
-                    </List>
-                </>
+                <List
+                    disableSyncWithLocation
+                    resource={subresourceName}
+                    filter={{
+                        [subresourceBackReference]: record.id
+                    }}
+                    sx={{ width: "100%" }}
+                    actions={
+                        <CreateButton state={{ record: { [subresourceBackReference]: record.id } }}/>
+                    }
+                    {...props}
+                >
+                    <Datagrid>
+                        <TextField source="id"/>
+                        <GenerationInstructions.Exclude>
+                            <TextField source="name"/>
+                            <DateField source="birthday"/>
+                        </GenerationInstructions.Exclude>
+                    </Datagrid>
+                </List>
             );
         };
 
 
         return (
-            <Edit resource='departments'>
+            <Show resource='departments'>
                 <SimpleForm>
                     <Typography variant="h5">Department</Typography>
 
@@ -82,7 +85,7 @@ export const Default: Story = {
                         </Box>
                     </GenerationInstructions.InsertOnly>
                 </SimpleForm>
-            </Edit>
+            </Show>
         );
     },
     args: {

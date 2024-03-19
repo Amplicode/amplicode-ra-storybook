@@ -22,7 +22,7 @@
     "ra-data-fakerest": "^4.16.11",
     "react-admin": "^4.16.7",
     "typescript": "^5.3.3",
-    "@amplicode/storybook-extensions": "^0.0.3"
+    "@amplicode/storybook-extensions": "^0.0.4"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.10",

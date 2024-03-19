@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
     AdminContext,
+    ChipField,
     defaultI18nProvider,
-    Labeled,
     RecordContextProvider,
     ReferenceField,
     TextField
@@ -28,49 +28,52 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const DisplayByRecordRepresentation: Story = {
-    render: (props) => {
-        return <ReferenceField source={
-                attributeName("department_id", {
-                    resourceSelectTitle: "Parent Resource Name",
-                    attributeSelectTitle: "Reference Attribute Name"
-                })
-            } reference={
-                resourceName("departments", {
-                    title: "Child Resource Name",
-                    allowContext: false
-                })
-            } {...props} />;
+    render: ({ attrName, resourceName, ...props }) => {
+        return <ReferenceField source={attrName} reference={resourceName} {...props} />;
+    },
+    args: {
+        attrName: attributeName("department_id", {
+            resourceSelectTitle: "Parent Resource Name",
+            attributeSelectTitle: "Reference Attribute Name"
+        }),
+        resourceName: resourceName("departments", {
+            title: "Child Resource Name",
+            allowContext: false
+        })
     }
 };
 
-export const DisplayByCustomField: Story = {
-    render: (props) => {
-        return <ReferenceField source={attributeName("department_id", {
-                resourceSelectTitle: "Parent Resource Name",
-                attributeSelectTitle: "Reference Attribute Name"
-            })} reference={
-                resourceName("departments", {
-                    title: "Child Resource Name",
-                    allowContext: false
-                })
-            } {...props}>
-                <Labeled>
-                    <TextField source="name"/>
-                </Labeled>
-            </ReferenceField>;
+export const DisplayWithCustomField: Story = {
+    render: ({attrName, resourceName, ...props}) => {
+        return <ReferenceField source={attrName} reference={resourceName} {...props}>
+            <TextField source="name"/>
+        </ReferenceField>;
+    },
+    args: {
+        attrName: attributeName("department_id", {
+            resourceSelectTitle: "Parent Resource Name",
+            attributeSelectTitle: "Reference Attribute Name"
+        }),
+        resourceName: resourceName("departments", {
+            title: "Child Resource Name",
+            allowContext: false
+        })
     }
 };
 export const WithEmptyText: Story = {
-    render: () => {
-        return <ReferenceField source={attributeName("department_id", {
-                resourceSelectTitle: "Parent Resource Name",
-                attributeSelectTitle: "Reference Attribute Name"
-            })} reference={
-                resourceName("departments", {
-                    title: "Child Resource Name",
-                    allowContext: false
-                })
-            } emptyText="No department"/>;
+    render: ({attrName, resourceName, ...props}) => {
+        return <ReferenceField source={attrName} reference={resourceName} {...props}/>;
+    },
+    args: {
+        attrName: attributeName("department_id", {
+            resourceSelectTitle: "Parent Resource Name",
+            attributeSelectTitle: "Reference Attribute Name"
+        }),
+        resourceName: resourceName("departments", {
+            title: "Child Resource Name",
+            allowContext: false
+        }),
+        emptyText: "No department"
     },
     decorators: [
         (Story) => {
@@ -79,6 +82,29 @@ export const WithEmptyText: Story = {
             </RecordContextProvider>;
         }
     ]
+}
+
+export const ChipReference: Story = {
+    render: ({ attrName, resourceName, chipLabelAttribute, ...props }) => {
+        return <ReferenceField source={attrName} reference={resourceName} {...props}>
+            <ChipField source={chipLabelAttribute}/>
+        </ReferenceField>;
+    },
+    args: {
+        attrName: attributeName("department_id", {
+            resourceSelectTitle: "Parent Resource Name",
+            attributeSelectTitle: "Reference Attribute Name"
+        }),
+        resourceName: resourceName("departments", {
+            title: "Referenced Resource Name",
+            resourceId: "referenced_resource",
+            allowContext: false
+        }),
+        chipLabelAttribute: attributeName("name", {
+            resourceId: "referenced_resource",
+            attributeSelectTitle: "Chip Label Attribute Name"
+        })
+    }
 }
 
 const defaultDecorator = (Story: () => React.JSX.Element) => {
@@ -90,7 +116,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
             }}>
                 <>
                     User department:
-                    {Story()}
+                    <Story/>
                 </>
             </ResourceContextHelper>
         </AdminContext>

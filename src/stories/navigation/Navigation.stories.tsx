@@ -1,22 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box, Button, Input, Paper, TextField } from "@mui/material";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import React from "react";
+import React, { ComponentType } from "react";
 import { MemoryRouter, Route, Routes } from "react-router";
 import Stack from "@mui/material/Stack";
 import { GenerationInstructions } from "@amplicode/storybook-extensions";
 import { useCreatePath } from "react-admin";
 import { users } from "../../dataProvider";
 import Typography from "@mui/material/Typography";
+import { resourceName } from "../../ideExtension";
 
 const meta = {
-    title: "Router/Hooks",
+    title: "Navigation/Receipts",
+    component: props => <></>,
     parameters: {
         docs: {
             canvas: {},
         },
     },
-} satisfies Meta;
+} satisfies Meta<ComponentType<any>>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -63,12 +65,15 @@ const WhooshButton = () => {
 };
 
 export const ResourceListLink: Story = {
-    render: () => {
+    render: ({ resourceName }) => {
         const createPath = useCreatePath();
 
         return (
-            <Link to={createPath({ resource: 'users', type: 'list' })}>Go to Users</Link>
+            <Link to={createPath({ resource: resourceName, type: 'list' })}>Go to Users</Link>
         )
+    },
+    args: {
+        resourceName: resourceName('users')
     },
     decorators: [
         // story page
@@ -130,27 +135,30 @@ export const ResourceListLink: Story = {
 };
 
 export const ResourceEditLink: Story = {
-    render: () => {
+    render: ({ resourceName }) => {
         const createPath = useCreatePath();
 
         return (
             <>
-                <Link to={createPath({ resource: 'users', type: 'edit', id: 1 })}>Edit Bill</Link>
-                <GenerationInstructions.Exclude>
-                    {USERS.map(user => {
-                        return (
-                            <div>
-                                <Link key={user.id} to={createPath({
-                                    resource: 'users',
-                                    type: 'edit',
-                                    id: user.id
-                                })}>Edit {user.name}</Link>
-                            </div>
-                        )
-                    })}
-                </GenerationInstructions.Exclude>
-            </>
+                <GenerationInstructions.InsertOnly>
+                    <Link to={createPath({ resource: resourceName, type: 'edit', id: 1 })}>Edit Bill</Link>
+                </GenerationInstructions.InsertOnly>
+
+                {USERS.map(user => {
+                    return (
+                        <div>
+                            <Link key={user.id} to={createPath({
+                                resource: 'users',
+                                type: 'edit',
+                                id: user.id
+                            })}>Edit {user.name}</Link>
+                        </div>
+                    )
+                })}</>
         )
+    },
+    args: {
+        resourceName: resourceName('users')
     },
     decorators: [
         (Story) => {
@@ -186,12 +194,15 @@ export const ResourceEditLink: Story = {
 };
 
 export const ResourceCreateLink: Story = {
-    render: () => {
+    render: ({ resourceName }) => {
         const createPath = useCreatePath();
 
         return (
-            <Link to={createPath({ resource: 'users', type: "create" })}>Create User</Link>
+            <Link to={createPath({ resource: resourceName, type: "create" })}>Create User</Link>
         )
+    },
+    args: {
+        resourceName: resourceName('users')
     },
     decorators: [
         // story page
@@ -242,24 +253,27 @@ export const ResourceCreateLink: Story = {
 };
 
 export const ResourceShowLink: Story = {
-    render: () => {
+    render: ({ resourceName }) => {
         const createPath = useCreatePath();
 
         return (
             <>
-                <Link to={createPath({ resource: 'users', type: 'show', id: 1 })}>Go to Bill page info</Link>
-                <GenerationInstructions.Exclude>
-                    {USERS.map(user => {
-                        return (
-                            <div>
-                                <Link key={user.id} to={createPath({ resource: 'users', type: 'show', id: user.id })}>Go
-                                    to {user.name} page info</Link>
-                            </div>
-                        )
-                    })}
-                </GenerationInstructions.Exclude>
+                <GenerationInstructions.InsertOnly>
+                    <Link to={createPath({ resource: resourceName, type: 'show', id: 1 })}>Go to Bill page info</Link>
+                </GenerationInstructions.InsertOnly>
+                {USERS.map(user => {
+                    return (
+                        <div>
+                            <Link key={user.id} to={createPath({ resource: 'users', type: 'show', id: user.id })}>Go
+                                to {user.name} page info</Link>
+                        </div>
+                    )
+                })}
             </>
         )
+    },
+    args: {
+        resourceName: resourceName('users')
     },
     decorators: [
         (Story) => {

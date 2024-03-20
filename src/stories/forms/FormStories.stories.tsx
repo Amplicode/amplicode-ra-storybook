@@ -41,7 +41,7 @@ export const Default: Story = {
     },
 };
 
-export const DependentFields: Story = {
+export const DependentField: Story = {
     render: ({ parentId, attributeId }) => {
 
         const DependentInput = () => {

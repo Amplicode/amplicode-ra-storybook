@@ -26,7 +26,7 @@ export const Default: Story = {
 
         let [
             deleteOne,
-        ] = useDelete('users', { id: data?.id }, {
+        ] = useDelete(resourceName('users', { allowContext: false }), { id: data?.id }, {
             mutationMode: 'undoable'
         });
 

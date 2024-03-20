@@ -4,20 +4,18 @@ import {
   TextField,
   Labeled,
   defaultI18nProvider,
+  RecordContextProvider,
 } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
   title: "Blocks/Fields/TextField",
-  component: TextField as any,
+  component: TextField,
   parameters: {
     layout: "centered",
   },
   decorators: [(Story) => defaultDecorator(Story)],
-  args: {
-    record: users[0],
-  },
 } satisfies Meta<typeof TextField>;
 
 export default meta;
@@ -35,7 +33,9 @@ const defaultDecorator = (Story: () => JSX.Element) => {
       dataProvider={dataProvider}
       i18nProvider={defaultI18nProvider}
     >
-      <Labeled>{Story()}</Labeled>
+      <RecordContextProvider value={users[0]}>
+        <Labeled>{Story()}</Labeled>
+      </RecordContextProvider>
     </AdminContext>
   );
 };

@@ -4,6 +4,7 @@ import {
   NumberField,
   Labeled,
   defaultI18nProvider,
+  RecordContextProvider,
 } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
@@ -15,9 +16,6 @@ const meta = {
     layout: "centered",
   },
   decorators: [(Story) => defaultDecorator(Story)],
-  args: {
-    record: users[0],
-  },
 } satisfies Meta<typeof NumberField>;
 
 export default meta;
@@ -31,7 +29,7 @@ export const Default: Story = {
 
 export const Currency: Story = {
   render: ({currency, ...props}) => {
-    return <NumberField source={attributeName("day_offs")} options={{style: 'currency', currency}} {...props} />;
+    return <NumberField source={attributeName("day_offs")} options={{style: 'currency', currency: currency}} {...props} />;
   },
   args: {
     currency: 'USD'
@@ -46,7 +44,7 @@ export const Currency: Story = {
 
 export const Unit: Story = {
   render: ({unit, unitDisplay, ...props}) => {
-    return <NumberField source={attributeName("day_offs")} options={{style: 'unit', unit, unitDisplay}} {...props} />;
+    return <NumberField source={attributeName("day_offs")} options={{style: 'unit', unit: unit, unitDisplay: unitDisplay}} {...props} />;
   },
   args: {
     unit: 'liter',
@@ -70,7 +68,9 @@ const defaultDecorator = (Story: () => JSX.Element) => {
       dataProvider={dataProvider}
       i18nProvider={defaultI18nProvider}
     >
-      <Labeled>{Story()}</Labeled>
+      <RecordContextProvider value={users[0]}>
+        <Labeled>{Story()}</Labeled>
+      </RecordContextProvider>
     </AdminContext>
   );
 };

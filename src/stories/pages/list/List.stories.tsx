@@ -90,9 +90,9 @@ export const Filter: Story = {
 };
 
 export const PermanentFilter: Story = {
-  render: (props) => {
+  render: ({role, ...props}) => {
     return (
-      <List filter={{role: props.role}} {...props}>
+      <List filter={{role: role}} {...props}>
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />

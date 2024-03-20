@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, FunctionField, Labeled, defaultI18nProvider } from "react-admin";
+import { AdminContext, FunctionField, Labeled, RecordContextProvider, defaultI18nProvider } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
 
@@ -10,9 +10,6 @@ const meta = {
     layout: "centered",
   },
   decorators: [(Story) => defaultDecorator(Story)],
-  args: {
-    record: users[0]
-  }
 } satisfies Meta<typeof FunctionField>;
 
 export default meta;
@@ -20,20 +17,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (props) => {
-    const render = (record: any) => {
+    const createFunctionRender = (record: any) => {
       return (
         <div>Custom render: {record.name}</div>
       )
-    }
+    };
 
-    return <FunctionField source={attributeName("name")} render={render} {...props} />;
+    return <FunctionField source={attributeName("name")} render={createFunctionRender} {...props} />;
   }
 };
 
 const defaultDecorator = (Story: () => JSX.Element) => {
   return (
     <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-      <Labeled>{Story()}</Labeled>
+      <RecordContextProvider value={users[0]}>
+        <Labeled>{Story()}</Labeled>
+      </RecordContextProvider>
     </AdminContext>
   );
 };

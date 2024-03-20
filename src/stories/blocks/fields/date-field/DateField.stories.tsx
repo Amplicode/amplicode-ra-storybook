@@ -1,19 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, DateField, Labeled, defaultI18nProvider } from "react-admin";
+import { AdminContext, DateField, Labeled, RecordContextProvider, defaultI18nProvider } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import React from "react";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
   title: "Blocks/Fields/DateField",
-  component: DateField as any,
+  component: DateField,
   parameters: {
     layout: "centered",
   },
   decorators: [(Story) => defaultDecorator(Story)],
-  args: {
-    record: users[0]
-  }
 } satisfies Meta<typeof DateField>;
 
 export default meta;
@@ -51,7 +48,9 @@ export const Custom: Story = {
 const defaultDecorator = (Story: () => React.JSX.Element) => {
   return (
     <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-      <Labeled>{Story()}</Labeled>
+      <RecordContextProvider value={users[0]}>
+        <Labeled>{Story()}</Labeled>
+      </RecordContextProvider>
     </AdminContext>
   );
 };

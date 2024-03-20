@@ -1,18 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, EmailField, Labeled, defaultI18nProvider } from "react-admin";
+import { AdminContext, EmailField, Labeled, RecordContextProvider, defaultI18nProvider } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
   title: "Blocks/Fields/EmailField",
-  component: EmailField as any,
+  component: EmailField,
   parameters: {
     layout: "centered",
   },
   decorators: [(Story) => defaultDecorator(Story)],
-  args: {
-    record: users[0]
-  }
 } satisfies Meta<typeof EmailField>;
 
 export default meta;
@@ -27,7 +24,9 @@ export const Default: Story = {
 const defaultDecorator = (Story: () => JSX.Element) => {
   return (
     <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-      <Labeled>{Story()}</Labeled>
+      <RecordContextProvider value={users[0]}>
+        <Labeled>{Story()}</Labeled>
+      </RecordContextProvider>
     </AdminContext>
   );
 };

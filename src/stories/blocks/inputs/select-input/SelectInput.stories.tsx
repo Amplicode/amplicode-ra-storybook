@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, defaultI18nProvider, required, SelectInput, SimpleForm } from "react-admin";
+import { AdminContext, defaultI18nProvider, SelectInput, SimpleForm } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import React from "react";
 import { replaceOnGenerate } from "@amplicode/storybook-extensions";
@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     render: (props) => {
-        let choices = replaceOnGenerate([
+        const choices: { id: string, name: string }[] = replaceOnGenerate([
             { id: 'Moscow', name: 'Moscow' },
             { id: 'Samara', name: 'Samara' },
             { id: 'Tokyo', name: 'Tokyo' },
@@ -33,10 +33,15 @@ export const Default: Story = {
 };
 
 export const Custom: Story = {
-    render: ({ valueLabelTrue, valueLabelFalse, ...props }) => {
+    render: ({ ...props }) => {
+        const choices: { id: number, name: string }[] = replaceOnGenerate([
+            { id: 1, name: 'Bill' },
+            { id: 2, name: 'Jack' },
+        ], [/*<ampl:cursor>*/]);
+
         return (
             <SelectInput
-                choices={[{ id: 'ben', name: 'Ben' }, { id: 'ben', name: 'Bill' }]}
+                choices={choices}
                 source="name"
                 {...props}
             />

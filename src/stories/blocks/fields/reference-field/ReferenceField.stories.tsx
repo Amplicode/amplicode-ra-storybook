@@ -19,9 +19,6 @@ const meta = {
         layout: "centered",
     },
     decorators: [(Story) => defaultDecorator(Story)],
-    args: {
-        record: users[0],
-    },
 } satisfies Meta<typeof ReferenceField>;
 
 export default meta;
@@ -40,11 +37,11 @@ export const DisplayByRecordRepresentation: Story = {
             title: "Child Resource Name",
             allowContext: false
         })
-    }
+    },
 };
 
 export const DisplayWithCustomField: Story = {
-    render: ({attrName, resourceName, ...props}) => {
+    render: ({ attrName, resourceName, ...props }) => {
         return <ReferenceField source={attrName} reference={resourceName} {...props}>
             <TextField source="name"/>
         </ReferenceField>;
@@ -61,7 +58,7 @@ export const DisplayWithCustomField: Story = {
     }
 };
 export const WithEmptyText: Story = {
-    render: ({attrName, resourceName, ...props}) => {
+    render: ({ attrName, resourceName, ...props }) => {
         return <ReferenceField source={attrName} reference={resourceName} {...props}/>;
     },
     args: {
@@ -114,10 +111,12 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
                 name: "departments",
                 recordRepresentation: "name",
             }}>
-                <>
-                    User department:
-                    <Story/>
-                </>
+                <RecordContextProvider value={users[0]}>
+                    <>
+                        User department:
+                        <Story/>
+                    </>
+                </RecordContextProvider>
             </ResourceContextHelper>
         </AdminContext>
     );

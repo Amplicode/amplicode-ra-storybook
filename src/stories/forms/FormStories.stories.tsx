@@ -8,17 +8,17 @@ import {
     SimpleForm,
     TextInput,
 } from "react-admin";
-import React, { useEffect } from "react";
+import React, { ComponentType, useEffect } from "react";
 import { dataProvider } from "../../dataProvider";
 import { FieldValues, useFormContext } from "react-hook-form";
 import { ResourceContextHelper } from "../../utils";
-import { replaceOnGenerate, GenerationInstructions } from "@amplicode/storybook-extensions";
+import { replaceOnGenerate } from "@amplicode/storybook-extensions";
 
 const meta = {
-    title: "Forms",
+    title: "Forms/Receipts",
     component: Create as any,
     decorators: [(Story) => defaultDecorator(Story)],
-} satisfies Meta<typeof Create>;
+} satisfies Meta<ComponentType<any>>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -58,20 +58,23 @@ export const DependentFields: Story = {
         };
 
         return (
-            <GenerationInstructions.Exclude>
-                <SimpleForm onSubmit={data => {
-                    alert('Task id: ' + data.task_id)
-                }}>
-                    <ReferenceInput source="user_id" reference="users"/>
-                    <DependentInput/>
-                </SimpleForm>
-            </GenerationInstructions.Exclude>
+            <DependentInput/>
         );
     },
     args: {
         parentId: replaceOnGenerate('user_id', 'parentId'),
-        attributeId: replaceOnGenerate('task_id', 'childId')
-    }
+        attributeId: replaceOnGenerate('task_id', 'childId'),
+    },
+    decorators: [
+        (Story) => {
+            return <SimpleForm onSubmit={data => {
+                alert('Task id: ' + data.task_id)
+            }}>
+                <ReferenceInput source="user_id" reference="users"/>
+                <Story/>
+            </SimpleForm>;
+        }
+    ]
 }
 
 const defaultDecorator = (Story: () => React.JSX.Element) => (

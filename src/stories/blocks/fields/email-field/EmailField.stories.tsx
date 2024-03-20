@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, EmailField, Labeled, Show, SimpleShowLayout, defaultI18nProvider } from "react-admin";
+import { AdminContext, EmailField, Labeled, defaultI18nProvider } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
 

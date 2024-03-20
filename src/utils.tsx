@@ -4,16 +4,19 @@ import {
     DataProviderContext,
     defaultI18nProvider,
     I18nContextProvider,
+    NotificationContextProvider,
     ResourceDefinition,
     ResourceDefinitionContextProvider,
     StoreContextProvider,
     ThemeProvider,
+    ThemesContext,
     useResourceDefinitionContext
 } from "react-admin";
 import { I18nProvider } from "ra-core/src/types";
 import { memoryStore } from "ra-core/src/store";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { dataProvider as defaultDataProvider } from "./dataProvider";
+import { defaultLightTheme } from "ra-ui-materialui/src/theme";
 
 /**
  * Helper component to register react-admin resources. Only for use in stories.
@@ -51,21 +54,23 @@ export const AdminStoryContext = (
         resources = []
     }: AdminStoryContextProps
 ) => {
-    return <ThemeProvider>
-        <StoreContextProvider value={memoryStore()}>
-            <DataProviderContext.Provider value={dataProvider}>
-                <I18nContextProvider value={i18nProvider}>
+    return <StoreContextProvider value={memoryStore()}>
+        <DataProviderContext.Provider value={dataProvider}>
+            <I18nContextProvider value={i18nProvider}>
+                <NotificationContextProvider>
                     <QueryClientProvider client={new QueryClient()}>
                         <ResourceDefinitionContextProvider>
                             <ResourceContextHelper resources={resources}>
-                                <>
-                                    {children}
-                                </>
+                                <ThemesContext.Provider value={{ lightTheme: defaultLightTheme }}>
+                                    <ThemeProvider>
+                                        {children}
+                                    </ThemeProvider>
+                                </ThemesContext.Provider>
                             </ResourceContextHelper>
                         </ResourceDefinitionContextProvider>
                     </QueryClientProvider>
-                </I18nContextProvider>
-            </DataProviderContext.Provider>
-        </StoreContextProvider>
-    </ThemeProvider>;
+                </NotificationContextProvider>
+            </I18nContextProvider>
+        </DataProviderContext.Provider>
+    </StoreContextProvider>;
 };

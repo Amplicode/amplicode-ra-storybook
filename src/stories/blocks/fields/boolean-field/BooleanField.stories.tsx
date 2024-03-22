@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, BooleanField, defaultI18nProvider, Labeled } from "react-admin";
+import { AdminContext, BooleanField, defaultI18nProvider, Labeled, RecordContextProvider } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import AlarmOnIcon from "@mui/icons-material/AlarmOn";
 import AlarmOffIcon from "@mui/icons-material/AlarmOff";
@@ -8,14 +8,11 @@ import { attributeName } from "../../../../ideExtension";
 
 const meta = {
     title: "Blocks/Fields/BooleanField",
-    component: BooleanField as any,
+    component: BooleanField,
     parameters: {
         layout: "centered",
     },
     decorators: [(Story) => defaultDecorator(Story)],
-    args: {
-        record: users[0],
-    },
 } satisfies Meta<typeof BooleanField>;
 
 export default meta;
@@ -34,8 +31,6 @@ export const Custom: Story = {
                 source={attributeName("active")}
                 valueLabelTrue={valueLabelTrue}
                 valueLabelFalse={valueLabelFalse}
-                TrueIcon={AlarmOnIcon}
-                FalseIcon={AlarmOffIcon}
                 title={"Active"}
                 {...props}
             />
@@ -69,7 +64,9 @@ export const Custom: Story = {
 const defaultDecorator = (Story: () => React.JSX.Element) => {
     return (
         <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
-            <Labeled>{Story()}</Labeled>
+            <RecordContextProvider value={users[0]}>
+                <Labeled>{Story()}</Labeled>
+            </RecordContextProvider>
         </AdminContext>
     );
 };

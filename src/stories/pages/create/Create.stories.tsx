@@ -55,7 +55,7 @@ export const CustomActions: Story = {
     render: (props) => {
         const handleClick = () => {
             alert('Custom action result');
-        }
+        };
 
         const CustomActions = () => (
             <TopToolbar>

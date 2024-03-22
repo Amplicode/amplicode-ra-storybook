@@ -41,13 +41,14 @@ export const Default: Story = {
 
         function onSubmit(values: Record<string, any>) {
             notify(values.firstName + ' ' + values.lastName, { type: "success" });
-        }
+        };
 
         return (
             <SimpleForm
                 record={{ firstName: 'John', lastName: 'Doe' }}
                 toolbar={<FormToolbar/>}
-                onSubmit={onSubmit}>
+                onSubmit={onSubmit}
+            >
                 <TextInput source="firstName"/>
                 <TextInput source="lastName"/>
             </SimpleForm>

@@ -23,7 +23,7 @@ export const Default: Story = {
 };
 
 export const CustomLabel: Story = {
-    render: ({ valueLabelTrue, valueLabelFalse, ...props }) => {
+    render: ({ ...props }) => {
         return (
             <TextInput
                 source={attributeName("name")}
@@ -32,7 +32,7 @@ export const CustomLabel: Story = {
         );
     },
     args: {
-        label: "User name",
+        label: "Custom label",
     },
 };
 
@@ -40,7 +40,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
     return (
         <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
             <SimpleForm record={users[0]} toolbar={false}>
-                <Labeled>{Story()}</Labeled>
+                {Story()}
             </SimpleForm>
         </AdminContext>
     );

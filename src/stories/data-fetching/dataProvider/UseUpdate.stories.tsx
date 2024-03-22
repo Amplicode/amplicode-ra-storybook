@@ -25,7 +25,7 @@ export const Default: Story = {
 
         let [
             update,
-        ] = useUpdate('users', { id: data?.id, data: { name: 'New name' } });
+        ] = useUpdate(resourceName('users', { allowContext: false }), { id: data?.id, data: { name: 'New name' } });
 
         return <GenerationInstructions.Exclude>
             <Button label="Update" onClick={() => update()}/>

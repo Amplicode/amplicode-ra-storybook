@@ -45,6 +45,34 @@ export const Default: Story = {
     },
 };
 
+export const FutureDate: Story = {
+    render: () => {
+        const minDate = (date = dayjs().add(1, "day").format("YYYY-MM-DD"), message = 'Must be in the future') => {
+            return minValue(date, message);
+        };
+
+        const validatePeriod = [minDate()];
+
+        return (
+            <DateInput
+                source={attributeName("date")}
+                validate={validatePeriod}
+            />
+        );
+    },
+    decorators: [
+        (Story) => {
+            return (
+                <div>
+                    <Typography variant="body2">Valid period starts tomorrow ({dayjs().add(1, "day").format("YYYY-MM-DD")})</Typography>
+                    <Typography variant="body2">Validation mode "onChange"</Typography>
+                    <Story />
+                </div>
+            )
+        }
+    ]
+};
+
 export const PeriodValidation: Story = {
     render: () => {
         const minDate = (date = dayjs('1970-01-01').format("YYYY-MM-DD"), message = `Must be at least ${date}`) => {

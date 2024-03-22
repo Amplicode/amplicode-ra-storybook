@@ -12,7 +12,7 @@ import React, { ComponentType, useEffect } from "react";
 import { dataProvider } from "../../dataProvider";
 import { FieldValues, useFormContext } from "react-hook-form";
 import { ResourceContextHelper } from "../../utils";
-import { replaceOnGenerate } from "@amplicode/storybook-extensions";
+import { replaceOnGenerate, topLevel } from "@amplicode/storybook-extensions";
 
 const meta = {
     title: "Forms/Receipts",
@@ -41,10 +41,10 @@ export const Default: Story = {
     },
 };
 
-export const DependentField: Story = {
+export const InputsChain: Story = {
     render: ({ parentId, attributeId }) => {
 
-        const DependentInput = () => {
+        const DependentInput = topLevel(() => {
             const { watch, resetField } = useFormContext();
             const parentIdValue = watch(parentId, null);
 
@@ -55,7 +55,7 @@ export const DependentField: Story = {
             }, [parentIdValue, resetField]);
 
             return <ReferenceInput source={attributeId} reference="tasks" filter={filter}/>;
-        };
+        });
 
         return (
             <DependentInput/>

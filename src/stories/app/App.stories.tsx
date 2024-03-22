@@ -14,16 +14,18 @@ import React from "react";
 import { dataProvider } from "../../dataProvider";
 import fakeDataProvider from "ra-data-fakerest";
 import { replaceOnGenerate } from "@amplicode/storybook-extensions";
+import { AnyPropsComponent } from "../../utils";
 
 const meta = {
     title: "Admin Application",
-    component: Create as any,
-} satisfies Meta<typeof Create>;
+    component: AnyPropsComponent,
+} satisfies Meta<typeof AnyPropsComponent>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+    name: "Demo Application",
     render: (props) => {
         const MainMenu = () => {
             return <Menu>

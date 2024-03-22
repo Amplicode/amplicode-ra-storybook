@@ -38,6 +38,9 @@ export const ResourceContextHelper = ({ children, resources }: {
     return children;
 };
 
+export const AnyPropsComponent = (props: {
+    [name: string]: any;
+}) => <></>;
 
 type AdminStoryContextProps = {
     children: React.JSX.Element | React.JSX.Element[];

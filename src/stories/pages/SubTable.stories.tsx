@@ -5,70 +5,66 @@ import {
     Datagrid,
     DateField,
     defaultI18nProvider,
-    Edit,
     Labeled,
     List,
+    RecordContextProvider,
     ResourceContextProvider,
     Show,
-    SimpleForm,
+    SimpleShowLayout,
     TextField,
     useShowContext,
 } from "react-admin";
-import { dataProvider } from "../../dataProvider";
+import { dataProvider, departments } from "../../dataProvider";
 import React from "react";
-import { GenerationInstructions } from "@amplicode/storybook-extensions";
+import { GenerationInstructions, topLevel } from "@amplicode/storybook-extensions";
 import Typography from "@mui/material/Typography";
 import { attributeName, resourceName } from "../../ideExtension";
 import Box from "@mui/material/Box";
+import { AnyPropsComponent } from "../../utils";
 
 const meta = {
     title: "Pages/SubTable",
-    component: Edit as any,
+    component: AnyPropsComponent,
     decorators: [(Story) => defaultDecorator(Story)],
-    args: {
-        id: 2
-    },
-} satisfies Meta<typeof Edit>;
+} satisfies Meta<typeof AnyPropsComponent>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     render: ({ subresourceName, subresourceBackReference, ...props }) => {
-        const SubTable = () => {
-            const { record } = useShowContext(); // replace with useEditContext for Edit screens
+        const SubTable = topLevel(() => {
+                const { record } = useShowContext(); // replace with useEditContext for Edit screens
+                if (!record) {
+                    return <></>;
+                }
 
-            if (!record) {
-                return <></>;
-            }
-
-            return (
-                <List
-                    disableSyncWithLocation
-                    resource={subresourceName}
-                    filter={{
-                        [subresourceBackReference]: record.id
-                    }}
-                    sx={{ width: "100%" }}
-                    actions={
-                        <CreateButton state={{ record: { [subresourceBackReference]: record.id } }}/>
-                    }
-                    {...props}
-                >
-                    <Datagrid>
-                        <TextField source="id"/>
+                return (
+                    <List
+                        disableSyncWithLocation
+                        resource={subresourceName}
+                        filter={{
+                            [subresourceBackReference]: record.id
+                        }}
+                        sx={{ width: "100%" }}
+                        actions={
+                            <CreateButton state={{ record: { [subresourceBackReference]: record.id } }}/>
+                        }
+                    >
                         <GenerationInstructions.Exclude>
-                            <TextField source="name"/>
-                            <DateField source="birthday"/>
+                            <Typography variant="h6">Department users</Typography>
                         </GenerationInstructions.Exclude>
-                    </Datagrid>
-                </List>
-            );
-        };
+                        <Datagrid>
+                            <TextField source="id"/>
+                        </Datagrid>
+                    </List>
+                );
+            }
+        );
 
 
         return (
-            <Show resource='departments'>
-                <SimpleForm>
+            <Show resource='departments' id={2}>
+                <SimpleShowLayout>
                     <Typography variant="h5">Department</Typography>
 
                     <Labeled>
@@ -78,13 +74,13 @@ export const Default: Story = {
                     <Labeled>
                         <TextField source="name"/>
                     </Labeled>
+                </SimpleShowLayout>
 
-                    <GenerationInstructions.InsertOnly>
-                        <Box sx={{ width: "100%" }}>
-                            <SubTable/>
-                        </Box>
-                    </GenerationInstructions.InsertOnly>
-                </SimpleForm>
+                <GenerationInstructions.InsertOnly>
+                    <Box sx={{ width: "100%" }}>
+                        <SubTable/>
+                    </Box>
+                </GenerationInstructions.InsertOnly>
             </Show>
         );
     },
@@ -107,7 +103,9 @@ export const Default: Story = {
 const defaultDecorator = (Story: () => React.JSX.Element) => (
     <AdminContext dataProvider={dataProvider} i18nProvider={defaultI18nProvider}>
         <ResourceContextProvider value="departments">
-            <Story/>
+            <RecordContextProvider value={departments[2]}>
+                <Story/>
+            </RecordContextProvider>
         </ResourceContextProvider>
     </AdminContext>
 );

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Box, Button, Input, Paper, TextField } from "@mui/material";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import React, { ComponentType } from "react";
+import React from "react";
 import { MemoryRouter, Route, Routes } from "react-router";
 import Stack from "@mui/material/Stack";
 import { GenerationInstructions } from "@amplicode/storybook-extensions";
@@ -9,16 +9,17 @@ import { useCreatePath } from "react-admin";
 import { users } from "../../dataProvider";
 import Typography from "@mui/material/Typography";
 import { resourceName } from "../../ideExtension";
+import { AnyPropsComponent } from "../../utils";
 
 const meta = {
     title: "Navigation/Receipts",
-    component: props => <></>,
+    component: AnyPropsComponent,
     parameters: {
         docs: {
             canvas: {},
         },
     },
-} satisfies Meta<ComponentType<any>>;
+} satisfies Meta<typeof AnyPropsComponent>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -26,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 const USERS = users.slice(1, 3);
 
 export const UseLocation: Story = {
+    name: "useLocation hook",
     render: (props) => {
         const location = useLocation();
 
@@ -65,6 +67,7 @@ const WhooshButton = () => {
 };
 
 export const ResourceListLink: Story = {
+    name: 'Link to List page',
     render: ({ resourceName }) => {
         const createPath = useCreatePath();
 
@@ -73,7 +76,10 @@ export const ResourceListLink: Story = {
         )
     },
     args: {
-        resourceName: resourceName('users')
+        resourceName: resourceName('users'),
+    },
+    parameters: {
+        controls: { exclude: ['resourceName'] },
     },
     decorators: [
         // story page
@@ -135,6 +141,7 @@ export const ResourceListLink: Story = {
 };
 
 export const ResourceEditLink: Story = {
+    name: 'Link to Edit page',
     render: ({ resourceName }) => {
         const createPath = useCreatePath();
 
@@ -159,6 +166,9 @@ export const ResourceEditLink: Story = {
     },
     args: {
         resourceName: resourceName('users')
+    },
+    parameters: {
+        controls: { exclude: ['resourceName'] },
     },
     decorators: [
         (Story) => {
@@ -194,6 +204,7 @@ export const ResourceEditLink: Story = {
 };
 
 export const ResourceCreateLink: Story = {
+    name: 'Link to Create page',
     render: ({ resourceName }) => {
         const createPath = useCreatePath();
 
@@ -203,6 +214,9 @@ export const ResourceCreateLink: Story = {
     },
     args: {
         resourceName: resourceName('users')
+    },
+    parameters: {
+        controls: { exclude: ['resourceName'] },
     },
     decorators: [
         // story page
@@ -253,6 +267,7 @@ export const ResourceCreateLink: Story = {
 };
 
 export const ResourceShowLink: Story = {
+    name: 'Link to Show page',
     render: ({ resourceName }) => {
         const createPath = useCreatePath();
 
@@ -274,6 +289,9 @@ export const ResourceShowLink: Story = {
     },
     args: {
         resourceName: resourceName('users')
+    },
+    parameters: {
+        controls: { exclude: ['resourceName'] },
     },
     decorators: [
         (Story) => {

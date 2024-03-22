@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         const choices: { id: string, name: string }[] = replaceOnGenerate([
             { id: 'Moscow', name: 'Moscow' },
             { id: 'Samara', name: 'Samara' },
@@ -34,15 +34,15 @@ export const Default: Story = {
 
 export const Custom: Story = {
     render: ({ ...props }) => {
-        const choices: { id: number, name: string }[] = replaceOnGenerate([
-            { id: 1, name: 'Bill' },
-            { id: 2, name: 'Jack' },
+        const choices: { id: string, name: string }[] = replaceOnGenerate([
+            { id: 'Bill', name: 'Bill' },
+            { id: 'Jack', name: 'Jack' },
         ], [/*<ampl:cursor>*/]);
 
         return (
             <SelectInput
-                choices={choices}
                 source="name"
+                choices={choices}
                 {...props}
             />
         );

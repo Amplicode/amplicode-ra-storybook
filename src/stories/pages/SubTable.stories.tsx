@@ -3,7 +3,6 @@ import {
     AdminContext,
     CreateButton,
     Datagrid,
-    DateField,
     defaultI18nProvider,
     Labeled,
     List,
@@ -12,14 +11,13 @@ import {
     Show,
     SimpleShowLayout,
     TextField,
-    useShowContext,
+    useRecordContext,
 } from "react-admin";
 import { dataProvider, departments } from "../../dataProvider";
 import React from "react";
 import { GenerationInstructions, topLevel } from "@amplicode/storybook-extensions";
 import Typography from "@mui/material/Typography";
 import { attributeName, resourceName } from "../../ideExtension";
-import Box from "@mui/material/Box";
 import { AnyPropsComponent } from "../../utils";
 
 const meta = {
@@ -33,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     render: ({ subresourceName, subresourceBackReference, ...props }) => {
         const SubTable = topLevel(() => {
-                const { record } = useShowContext(); // replace with useEditContext for Edit screens
+                const record = useRecordContext();
                 if (!record) {
                     return <></>;
                 }
@@ -55,6 +53,7 @@ export const Default: Story = {
                         </GenerationInstructions.Exclude>
                         <Datagrid>
                             <TextField source="id"/>
+                            {/*  use 'field' completion to generate other fields  */}
                         </Datagrid>
                     </List>
                 );
@@ -77,9 +76,7 @@ export const Default: Story = {
                 </SimpleShowLayout>
 
                 <GenerationInstructions.InsertOnly>
-                    <Box sx={{ width: "100%" }}>
-                        <SubTable/>
-                    </Box>
+                    <SubTable/>
                 </GenerationInstructions.InsertOnly>
             </Show>
         );
@@ -93,7 +90,7 @@ export const Default: Story = {
         subresourceBackReference: attributeName("department_id",
             {
                 resourceId: 'subresource',
-                attributeSelectTitle: 'Child Resource Reference Attribute'
+                attributeSelectTitle: 'Reference Attribute from Child Resource to Main Resource'
             }
         )
     }

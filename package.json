@@ -4,7 +4,7 @@
   "description": "Amplicode Storybook for React Admin",
   "brandInfo": {
     "name": "Amplicode React Admin",
-    "icon": "/public/logo/icon-mono.svg"
+    "icon": "brand-logo.svg"
   },
   "files": [
     "src/*",

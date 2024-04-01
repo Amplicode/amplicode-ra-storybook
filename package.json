@@ -1,6 +1,6 @@
 {
   "name": "@amplicode/amplicode-ra-storybook",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Amplicode Storybook for React Admin",
   "repository": "https://github.com/Amplicode/amplicode-ra-storybook",
   "keywords": ["storybook", "code", "typescript", "react", "react-admin", "crud"],

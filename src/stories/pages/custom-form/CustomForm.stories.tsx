@@ -4,6 +4,8 @@ import React, { ComponentType, useCallback } from "react";
 import { useFormContext } from "react-hook-form";
 import { AdminStoryContext } from "../../../utils";
 import { MemoryRouter } from "react-router";
+import { CreatePageWizardParams } from "ideExtension";
+import { WizardInfo } from "@amplicode/storybook-extensions";
 
 const meta = {
     title: "Pages/CustomForm",
@@ -13,7 +15,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default: Story & WizardInfo<CreatePageWizardParams> = {
     render: ({...props}) => {
         const notify = useNotify();
 
@@ -53,6 +55,11 @@ export const Default: Story = {
             </SimpleForm>
         );
     },
+    wizardName: 'pageWizard',
+    info: {
+        pageType: 'form',
+        readonlyPageType: true,
+    }
 };
 
 

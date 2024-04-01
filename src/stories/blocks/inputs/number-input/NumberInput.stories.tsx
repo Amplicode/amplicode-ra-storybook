@@ -5,7 +5,7 @@ import React from "react";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
-    title: "Blocks/Inputs/NumberInput",
+    title: "Inputs/NumberInput",
     component: NumberInput as any,
     parameters: {
         layout: "centered",
@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         return <NumberInput source={attributeName("day_offs")} {...props} />;
     }
 };
@@ -38,14 +38,12 @@ export const CustomLabel: Story = {
 
 export const MinAndMaxValidation: Story = {
     render: ({ ...props }) => {
-        const validateEdge = [minValue(0, 'Must be at least 0'), maxValue(10, 'Must be 10 or less')];
-
         return (
             <NumberInput
                 source={attributeName("day_offs")}
                 min={0}
                 max={10}
-                validate={validateEdge}
+                validate={[minValue(0, 'Must be at least 0'), maxValue(10, 'Must be 10 or less')]}
                 {...props}
             />
         );

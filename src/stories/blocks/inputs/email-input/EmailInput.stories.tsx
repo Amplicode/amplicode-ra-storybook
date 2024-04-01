@@ -6,7 +6,7 @@ import { attributeName } from "../../../../ideExtension";
 import { Typography } from "@mui/material";
 
 const meta = {
-    title: "Blocks/Inputs/EmailInput",
+    title: "Inputs/EmailInput",
     component: TextInput as any,
     parameters: {
         layout: "centered",
@@ -18,13 +18,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         return <TextInput source={attributeName("email")} validate={email()} {...props} />;
     }
 };
 
 export const UniqueValidation: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         const unique = useUnique();
 
         return <TextInput source={attributeName("email")} validate={[email(), unique()]} {...props} />;

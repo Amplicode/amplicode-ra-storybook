@@ -32,7 +32,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-  render: (props) => {
+  render: ({...props}) => {
     return (
       <Create {...props}>
         <SimpleForm>
@@ -52,7 +52,7 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
 };
 
 export const CustomActions: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         const handleClick = () => {
             alert('Custom action result');
         };
@@ -76,7 +76,7 @@ export const CustomActions: Story = {
 };
 
 export const Aside: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         const Aside = () => (
             <Box sx={{ paddingX: 4, paddingY: 8, width: 300 }}>
                 <Stack spacing={2}>

@@ -7,7 +7,7 @@ import React from "react";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
-    title: "Blocks/Fields/BooleanField",
+    title: "Fields/BooleanField",
     component: BooleanField,
     parameters: {
         layout: "centered",
@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         return <BooleanField source={attributeName("active")} {...props} />;
     }
 };

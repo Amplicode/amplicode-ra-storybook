@@ -6,7 +6,7 @@ import { GenerationInstructions, replaceOnGenerate } from "@amplicode/storybook-
 import { resourceName } from "../../../ideExtension";
 
 const meta = {
-    title: "Blocks/DataProvider/UseCreate",
+    title: "DataProvider/UseCreate",
     parameters: {
         layout: "centered",
     },

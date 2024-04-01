@@ -4,16 +4,19 @@ import {
     AutocompleteInput,
     defaultI18nProvider,
     RecordContextProvider,
-    ReferenceInput,
+    ReferenceInput, required,
     SimpleForm,
     useRecordContext
 } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import { ResourceContextHelper } from "../../../../utils";
 import { attributeName, resourceName } from "../../../../ideExtension";
+import { replaceOnGenerate, topLevel } from "@amplicode/storybook-extensions";
+import { useFormContext } from "react-hook-form";
+import React, { useEffect } from "react";
 
 const meta = {
-    title: "Blocks/Inputs/ReferenceInput",
+    title: "Inputs/ReferenceInput",
     component: ReferenceInput as any,
     parameters: {
         layout: "centered",
@@ -25,7 +28,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         return (
             <ReferenceInput
                 source={attributeName(
@@ -48,7 +51,7 @@ export const Default: Story = {
 };
 
 export const Readonly: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         return (
             <ReferenceInput
                 source={attributeName(
@@ -72,10 +75,35 @@ export const Readonly: Story = {
     }
 };
 
+export const Validated: Story = {
+    render: ({...props}) => {
+        return (
+            <ReferenceInput
+                source={attributeName(
+                    "department_id",
+                    {
+                        resourceSelectTitle: "Source Resource Name",
+                        attributeSelectTitle: "Reference Id Attribute",
+                    }
+                )}
+                reference={resourceName(
+                    "departments",
+                    {
+                        title: "Referenced Resource",
+                        allowContext: false,
+                    }
+                )}
+                {...props} >
+                <AutocompleteInput validate={required()}/>
+            </ReferenceInput>
+        );
+    }
+};
+
 export const ReadonlyForPredefinedValue: Story = {
     name: 'Readonly for predefined attribute',
     render: ({ subresourceName, subresourceBackReference }) => {
-        const ReadonlyReferenceInput = () => {
+        const ReadonlyReferenceInput = topLevel(() => {
             const record = useRecordContext();
             const readOnly = record != null && subresourceBackReference in record && record[subresourceBackReference] != null;
 
@@ -84,7 +112,7 @@ export const ReadonlyForPredefinedValue: Story = {
                     <AutocompleteInput readOnly={readOnly}/>
                 </ReferenceInput>
             )
-        };
+        });
 
         return <ReadonlyReferenceInput/>
     },
@@ -104,6 +132,45 @@ export const ReadonlyForPredefinedValue: Story = {
     }
 }
 
+export const FiltrationByParentField: Story = {
+    render: ({ parentId, attributeId }) => {
+
+        const DependentInput = topLevel(() => {
+            const { watch, resetField } = useFormContext();
+            const parentIdValue = watch(parentId, null);
+
+
+            const filter = parentIdValue ? replaceOnGenerate({ 'user_id': parentIdValue }, { 'parentId': parentIdValue }) : {};
+
+
+            useEffect(() => {
+                resetField(attributeId);
+            }, [parentIdValue, resetField]);
+
+
+            return <ReferenceInput source={attributeId} reference="tasks" filter={filter}/>;
+        });
+
+        return (
+            <DependentInput/>
+        );
+    },
+    args: {
+        parentId: replaceOnGenerate('user_id', 'parentId'),
+        attributeId: replaceOnGenerate('task_id', 'childId'),
+    },
+    decorators: [
+        (Story) => {
+            return <SimpleForm onSubmit={data => {
+                alert('Task id: ' + data.task_id)
+            }}>
+                <ReferenceInput source="user_id" reference="users"/>
+                <Story/>
+            </SimpleForm>;
+        }
+    ]
+}
+
 
 const defaultDecorator = (Story: () => JSX.Element) => {
     return (
@@ -117,6 +184,10 @@ const defaultDecorator = (Story: () => JSX.Element) => {
                     name: 'users',
                     recordRepresentation: 'name',
                 },
+                {
+                    name: "tasks",
+                    recordRepresentation: "name"
+                }
             ]}>
                 <SimpleForm toolbar={false}>
                     <RecordContextProvider value={users[0]}>

@@ -50,7 +50,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-  render: (props) => {
+  render: ({...props}) => {
     return (
       <List {...props}>
         <Datagrid>
@@ -70,7 +70,7 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
 };
 
 export const Filter: Story = {
-  render: (props) => {
+  render: ({...props}) => {
     const filters = [
       <SearchInput source="name" />,
       <TextInput label="City" source="city" />,
@@ -113,7 +113,7 @@ export const PermanentFilter: Story = {
 };
 
 export const Aside: Story = {
-  render: (props) => {
+  render: ({...props}) => {
     const Aside = () => (
       <Box sx={{ paddingX: 4, paddingY: 8, width: 300 }}>
         <Stack spacing={2}>
@@ -136,7 +136,7 @@ export const Aside: Story = {
 };
 
 export const Infinite: Story = {
-  render: (props) => {
+  render: ({...props}) => {
     return (
       <InfiniteList>
         <Datagrid>

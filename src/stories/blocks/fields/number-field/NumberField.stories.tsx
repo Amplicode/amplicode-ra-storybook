@@ -10,7 +10,7 @@ import { dataProvider, users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
-  title: "Blocks/Fields/NumberField",
+  title: "Fields/NumberField",
   component: NumberField as any,
   parameters: {
     layout: "centered",
@@ -22,7 +22,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (props) => {
+  render: ({...props}) => {
     return <NumberField source={attributeName("day_offs")} {...props} />;
   },
 };

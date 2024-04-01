@@ -4,7 +4,7 @@ import { dataProvider, users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
-  title: "Blocks/Fields/EmailField",
+  title: "Fields/EmailField",
   component: EmailField,
   parameters: {
     layout: "centered",
@@ -16,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (props) => {
+  render: ({...props}) => {
     return <EmailField source={attributeName("email")} {...props} />;
   }
 };

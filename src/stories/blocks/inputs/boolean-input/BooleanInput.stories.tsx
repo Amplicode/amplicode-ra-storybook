@@ -4,7 +4,7 @@ import { dataProvider, users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
-    title: "Blocks/Inputs/BooleanInput",
+    title: "Inputs/BooleanInput",
     component: BooleanInput as any,
     parameters: {
         layout: "centered",
@@ -16,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         return <BooleanInput source={attributeName("active")} {...props} />;
     }
 };

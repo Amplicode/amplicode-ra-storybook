@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, Button, defaultI18nProvider, TextField, useGetMany, } from "react-admin";
+import { AdminContext, Button, defaultI18nProvider, LoadingIndicator, TextField, useGetMany, } from "react-admin";
 import { delayDataProvider } from "../../../dataProvider";
 import React from "react";
 import { GenerationInstructions, replaceOnGenerate } from "@amplicode/storybook-extensions";
 import { resourceName } from "../../../ideExtension";
 
 const meta = {
-    title: "Blocks/DataProvider/UseGetMany",
+    title: "DataProvider/UseGetMany",
     parameters: {
         layout: "centered",
     },
@@ -16,22 +16,30 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+function randomIds() {
+    if (Math.random() > 0.5) {
+        return [3, 2, 1];
+    } else {
+        return [1, 2, 3];
+    }
+}
+
 export const Default: Story = {
     render: () => {
-        let { data, isLoading, refetch } = useGetMany(
+        let { data, isLoading, isRefetching, refetch } = useGetMany(
             resourceName('users', { allowContext: false }),
-            { ids: replaceOnGenerate([1, 2, 3], []) },
+            { ids: replaceOnGenerate(randomIds(), []) },
         );
 
         return <GenerationInstructions.Exclude>
-            {isLoading && <div>Loading</div>}
-            {!isLoading && (data || []).map(value =>
+            {(isLoading || isRefetching) && <LoadingIndicator/>}
+            {!isLoading && !isRefetching && (data || []).map(value =>
                 <>
                     <TextField record={value} source="name"/>
                     <p/>
                 </>
             )}
-            {!isLoading && <Button label="Reload" onClick={() => refetch()}/>}
+            {!isLoading && !isRefetching && <Button label="Reload" onClick={() => refetch()}/>}
         </GenerationInstructions.Exclude>;
     },
 };
@@ -42,7 +50,7 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
             dataProvider={delayDataProvider}
             i18nProvider={defaultI18nProvider}
         >
-            <Story />
+            <Story/>
         </AdminContext>
     );
 };

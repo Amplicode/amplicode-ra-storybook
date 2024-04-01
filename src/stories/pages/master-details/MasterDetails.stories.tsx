@@ -43,7 +43,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-    render: (props) => {
+    render: ({...props}) => {
         const location = useLocation();
         const navigate = useNavigate();
 

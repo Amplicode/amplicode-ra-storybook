@@ -13,7 +13,7 @@ import { ResourceContextHelper } from "../../../../utils";
 import { attributeName, resourceName } from "../../../../ideExtension";
 
 const meta = {
-    title: "Blocks/Fields/ReferenceField",
+    title: "Fields/ReferenceField",
     component: ReferenceField as any,
     parameters: {
         layout: "centered",

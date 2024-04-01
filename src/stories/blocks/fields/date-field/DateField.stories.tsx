@@ -5,7 +5,7 @@ import React from "react";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
-  title: "Blocks/Fields/DateField",
+  title: "Fields/DateField",
   component: DateField,
   parameters: {
     layout: "centered",
@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (props) => {
+  render: ({...props}) => {
     return <DateField source={attributeName("birthday")} {...props} />;
   }
 };

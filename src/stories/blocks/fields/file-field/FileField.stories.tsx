@@ -5,7 +5,7 @@ import React from "react";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
-  title: "Blocks/Fields/FileField",
+  title: "Fields/FileField",
   component: FileField as any,
   parameters: {
     layout: "centered",
@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (props) => {
+  render: ({...props}) => {
     return <FileField source={attributeName("url")} title="Presentation"/>;
   },
   decorators: [

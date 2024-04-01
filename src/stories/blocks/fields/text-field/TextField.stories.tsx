@@ -10,7 +10,7 @@ import { dataProvider, users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
-  title: "Blocks/Fields/TextField",
+  title: "Fields/TextField",
   component: TextField,
   parameters: {
     layout: "centered",
@@ -22,7 +22,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (props) => {
+  render: ({...props}) => {
     return <TextField source={attributeName("name")} {...props} />;
   },
 };

@@ -1,6 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Typography } from "@mui/material";
-import { AdminContext, DateInput, defaultI18nProvider, maxValue, minValue, NumberInput, SimpleForm } from "react-admin";
+import {
+    AdminContext,
+    DateInput,
+    defaultI18nProvider,
+    maxValue,
+    minValue,
+    NumberInput,
+    required,
+    SimpleForm
+} from "react-admin";
 import { dataProvider } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
 import dayjs from "dayjs";
@@ -17,7 +26,7 @@ const contextDecorator = (Story: () => React.JSX.Element) => {
 };
 
 const meta = {
-    title: "Blocks/Inputs/DateInput",
+    title: "Inputs/DateInput",
     component: DateInput as any,
     parameters: {
         layout: "centered",
@@ -55,7 +64,7 @@ export const FutureDate: Story = {
         return (
             <DateInput
                 source={attributeName("date")}
-                validate={[futureDate()]}
+                validate={[futureDate(), required()]}
             />
         );
     },
@@ -85,7 +94,7 @@ export const PeriodValidation: Story = {
         return (
             <DateInput
                 source={attributeName("date")}
-                validate={[afterDate(), beforeDate()]}
+                validate={[afterDate(), beforeDate(), required()]}
             />
         );
     },
@@ -117,7 +126,7 @@ export const ExcludeDaysValidation: Story = {
         return (
             <DateInput
                 source={attributeName("date")}
-                validate={[excludeWeekends]}
+                validate={[excludeWeekends, required()]}
             />
         );
     },

@@ -6,7 +6,7 @@ import { GenerationInstructions } from "@amplicode/storybook-extensions";
 import { resourceName } from "../../../ideExtension";
 
 const meta = {
-    title: "Blocks/DataProvider/UseUpdate",
+    title: "DataProvider/UseUpdate",
     parameters: {
         layout: "centered",
     },

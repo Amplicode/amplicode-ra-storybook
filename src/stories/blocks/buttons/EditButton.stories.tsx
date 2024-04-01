@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, CreateButton, defaultI18nProvider, RecordContextProvider } from "react-admin";
+import { AdminContext, EditButton, defaultI18nProvider, RecordContextProvider } from "react-admin";
 import React from "react";
 import { AnyPropsComponent } from "../../../utils";
 import { dataProvider, users } from "../../../dataProvider";
 import { replaceOnGenerate } from "@amplicode/storybook-extensions";
 
 const meta = {
-    title: "Buttons/CreateButton",
+    title: "Buttons/EditButton",
     component: AnyPropsComponent,
     args: {
-        label: "Create"
+        label: "Edit"
     },
     decorators: [(Story) => defaultDecorator(Story)],
 } satisfies Meta<typeof AnyPropsComponent>;
@@ -19,13 +19,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     render: ({...props}) => {
-        return <CreateButton {...props}/>;
+        return <EditButton {...props}/>;
     },
 };
 
 export const Outlined: Story = {
     render: ({...props}) => {
-        return <CreateButton {...props}/>;
+        return <EditButton {...props}/>;
     },
     args: {
         variant: "outlined"
@@ -34,7 +34,7 @@ export const Outlined: Story = {
 
 export const Filled: Story = {
     render: ({...props}) => {
-        return <CreateButton {...props} />;
+        return <EditButton {...props} />;
     },
     args: {
         variant: "contained"
@@ -42,9 +42,9 @@ export const Filled: Story = {
 };
 
 export const WithState: Story = {
-    name: "Create with predefined record attributes",
+    name: "Edit with predefined record attributes",
     render: ({...props}) => {
-        return <CreateButton {...props} />;
+        return <EditButton {...props} />;
     },
     args: {
         state: replaceOnGenerate({}, { record: { /*default record*/ } })

@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Button, Notification, SaveButton, SimpleForm, TextInput, Toolbar, useNotify, } from "react-admin";
 import React, { ComponentType, useCallback } from "react";
 import { useFormContext } from "react-hook-form";
-import { ScopedCssBaseline } from "@mui/material";
 import { AdminStoryContext } from "../../../utils";
 import { MemoryRouter } from "react-router";
 
@@ -15,7 +14,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         const notify = useNotify();
 
         const FormToolbar = () => {
@@ -41,7 +40,7 @@ export const Default: Story = {
 
         function onSubmit(values: Record<string, any>) {
             notify(values.firstName + ' ' + values.lastName, { type: "success" });
-        };
+        }
 
         return (
             <SimpleForm
@@ -61,11 +60,9 @@ const defaultDecorator = (Story: () => React.JSX.Element) => (
 
     <MemoryRouter initialEntries={['/']}>
         <AdminStoryContext>
-            <ScopedCssBaseline enableColorScheme>
-                <Story/>
+            <Story/>
 
-                <Notification/>
-            </ScopedCssBaseline>
+            <Notification/>
         </AdminStoryContext>
     </MemoryRouter>
 );

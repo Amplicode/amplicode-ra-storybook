@@ -26,7 +26,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     name: "Demo Application",
-    render: (props) => {
+    render: ({...props}) => {
         const MainMenu = () => {
             return <Menu>
                 <Menu.ResourceItems/>

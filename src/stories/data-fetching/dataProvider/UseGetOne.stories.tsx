@@ -10,7 +10,7 @@ import { GenerationInstructions } from "@amplicode/storybook-extensions";
 import { resourceName } from "../../../ideExtension";
 
 const meta = {
-  title: "Blocks/DataProvider/UseGetOne",
+  title: "DataProvider/UseGetOne",
   parameters: {
     layout: "centered",
   },
@@ -22,17 +22,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => {
-    let { data, isLoading, refetch } = useGetOne(
+    let { data, isLoading, isRefetching, refetch } = useGetOne(
         resourceName('users', { allowContext: false }),
         {id: 1},
     );
 
     return <GenerationInstructions.Exclude>
-          {isLoading ? <LoadingIndicator/> : <TextField record={data} source="name"/>}
-          {!isLoading && <Button label="Reload" onClick={async () => {
-            data = null;
-            return await refetch();
-          }}/>}
+          {isLoading || isRefetching ? <LoadingIndicator/> : <TextField record={data} source="name"/>}
+          {!isLoading && <Button label="Reload" onClick={() => refetch()}/>}
     </GenerationInstructions.Exclude>;
   },
 };

@@ -28,7 +28,7 @@ const USERS = users.slice(1, 3);
 
 export const UseLocation: Story = {
     name: "useLocation hook",
-    render: (props) => {
+    render: ({...props}) => {
         const location = useLocation();
 
         return <GenerationInstructions.Exclude>

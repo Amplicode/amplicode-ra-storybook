@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, defaultI18nProvider, Labeled, regex, required, SimpleForm, TextInput } from "react-admin";
+import { AdminContext, defaultI18nProvider, regex, required, SimpleForm, TextInput } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import React from "react";
 import { attributeName } from "../../../../ideExtension";
 
 const meta = {
-    title: "Blocks/Inputs/TextInput",
+    title: "Inputs/TextInput",
     component: TextInput as any,
     parameters: {
         layout: "centered",
@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: (props) => {
+    render: ({...props}) => {
         return <TextInput source={attributeName("name")} {...props} />;
     }
 };
@@ -38,12 +38,10 @@ export const CustomLabel: Story = {
 
 export const RequiredValidation: Story = {
     render: ({ ...props }) => {
-        const validateRequired = [required()];
-
         return (
             <TextInput
                 source={attributeName("name")}
-                validate={validateRequired}
+                validate={[required()]}
                 {...props}
             />
         );
@@ -55,12 +53,10 @@ export const RequiredValidation: Story = {
 
 export const MetaSymbolsValidation: Story = {
     render: ({ ...props }) => {
-        const validateMetaSymbols = regex(/^((?![<>#$%&]).)*$/, 'Symbols "<>#$%&" are prohibited');
-
         return (
             <TextInput
                 source={attributeName("name")}
-                validate={validateMetaSymbols}
+                validate={regex(/^((?![<>#$%&]).)*$/, 'Symbols "<>#$%&" are prohibited')}
                 {...props}
             />
         );

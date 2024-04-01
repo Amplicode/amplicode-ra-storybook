@@ -5,7 +5,7 @@ import React from "react";
 import { replaceOnGenerate } from "@amplicode/storybook-extensions";
 
 const meta = {
-    title: "Blocks/Inputs/SelectInput",
+    title: "Inputs/SelectInput",
     component: SelectInput as any,
     parameters: {
         layout: "centered",

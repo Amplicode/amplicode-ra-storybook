@@ -21,7 +21,7 @@ import { attributeName, resourceName } from "../../ideExtension";
 import { AnyPropsComponent } from "../../utils";
 
 const meta = {
-    title: "Pages/SubTable",
+    title: "Misc/SubTable",
     component: AnyPropsComponent,
     decorators: [(Story) => defaultDecorator(Story)],
 } satisfies Meta<typeof AnyPropsComponent>;
@@ -47,6 +47,7 @@ export const Default: Story = {
                         actions={
                             <CreateButton state={{ record: { [subresourceBackReference]: record.id } }}/>
                         }
+                        title={<span/>}
                     >
                         <GenerationInstructions.Exclude>
                             <Typography variant="h6">Department users</Typography>

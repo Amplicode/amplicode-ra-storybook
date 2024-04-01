@@ -3,6 +3,7 @@
   "version": "0.9.0",
   "description": "Amplicode Storybook for React Admin",
   "repository": "https://github.com/Amplicode/amplicode-ra-storybook",
+  "keywords": ["storybook", "code", "typescript", "react", "react-admin", "crud"],
   "brandInfo": {
     "name": "Amplicode React Admin",
     "icon": "brand-logo.svg"

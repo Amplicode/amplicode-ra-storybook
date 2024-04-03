@@ -81,6 +81,32 @@ export const FutureDate: Story = {
     ]
 };
 
+export const PastDate: Story = {
+    render: () => {
+        const futureDate = topLevel((date = dayjs().add(-1, "day").format("YYYY-MM-DD"), message = 'Must be in the past') => {
+            return maxValue(date, message);
+        });
+
+        return (
+            <DateInput
+                source={attributeName("date")}
+                validate={[futureDate(), required()]}
+            />
+        );
+    },
+    decorators: [
+        (Story) => {
+            return (
+                <div>
+                    <Typography variant="body2">Valid period ends yesterday ({dayjs().add(-1, "day").format("YYYY-MM-DD")})</Typography>
+                    <Typography variant="body2">Validation mode "onChange"</Typography>
+                    <Story />
+                </div>
+            )
+        }
+    ]
+};
+
 export const PeriodValidation: Story = {
     render: () => {
         const afterDate = topLevel((date = dayjs('1970-01-01').format("YYYY-MM-DD"), message = `Must be at least ${date}`) => {

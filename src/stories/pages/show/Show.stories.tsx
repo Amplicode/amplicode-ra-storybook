@@ -36,7 +36,7 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
         <SimpleShowLayout>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </SimpleShowLayout>
       </Show>
     );
@@ -66,7 +66,7 @@ export const CustomActions: Story = {
         <SimpleShowLayout>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </SimpleShowLayout>
       </Show>
     );
@@ -89,7 +89,7 @@ export const Aside: Story = {
         <SimpleShowLayout>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </SimpleShowLayout>
       </Show>
     );

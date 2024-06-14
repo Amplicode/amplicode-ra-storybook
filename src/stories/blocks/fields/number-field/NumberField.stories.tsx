@@ -8,21 +8,27 @@ import {
 } from "react-admin";
 import { dataProvider, users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
+import { fieldDecorators } from "../fieldDecorators";
 
 const meta = {
-  title: "Fields/NumberField",
+  title: "Blocks/Fields/NumberField",
   component: NumberField as any,
   parameters: {
     layout: "centered",
   },
-  decorators: [(Story) => defaultDecorator(Story)],
+  decorators: [
+    ...fieldDecorators,
+  ],
+  args: {
+    source: "day_offs"
+  },
 } satisfies Meta<typeof NumberField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: ({...props}) => {
+  render: (props) => {
     return <NumberField source={attributeName("day_offs")} {...props} />;
   },
 };
@@ -60,17 +66,4 @@ export const Unit: Story = {
       control: { type: 'select' },
     }
   }
-};
-
-const defaultDecorator = (Story: () => JSX.Element) => {
-  return (
-    <AdminContext
-      dataProvider={dataProvider}
-      i18nProvider={defaultI18nProvider}
-    >
-      <RecordContextProvider value={users[0]}>
-        <Labeled>{Story()}</Labeled>
-      </RecordContextProvider>
-    </AdminContext>
-  );
 };

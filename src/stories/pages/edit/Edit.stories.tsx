@@ -41,7 +41,7 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
         <SimpleForm>
           <TextInput source="id" />
           <TextInput source="name" />
-          <DateInput source="birthday" />
+          <DateInput source="date" />
         </SimpleForm>
       </Edit>
     );
@@ -71,7 +71,7 @@ export const CustomActions: Story = {
                 <SimpleForm>
                     <TextInput source="id"/>
                     <TextInput source="name"/>
-                    <DateInput source="birthday"/>
+                    <DateInput source="date"/>
                 </SimpleForm>
             </Edit>
         );
@@ -94,7 +94,7 @@ export const Aside: Story = {
                 <SimpleForm>
                     <TextInput source="id"/>
                     <TextInput source="name"/>
-                    <DateInput source="birthday"/>
+                    <DateInput source="date"/>
                 </SimpleForm>
             </Edit>
         );
@@ -122,7 +122,7 @@ export const SubResource: Story = {
             <SimpleForm>
                 <TextInput source="id"/>
                 <TextInput source="name"/>
-                <DateInput source="birthday"/>
+                <DateInput source="date"/>
 
                 <TasksTable/>
             </SimpleForm>

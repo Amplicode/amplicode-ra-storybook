@@ -66,7 +66,7 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
                     </Stack>
                     <SimpleForm>
                         <TextInput source="name"/>
-                        <DateInput source="birthday"/>
+                        <DateInput source="date"/>
                         <BooleanInput source="active"/>
                         <NumberInput source="day_offs"/>
                         <ReferenceInput source="department_id" reference="departments"/>

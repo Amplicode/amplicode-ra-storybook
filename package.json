@@ -17,14 +17,14 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@amplicode/storybook-extensions": "^0.0.5",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.7",
     "dayjs": "^1.11.10",
     "ra-data-fakerest": "^4.16.11",
     "react-admin": "^4.16.7",
-    "typescript": "^5.3.3",
-    "@amplicode/storybook-extensions": "^0.0.5"
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.10",
@@ -35,6 +35,7 @@
     "@storybook/react": "^7.6.10",
     "@storybook/react-vite": "^7.6.10",
     "@storybook/test": "^7.6.10",
+    "@types/react-dom": "^18.2.25",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.6.10"

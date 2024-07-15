@@ -56,7 +56,7 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </List>
     );
@@ -82,7 +82,7 @@ export const Filter: Story = {
           <TextField source="id" />
           <TextField source="name" />
           <TextField source="city" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </List>
     );
@@ -96,7 +96,7 @@ export const PermanentFilter: Story = {
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </List>
     );
@@ -128,7 +128,7 @@ export const Aside: Story = {
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </List>
     );
@@ -142,7 +142,7 @@ export const Infinite: Story = {
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </InfiniteList>
     );

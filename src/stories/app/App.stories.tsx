@@ -19,6 +19,7 @@ import { AnyPropsComponent } from "../../utils";
 const meta = {
     title: "Admin Application",
     component: AnyPropsComponent,
+    excludeStories: /.*/,
 } satisfies Meta<typeof AnyPropsComponent>;
 
 export default meta;

@@ -24,6 +24,7 @@ const meta = {
     title: "Misc/SubTable",
     component: AnyPropsComponent,
     decorators: [(Story) => defaultDecorator(Story)],
+    excludeStories: /.*/,
 } satisfies Meta<typeof AnyPropsComponent>;
 
 export default meta;

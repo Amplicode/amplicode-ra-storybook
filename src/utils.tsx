@@ -3,6 +3,7 @@ import {
     DataProvider,
     DataProviderContext,
     defaultI18nProvider,
+    defaultLightTheme,
     I18nContextProvider,
     NotificationContextProvider,
     ResourceDefinition,
@@ -14,9 +15,8 @@ import {
 } from "react-admin";
 import { I18nProvider } from "ra-core/src/types";
 import { memoryStore } from "ra-core/src/store";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { dataProvider as defaultDataProvider } from "./dataProvider";
-import { defaultLightTheme } from "ra-ui-materialui/src/theme";
 
 /**
  * Helper component to register react-admin resources. Only for use in stories.

@@ -9,6 +9,7 @@ const meta = {
         layout: "centered",
     },
     decorators: [(Story) => defaultDecorator(Story)],
+    excludeStories: /.*/,
 } satisfies Meta<typeof Title>;
 
 export default meta;

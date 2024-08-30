@@ -49,34 +49,20 @@ const FIELD_STORIES_MAP: Record<string, () => JSX.Element> = {
   },
   ReferenceArrayField: () => {
     return (
-      // <ResourceContextHelper
-      //   resources={{
-      //     name: "roles",
-      //     recordRepresentation: "name",
-      //   }}
-      // >
-        <ReferenceArrayField
-          source="role_ids"
-          reference="roles"
-          sortable={false}
-        />
-      // </ResourceContextHelper>
+      <ReferenceArrayField
+        source="role_ids"
+        reference="roles"
+        sortable={false}
+      />
     );
   },
   ReferenceField: () => {
     return (
-      // <ResourceContextHelper
-      //   resources={{
-      //     name: "departments",
-      //     recordRepresentation: "name",
-      //   }}
-      // >
-        <ReferenceField
-          source="department_id"
-          reference="departments"
-          sortable={false}
-        />
-      // </ResourceContextHelper>
+      <ReferenceField
+        source="department_id"
+        reference="departments"
+        sortable={false}
+      />
     );
   },
   TextField: () => {
@@ -116,7 +102,6 @@ export const listDecorator = (
         sx={
           activeIndex !== undefined
             ? {
-
                 position: "fixed",
                 top: "50%",
                 left: "50%",

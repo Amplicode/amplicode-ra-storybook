@@ -73,7 +73,6 @@ export const Default: Story = {
           title: "Referenced Resource",
           allowContext: false,
         })}
-        {...props}
       />
     );
   },
@@ -91,7 +90,6 @@ export const Readonly: Story = {
           title: "Referenced Resource",
           allowContext: false,
         })}
-        {...props}
       >
         <AutocompleteInput readOnly />
       </ReferenceInput>
@@ -111,7 +109,6 @@ export const Validated: Story = {
           title: "Referenced Resource",
           allowContext: false,
         })}
-        {...props}
       >
         <AutocompleteInput validate={required()} />
       </ReferenceInput>

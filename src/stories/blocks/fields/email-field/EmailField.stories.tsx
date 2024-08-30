@@ -4,7 +4,7 @@ import { attributeName } from "../../../../ideExtension";
 import { fieldDecorators } from "../fieldDecorators";
 
 const meta = {
-  title: "Blocks/Fields/EmailField",
+  title: "Fields/EmailField",
   component: EmailField,
   parameters: {
     layout: "centered",

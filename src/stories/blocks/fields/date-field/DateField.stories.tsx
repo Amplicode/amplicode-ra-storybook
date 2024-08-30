@@ -6,7 +6,7 @@ import { attributeName } from "../../../../ideExtension";
 import { fieldDecorators } from "../fieldDecorators";
 
 const meta = {
-  title: "Blocks/Fields/DateField",
+  title: "Fields/DateField",
   component: DateField,
   parameters: {
     layout: "centered",

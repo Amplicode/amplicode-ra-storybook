@@ -11,7 +11,7 @@ import { attributeName } from "../../../../ideExtension";
 import { fieldDecorators } from "../fieldDecorators";
 
 const meta = {
-  title: "Blocks/Fields/NumberField",
+  title: "Fields/NumberField",
   component: NumberField as any,
   parameters: {
     layout: "centered",

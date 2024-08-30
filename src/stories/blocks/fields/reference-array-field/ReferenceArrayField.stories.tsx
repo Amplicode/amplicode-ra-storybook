@@ -27,7 +27,7 @@ const recordRepresentationDecorator = (Story: () => React.JSX.Element) => {
 };
 
 const meta = {
-  title: "Blocks/Fields/ReferenceArrayField",
+  title: "Fields/ReferenceArrayField",
   component: ReferenceArrayField as any,
   parameters: {
     layout: "centered",

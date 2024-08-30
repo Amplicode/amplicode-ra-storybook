@@ -6,7 +6,7 @@ import { attributeName } from "../../../../ideExtension";
 import { fieldDecorators } from "../fieldDecorators";
 
 const meta = {
-  title: "Blocks/Fields/BooleanField",
+  title: "Fields/BooleanField",
   component: BooleanField,
   parameters: {
     layout: "centered",

@@ -4,7 +4,7 @@ import { attributeName } from "../../../../ideExtension";
 import { fieldDecorators } from "../fieldDecorators";
 
 const meta = {
-  title: "Blocks/Fields/FileField",
+  title: "Fields/FileField",
   component: FileField,
   parameters: {
     layout: "centered",

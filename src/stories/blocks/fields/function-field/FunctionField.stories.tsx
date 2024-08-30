@@ -5,7 +5,7 @@ import { attributeName } from "../../../../ideExtension";
 import { fieldDecorators } from "../fieldDecorators";
 
 const meta = {
-  title: "Blocks/Fields/FunctionField",
+  title: "Fields/FunctionField",
   component: FunctionField as any,
   parameters: {
     layout: "centered",

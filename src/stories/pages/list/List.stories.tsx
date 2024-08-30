@@ -203,7 +203,7 @@ const InspectorProperties: InspectorPropertiesType<typeof List> = {
 
   filters: generatorProp({
     description: "The filters to display in the toolbar.",
-    generatorId: "amplicode/react-admin/filtersGenerator",
+    generatorId: "amplicode.reactAdmin.filtersGenerator",
     hideInStoryBook: true,
     defaultValue: [<TextInput source="name" />],
   }),
@@ -226,7 +226,7 @@ const InspectorProperties: InspectorPropertiesType<typeof List> = {
 
   filterDefaultValues: generatorProp({
     description: "",
-    generatorId: "amplicode/react-admin/filterDefaultValues",
+    generatorId: "amplicode.reactAdmin.filterDefaultValues",
     hideInStoryBook: true,
   }),
 

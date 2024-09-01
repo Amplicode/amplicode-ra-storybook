@@ -21,10 +21,10 @@ import { attributeName, resourceName } from "../../ideExtension";
 import { AnyPropsComponent } from "../../utils";
 
 const meta = {
-    title: "Misc/SubTable",
+    title: "Relations/SubTable",
     component: AnyPropsComponent,
     decorators: [(Story) => defaultDecorator(Story)],
-    excludeStories: /.*/,
+    // excludeStories: /.*/,
 } satisfies Meta<typeof AnyPropsComponent>;
 
 export default meta;

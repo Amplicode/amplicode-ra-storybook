@@ -3,7 +3,7 @@ import { AdminContext, AppBar, defaultI18nProvider, Labeled, Layout, Title } fro
 import React from "react";
 
 const meta = {
-    title: "Misc/Title",
+    title: "Relations/Title",
     component: Title,
     parameters: {
         layout: "centered",

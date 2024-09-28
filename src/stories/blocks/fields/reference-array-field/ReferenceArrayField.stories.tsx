@@ -8,29 +8,48 @@ import {
 import React from "react";
 import { ResourceContextHelper } from "../../../../utils";
 import { attributeName, resourceName } from "../../../../ideExtension";
-import { adminContextDecorator, listDecorator, shadowArgsDecorator } from "../fieldDecorators";
+import {
+  adminContextDecorator,
+  listDecorator,
+  shadowArgsDecorator,
+} from "../fieldDecorators";
 
 const recordRepresentationDecorator = (Story: () => React.JSX.Element) => {
   return (
-      <ResourceContextHelper
-        resources={{
+    <ResourceContextHelper
+      resources={[
+        {
           name: "roles",
           recordRepresentation: "name",
-        }}
-      >
-        <>
-          {Story()}
-        </>
-      </ResourceContextHelper>
-
+        },
+        {
+          name: "users",
+          recordRepresentation: "name",
+        },
+      ]}
+    >
+      <>{Story()}</>
+    </ResourceContextHelper>
   );
 };
 
 const meta = {
   title: "Fields/ReferenceArrayField",
-  component: ReferenceArrayField as any,
+  component: ReferenceArrayField,
   parameters: {
     layout: "centered",
+    controls: {
+      exclude: [
+        "filter",
+        "pagination",
+        "perPage",
+        "source",
+        "reference",
+        "queryOptions",
+        "sort",
+        "sortBy",
+      ],
+    },
   },
   decorators: [
     listDecorator,
@@ -40,6 +59,33 @@ const meta = {
   ],
   args: {
     source: "role_ids",
+    reference: "users",
+  },
+  argTypes: {
+    source: {
+      control: "text",
+    },
+    reference: {
+      control: "text",
+    },
+    filter: {
+      control: "text",
+    },
+    pagination: {
+      control: "text",
+    },
+    perPage: {
+      control: "text",
+    },
+    queryOptions: {
+      control: "text",
+    },
+    sort: {
+      control: "text",
+    },
+    sortBy: {
+      control: "text",
+    },
   },
 } satisfies Meta<typeof ReferenceArrayField>;
 
@@ -47,7 +93,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (props) => {
+  render: ({ source, reference, ...props }) => {
     return (
       <ReferenceArrayField
         source={attributeName("role_ids", {
@@ -65,7 +111,7 @@ export const Default: Story = {
 };
 
 export const ManualChips: Story = {
-  render: (props) => {
+  render: ({ source, reference, ...props }) => {
     return (
       <ReferenceArrayField
         source={attributeName("role_ids", {
@@ -93,7 +139,7 @@ export const ManualChips: Story = {
 };
 
 export const ManualTextField: Story = {
-  render: (props) => {
+  render: ({ source, reference, ...props }) => {
     return (
       <ReferenceArrayField
         source={attributeName("role_ids", {
@@ -119,5 +165,3 @@ export const ManualTextField: Story = {
     );
   },
 };
-
-

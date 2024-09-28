@@ -14,6 +14,23 @@ const meta = {
   decorators: [...fieldDecorators],
   args: {
     source: "date"
+  },
+  argTypes: {
+    locales: {
+      control: 'text',
+    },
+    options: {
+      control: 'text',
+    },
+    showTime: {
+      control: 'boolean',
+    },
+    showDate: {
+      control: 'boolean',
+    },
+    transform: {
+      control: 'text',
+    },
   }
 } satisfies Meta<typeof DateField>;
 
@@ -21,13 +38,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (props) => {
+  render: ({source, ...props}) => {
     return <DateField source={attributeName("date")} {...props} />;
   },
 };
 
 export const Custom: Story = {
-  render: ({ showTime, locales, ...props }) => {
+  render: ({ showTime, locales, source, ...props }) => {
     return (
       <DateField
         source={attributeName("date")}

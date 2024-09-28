@@ -12,7 +12,7 @@ import {
   TextField,
   ReferenceField,
 } from "react-admin";
-import { AdminStoryContext, ResourceContextHelper } from "../../../utils";
+import { AdminStoryContext } from "../../../utils";
 import { MemoryRouter } from "react-router";
 import { useArgs } from "@storybook/preview-api";
 import { StoryContext } from "@storybook/react";
@@ -110,16 +110,6 @@ export const listDecorator = (
                 [`& .MuiTableCell-root`]: {
                   minWidth: 200,
                   maxWidth: 200,
-                },
-                [`& .RaDatagrid-headerCell.column-${context.args["source"]}`]: {
-                  [`& > span`]: {
-                    transform: "scale(1.2)",
-                  },
-                },
-                [`& .RaDatagrid-rowCell.column-${context.args["source"]}`]: {
-                  [`& > span`]: {
-                    transform: "scale(1.2)",
-                  },
                 },
                 [`& .RaDatagrid-headerCell:not(.column-${context.args["source"]})`]:
                   {

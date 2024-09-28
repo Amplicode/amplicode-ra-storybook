@@ -13,14 +13,34 @@ const meta = {
   args: {
     source: "url",
     title: "Presentation",
-  }
+  },
+  argTypes: {
+    src: {
+      control: 'text'
+    },
+    title: {
+      control: 'text'
+    },
+    target: {
+      control: 'text'
+    },
+    download: {
+      control: 'text'
+    },
+    ping: {
+      control: 'text'
+    },
+    rel: {
+      control: 'text'
+    },
+  },
 } satisfies Meta<typeof FileField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: ({...props}) => {
+  render: ({ source, ...props }) => {
     return <FileField source={attributeName("url")} {...props} />;
   },
 };

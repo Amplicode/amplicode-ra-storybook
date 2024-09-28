@@ -1,20 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
   AdminContext,
-  DeleteButton,
+  ShowButton,
   defaultI18nProvider,
+  ResourceContextProvider,
   RecordContextProvider,
 } from "react-admin";
 import React from "react";
-import { AnyPropsComponent } from "../../../utils";
 import { dataProvider, users } from "../../../dataProvider";
 import { replaceOnGenerate } from "@amplicode/storybook-extensions";
 
 const meta = {
-  title: "Buttons/DeleteButton",
-  component: AnyPropsComponent,
+  title: "Buttons/ShowButton",
+  component: ShowButton,
   args: {
-    label: "Delete",
+    label: "Show",
   },
   argTypes: {
     label: {
@@ -32,20 +32,20 @@ const meta = {
     },
   },
   decorators: [(Story) => defaultDecorator(Story)],
-} satisfies Meta<typeof AnyPropsComponent>;
+} satisfies Meta<typeof ShowButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: ({ ...props }) => {
-    return <DeleteButton {...props} />;
+    return <ShowButton {...props} />;
   },
 };
 
 export const Outlined: Story = {
   render: ({ ...props }) => {
-    return <DeleteButton {...props} />;
+    return <ShowButton {...props} />;
   },
   args: {
     variant: "outlined",
@@ -54,7 +54,7 @@ export const Outlined: Story = {
 
 export const Filled: Story = {
   render: ({ ...props }) => {
-    return <DeleteButton {...props} />;
+    return <ShowButton {...props} />;
   },
   args: {
     variant: "contained",
@@ -62,9 +62,9 @@ export const Filled: Story = {
 };
 
 export const WithState: Story = {
-  name: "Delete with predefined record attributes",
+  name: "Edit with predefined record attributes",
   render: ({ ...props }) => {
-    return <DeleteButton {...props} />;
+    return <ShowButton {...props} />;
   },
   args: {
     state: replaceOnGenerate(
@@ -85,9 +85,11 @@ const defaultDecorator = (Story: () => React.JSX.Element) => {
       dataProvider={dataProvider}
       i18nProvider={defaultI18nProvider}
     >
-      <RecordContextProvider value={users[0]}>
-        <Story />
-      </RecordContextProvider>
+      <ResourceContextProvider value={"users"}>
+        <RecordContextProvider value={users[0]}>
+          <Story />
+        </RecordContextProvider>
+      </ResourceContextProvider>
     </AdminContext>
   );
 };

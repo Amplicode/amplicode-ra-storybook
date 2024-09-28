@@ -42,9 +42,22 @@ const resourceContextHeleprDecorator = (Story: () => React.JSX.Element) => {
 
 const meta = {
   title: "Inputs/ReferenceInput",
-  component: ReferenceInput as any,
+  component: ReferenceInput,
   parameters: {
     // layout: "centered",
+    controls: {
+      exclude: [
+        "source",
+        "reference",
+        "enableGetChoices",
+        "filter",
+        "label",
+        "page",
+        "perPage",
+        "queryOptions",
+        "sort",
+      ],
+    },
   },
   decorators: [
     listDecorator,
@@ -56,13 +69,42 @@ const meta = {
     source: "department_id",
     reference: "departments",
   },
+  argTypes: {
+    source: {
+      control: "text",
+    },
+    reference: {
+      control: "text",
+    },
+    enableGetChoices: {
+      control: "text",
+    },
+    filter: {
+      control: "text",
+    },
+    label: {
+      control: "text",
+    },
+    page: {
+      control: "number",
+    },
+    perPage: {
+      control: "number",
+    },
+    queryOptions: {
+      control: "text",
+    },
+    sort: {
+      control: "text",
+    },
+  },
 } satisfies Meta<typeof ReferenceInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: ({ ...props }) => {
+  render: () => {
     return (
       <ReferenceInput
         source={attributeName("department_id", {
@@ -79,7 +121,7 @@ export const Default: Story = {
 };
 
 export const Readonly: Story = {
-  render: ({ ...props }) => {
+  render: () => {
     return (
       <ReferenceInput
         source={attributeName("department_id", {
@@ -98,7 +140,7 @@ export const Readonly: Story = {
 };
 
 export const Validated: Story = {
-  render: ({ ...props }) => {
+  render: () => {
     return (
       <ReferenceInput
         source={attributeName("department_id", {

@@ -1,18 +1,6 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "allowJs": false,
-    "jsx": "react-jsx",
-    "noEmit": true,
-    "isolatedModules": true,
-    "strict": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "baseUrl": "./src",
-  },
-  "include": ["src", ".storybook/**/*", "src/demoData/tasks.json"]
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+  ]
 }

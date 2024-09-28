@@ -8,6 +8,8 @@ import {
   NumberInput,
   ReferenceInput,
   SelectInput,
+  PasswordInput,
+  TimeInput,
 } from "react-admin";
 import { createPortal } from "react-dom";
 import { AdminStoryContext } from "../../../utils";
@@ -31,6 +33,9 @@ const FIELD_STORIES_MAP: Record<string, () => JSX.Element> = {
   NumberInput: () => {
     return <NumberInput source="day_offs" />;
   },
+  PasswordInput: () => {
+    return <PasswordInput source="password" />;
+  },
   ReferenceInput: () => {
     return <ReferenceInput source="department_id" reference="departments" />;
   },
@@ -44,6 +49,9 @@ const FIELD_STORIES_MAP: Record<string, () => JSX.Element> = {
   },
   TextInput: () => {
     return <TextInput source="name" />;
+  },
+  TimeInput: () => {
+    return <TimeInput source="time" />;
   },
 };
 

@@ -1,22 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
-  AdminContext,
-  defaultI18nProvider,
   email,
-  ResourceContextProvider,
-  SimpleForm,
   TextInput,
   useUnique,
 } from "react-admin";
-import { dataProvider, users } from "../../../../dataProvider";
-import React from "react";
+import { users } from "../../../../dataProvider";
 import { attributeName } from "../../../../ideExtension";
 import { Typography } from "@mui/material";
 import { AdditionalInfoWrapper, inputDecorators } from "../inputDecorators";
 
 const meta = {
   title: "Inputs/EmailInput",
-  component: TextInput as any,
+  component: TextInput,
   parameters: {
     // layout: "centered",
   },
@@ -24,13 +19,18 @@ const meta = {
   args: {
     source: "email",
   },
+  argTypes: {
+    resettable: {
+      control: "boolean"
+    }
+  }
 } satisfies Meta<typeof TextInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: ({ ...props }) => {
+  render: ({ source, validate, ...props }) => {
     return (
       <TextInput
         source={attributeName("email")}
@@ -42,7 +42,7 @@ export const Default: Story = {
 };
 
 export const UniqueValidation: Story = {
-  render: ({ ...props }) => {
+  render: ({ source, validate, ...props }) => {
     const unique = useUnique();
 
     return (
@@ -70,19 +70,4 @@ export const UniqueValidation: Story = {
       );
     },
   ],
-};
-
-const defaultDecorator = (Story: () => React.JSX.Element) => {
-  return (
-    <AdminContext
-      dataProvider={dataProvider}
-      i18nProvider={defaultI18nProvider}
-    >
-      <ResourceContextProvider value="users">
-        <SimpleForm mode="onChange" toolbar={false}>
-          <Story />
-        </SimpleForm>
-      </ResourceContextProvider>
-    </AdminContext>
-  );
 };

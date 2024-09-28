@@ -17,19 +17,38 @@ const meta = {
   args: {
     source: "active"
   },
+  argTypes: {
+    valueLabelTrue: {
+      control: 'text'
+    },
+    valueLabelFalse: {
+      control: 'text'
+    },
+    TrueIcon: {
+      control: 'text'
+    },
+    FalseIcon: {
+      control: 'text'
+    }
+  }
 } satisfies Meta<typeof BooleanField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (props) => {
+  render: ({source, ...props}) => {
     return <BooleanField source={attributeName("active")} {...props} />;
   },
+  parameters: {
+    controls: {
+      exclude: ['TrueIcon', 'FalseIcon', 'source']
+    }
+  }
 };
 
 export const Custom: Story = {
-  render: ({ valueLabelTrue, valueLabelFalse, ...props }) => {
+  render: ({ source, valueLabelTrue, valueLabelFalse, ...props }) => {
     return (
       <BooleanField
         source={attributeName("active")}
@@ -48,6 +67,7 @@ export const Custom: Story = {
   },
   argTypes: {
     TrueIcon: {
+      control: 'select',
       options: ["AlarmOnIcon", "AlarmOffIcon"],
       mapping: {
         AlarmOnIcon: AlarmOnIcon,
@@ -55,6 +75,7 @@ export const Custom: Story = {
       },
     },
     FalseIcon: {
+      control: 'select',
       options: ["AlarmOnIcon", "AlarmOffIcon"],
       mapping: {
         AlarmOnIcon: AlarmOnIcon,

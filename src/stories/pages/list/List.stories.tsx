@@ -1,4 +1,4 @@
-import type { ArgTypes, Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   AdminContext,
   Datagrid,
@@ -18,10 +18,10 @@ import {
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { CreatePageWizardParams } from "ideExtension";
 import { WizardInfo } from "@amplicode/storybook-extensions";
 import { Button } from "@mui/material";
 import { delayDataProvider } from "../../../dataProvider";
+import { CreatePageWizardParams } from "../../../ideExtension";
 
 const defaultDecorator = (Story: () => JSX.Element) => (
   <AdminContext
@@ -40,56 +40,6 @@ const infiniteDecorator = (Story: () => JSX.Element) => (
     <Resource name="users" list={Story} />
   </AdminContext>
 );
-
-// -- library
-
-function optionProp<T>(config: {
-  options: Record<string, T>;
-  description?: string;
-  defaultValue?: T;
-}) {
-  const result: any = {
-    options: Object.keys(config.options),
-    mapping: config.options,
-    control: {
-      type: "select",
-    },
-  };
-
-  if (config.description) {
-    result.description = config.description;
-  }
-
-  if (config.defaultValue) {
-    result.defaultValue = config.defaultValue;
-  }
-
-  return result;
-}
-
-function numberProp(config: {
-  description?: string;
-  options?: number[];
-  defaultValue?: number;
-}) {
-  const result: any = {
-    type: config.options ? "select" : "number",
-  };
-
-  if (config.description) {
-    result.description = config.description;
-  }
-
-  if (config.options) {
-    result.options = config.options;
-  }
-
-  if (config.defaultValue) {
-    result.defaultValue = config.defaultValue;
-  }
-
-  return result;
-}
 
 function generatorProp(config: {
   description?: string;
@@ -116,49 +66,18 @@ function generatorProp(config: {
   return result;
 }
 
-function defaults<T>(properties: any) {
-  const result: any = {};
-
-  Object.keys(properties).forEach((propName) => {
-    if ("defaultValue" in properties[propName]) {
-      result[propName] = properties[propName].defaultValue;
-    }
-  });
-
-  return result;
-}
-
-const DefaultCallbacks = {};
-
-type GetComponentProps<T> = T extends (...args: any) => any
-  ? Parameters<T>[0]
-  : T extends { props: infer P }
-    ? P
-    : never;
-
-type InspectorPropertiesType<T> = Partial<ArgTypes<GetComponentProps<T>>>;
-
-/**
- * Indicates that referenced component should be generated in client code
- */
-function copyToClient(reference: any) {
-  return reference;
-}
-
-// -- library
-
-const DefaultPagination = (props: PaginationProps) => (
+const CustomPagination = (props: PaginationProps) => (
   <>
     CustomPagination component{" "}
     <Pagination rowsPerPageOptions={[10, 25, 50, 100]} {...props} />
   </>
 );
 
-const customExporter = (posts: any[]) => {
-  alert("Hello");
+const customExporter = () => {
+  console.log("Export logic");
 };
 
-const DefaultEmpty = ({ name }: { name: string }) => (
+const CustomEmpty = ({ name }: { name: string }) => (
   <Box textAlign="center" m={1}>
     <Typography variant="h4" paragraph>
       No {name} available
@@ -177,77 +96,72 @@ const InspectorAside = () => (
   </SimpleForm>
 );
 
-const InspectorProperties: InspectorPropertiesType<typeof List> = {
-  empty: optionProp({
-    options: {
-      default: undefined,
-      "Generate Empty Page": copyToClient(<DefaultEmpty name="foo" />),
-    },
-    description: "The component to display when the list is empty.",
-  }),
-
-  perPage: numberProp({
-    description: "Items per page",
-    options: [5, 10, 20],
-    defaultValue: 10,
-  }),
-
-  exporter: optionProp({
-    options: {
-      default: undefined,
-      disabled: false,
-      CustomExporter: copyToClient(customExporter),
-    },
-    defaultValue: undefined,
-  }),
-
-  filters: generatorProp({
-    description: "The filters to display in the toolbar.",
-    generatorId: "amplicode.reactAdmin.filtersGenerator",
-    hideInStoryBook: true,
-    defaultValue: [<TextInput source="name" />],
-  }),
-
-  pagination: optionProp({
-    options: {
-      default: undefined,
-      disable: false,
-      CustomPagination: copyToClient(<DefaultPagination />),
-    },
-    defaultValue: undefined,
-  }),
-
-  aside: optionProp({
-    options: {
-      default: undefined,
-      AsideComponent: copyToClient(<InspectorAside />),
-    },
-  }),
-
-  filterDefaultValues: generatorProp({
-    description: "",
-    generatorId: "amplicode.reactAdmin.filterDefaultValues",
-    hideInStoryBook: true,
-  }),
-
-  ...DefaultCallbacks,
-};
-
 const meta = {
   title: "Pages/List",
   component: List as any,
   decorators: [(Story) => defaultDecorator(Story)],
-  args: {
-    ...defaults(InspectorProperties),
-  },
+  args: {},
   argTypes: {
     perPage: {
+      control: "select",
       description: "Items per page",
       options: [5, 10, 20],
-      defaultValue: 10,
     },
-    ...(List as any),
-    ...InspectorProperties,
+    empty: {
+      control: "select",
+      options: ["default", "Generate Empty Page"],
+      mapping: {
+        default: undefined,
+        "Generate Empty Page": <CustomEmpty name="foo" />,
+      },
+    },
+    exporter: {
+      control: "select",
+      options: ["default", "disabled", "CustomExporter"],
+      mapping: {
+        default: undefined,
+        disabled: false,
+        CustomExporter: customExporter,
+      },
+    },
+    filters: generatorProp({
+      description: "The filters to display in the toolbar.",
+      generatorId: "amplicode.reactAdmin.filtersGenerator",
+      hideInStoryBook: true,
+      defaultValue: [<TextInput source="name" />],
+    }),
+    pagination: {
+      control: "select",
+      options: ["default", "disable", "CustomPagination"],
+      mapping: {
+        default: undefined,
+        disable: false,
+        CustomPagination: <CustomPagination />,
+      },
+    },
+    aside: {
+      control: "select",
+      options: ["default", "AsideComponent"],
+      mapping: {
+        default: undefined,
+        AsideComponent: <InspectorAside />,
+      },
+    },
+    disableAuthentication: {
+      control: "boolean",
+    },
+    disableSyncWithLocation: {
+      control: "boolean",
+    },
+    sort: {
+      control: "text",
+    },
+    filter: {
+      control: "text",
+    },
+    queryOptions: {
+      control: "text",
+    },
   },
 } satisfies Meta<typeof List>;
 
@@ -324,11 +238,11 @@ export const PermanentFilter: Story = {
     role: "admin",
   },
   argTypes: {
-    perPage: numberProp({
+    perPage: {
+      control: "select",
       description: "Items per page",
       options: [5, 10, 20],
-      // defaultValue: 10
-    }),
+    },
     role: {
       options: ["admin", "customer"],
       control: { type: "select" },
@@ -358,21 +272,22 @@ export const Aside: Story = {
     );
   },
   argTypes: {
-    aside: optionProp({
-      options: {
+    aside: {
+      options: ["default", "AsideComponent"],
+      mapping: {
         default: undefined,
-        AsideComponent: copyToClient(
+        AsideComponent: (
           <SimpleForm>
             <TextInput source="name" />
           </SimpleForm>
         ),
       },
-    }),
+    },
   },
 };
 
 export const Infinite: Story = {
-  render: ({ ...props }) => {
+  render: () => {
     return (
       <InfiniteList filters={[<TextInput source="name" />]}>
         <Datagrid>

@@ -1,20 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  AdminContext,
-  defaultI18nProvider,
-  maxValue,
-  minValue,
-  NumberInput,
-  SimpleForm,
-} from "react-admin";
-import { dataProvider, users } from "../../../../dataProvider";
-import React from "react";
+import { maxValue, minValue, NumberInput } from "react-admin";
 import { attributeName } from "../../../../ideExtension";
 import { inputDecorators } from "../inputDecorators";
 
 const meta = {
   title: "Inputs/NumberInput",
-  component: NumberInput as any,
+  component: NumberInput,
   parameters: {
     // layout: "centered",
   },
@@ -22,19 +13,33 @@ const meta = {
   args: {
     source: "day_offs",
   },
+  argTypes: {
+    label: {
+      control: "text",
+    },
+    max: {
+      control: "number",
+    },
+    min: {
+      control: "number",
+    },
+    step: {
+      control: "number",
+    },
+  },
 } satisfies Meta<typeof NumberInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: ({ ...props }) => {
+  render: ({ source, ...props }) => {
     return <NumberInput source={attributeName("day_offs")} {...props} />;
   },
 };
 
 export const CustomLabel: Story = {
-  render: ({ ...props }) => {
+  render: ({ source, ...props }) => {
     return <NumberInput source={attributeName("day_offs")} {...props} />;
   },
   args: {
@@ -43,7 +48,7 @@ export const CustomLabel: Story = {
 };
 
 export const MinAndMaxValidation: Story = {
-  render: ({ ...props }) => {
+  render: ({ source, ...props }) => {
     return (
       <NumberInput
         source={attributeName("day_offs")}
@@ -60,17 +65,4 @@ export const MinAndMaxValidation: Story = {
   args: {
     label: "User day offs",
   },
-};
-
-const defaultDecorator = (Story: () => React.JSX.Element) => {
-  return (
-    <AdminContext
-      dataProvider={dataProvider}
-      i18nProvider={defaultI18nProvider}
-    >
-      <SimpleForm record={users[0]} mode="onChange" toolbar={false}>
-        {Story()}
-      </SimpleForm>
-    </AdminContext>
-  );
 };

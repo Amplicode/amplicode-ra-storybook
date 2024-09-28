@@ -1,20 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  AdminContext,
-  defaultI18nProvider,
-  regex,
-  required,
-  SimpleForm,
-  TextInput,
-} from "react-admin";
-import { dataProvider, users } from "../../../../dataProvider";
-import React from "react";
+import { regex, required, TextInput } from "react-admin";
 import { attributeName } from "../../../../ideExtension";
 import { inputDecorators } from "../inputDecorators";
 
 const meta = {
   title: "Inputs/TextInput",
-  component: TextInput as any,
+  component: TextInput,
   parameters: {
     // layout: "centered",
   },
@@ -22,19 +13,36 @@ const meta = {
   args: {
     source: "name",
   },
+  argTypes: {
+    multiline: {
+      control: "boolean",
+    },
+    resettable: {
+      control: "boolean",
+    },
+    type: {
+      control: "select",
+      options: [
+        "password",
+        "search",
+        "tel",
+        "text",
+      ],
+    },
+  },
 } satisfies Meta<typeof TextInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: ({ ...props }) => {
+  render: ({ source, ...props }) => {
     return <TextInput source={attributeName("name")} {...props} />;
   },
 };
 
 export const CustomLabel: Story = {
-  render: ({ ...props }) => {
+  render: ({ source, ...props }) => {
     return <TextInput source={attributeName("name")} {...props} />;
   },
   args: {
@@ -43,7 +51,7 @@ export const CustomLabel: Story = {
 };
 
 export const RequiredValidation: Story = {
-  render: ({ ...props }) => {
+  render: ({ source, ...props }) => {
     return (
       <TextInput
         source={attributeName("name")}
@@ -58,7 +66,7 @@ export const RequiredValidation: Story = {
 };
 
 export const MetaSymbolsValidation: Story = {
-  render: ({ ...props }) => {
+  render: ({ source, ...props }) => {
     return (
       <TextInput
         source={attributeName("name")}
@@ -73,17 +81,4 @@ export const MetaSymbolsValidation: Story = {
   args: {
     label: "User name",
   },
-};
-
-const defaultDecorator = (Story: () => React.JSX.Element) => {
-  return (
-    <AdminContext
-      dataProvider={dataProvider}
-      i18nProvider={defaultI18nProvider}
-    >
-      <SimpleForm record={users[0]} mode="onChange" toolbar={false}>
-        {Story()}
-      </SimpleForm>
-    </AdminContext>
-  );
 };

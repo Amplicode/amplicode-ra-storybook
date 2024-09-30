@@ -1,33 +1,43 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Typography } from "@mui/material";
 import {
-  AdminContext,
   DateInput,
-  defaultI18nProvider,
   maxValue,
   minValue,
   NumberInput,
   required,
-  SimpleForm,
 } from "react-admin";
-import { dataProvider } from "../../../../dataProvider";
-import { attributeName } from "../../../../ideExtension";
 import dayjs from "dayjs";
 import { topLevel } from "@amplicode/storybook-extensions";
 import { AdditionalInfoWrapper, inputDecorators } from "../inputDecorators";
+import { attributeName } from "../../../../ideExtension";
 
 const meta = {
   title: "Inputs/DateInput",
-  component: DateInput as any,
+  component: DateInput,
   parameters: {
     // layout: "centered",
     controls: {
-      exclude: ["source"],
+      exclude: ["source", "fullWidth", "helperText", "parse", "validate"],
     },
   },
   decorators: [...inputDecorators],
   args: {
     source: "date",
+  },
+  argTypes: {
+    fullWidth: {
+      control: "boolean",
+    },
+    helperText: {
+      control: "text",
+    },
+    parse: {
+      control: "text",
+    },
+    validate: {
+      control: "text",
+    },
   },
 } satisfies Meta<typeof NumberInput>;
 
@@ -35,13 +45,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: ({ source }) => {
-    return <DateInput source={source} />;
+  render: ({ source, ...props }) => {
+    return <DateInput source={attributeName("date")} {...props} />;
   },
 };
 
 export const FutureDate: Story = {
-  render: () => {
+  render: ({ source, validate, ...props }) => {
     const futureDate = topLevel((date = dayjs()
       .add(1, "day")
       .format("YYYY-MM-DD"), message = "Must be in the future") => {
@@ -52,6 +62,7 @@ export const FutureDate: Story = {
       <DateInput
         source={attributeName("date")}
         validate={[futureDate(), required()]}
+        {...props}
       />
     );
   },
@@ -74,7 +85,7 @@ export const FutureDate: Story = {
 };
 
 export const PeriodValidation: Story = {
-  render: () => {
+  render: ({ source, validate, ...props }) => {
     const afterDate = topLevel(
       (
         date = dayjs("1970-01-01").format("YYYY-MM-DD"),
@@ -97,6 +108,7 @@ export const PeriodValidation: Story = {
       <DateInput
         source={attributeName("date")}
         validate={[afterDate(), beforeDate(), required()]}
+        {...props}
       />
     );
   },
@@ -118,7 +130,7 @@ export const PeriodValidation: Story = {
 };
 
 export const ExcludeDaysValidation: Story = {
-  render: () => {
+  render: ({ source, validate, ...props }) => {
     const excludeWeekends = topLevel((value: string) => {
       const day = dayjs(value).day();
 
@@ -133,6 +145,7 @@ export const ExcludeDaysValidation: Story = {
       <DateInput
         source={attributeName("date")}
         validate={[excludeWeekends, required()]}
+        {...props}
       />
     );
   },

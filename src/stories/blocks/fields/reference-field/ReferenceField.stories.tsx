@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  ChipField,
-  FunctionField,
-  ReferenceField,
-} from "react-admin";
+import { ChipField, FunctionField, ReferenceField } from "react-admin";
 import React from "react";
 import { ResourceContextHelper } from "../../../../utils";
 import { attributeName, resourceName } from "../../../../ideExtension";
@@ -31,6 +27,18 @@ const meta = {
   component: ReferenceField as any,
   parameters: {
     layout: "centered",
+    controls: {
+      exclude: [
+        "source",
+        "reference",
+        "filter",
+        "link",
+        "queryOptions",
+        "sortBy",
+        "label",
+        "emptyText"
+      ],
+    },
   },
   decorators: [
     listDecorator,
@@ -40,6 +48,29 @@ const meta = {
   ],
   args: {
     source: "department_id",
+  },
+  argTypes: {
+    source: {
+      control: "text",
+    },
+    reference: {
+      control: "text",
+    },
+    emptyText: {
+      control: "text",
+    },
+    label: {
+      control: "text",
+    },
+    link: {
+      control: "text",
+    },
+    queryOptions: {
+      control: "text",
+    },
+    sortBy: {
+      control: "text",
+    },
   },
 } satisfies Meta<typeof ReferenceField>;
 

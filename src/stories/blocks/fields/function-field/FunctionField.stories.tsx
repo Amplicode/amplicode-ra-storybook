@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { AdminContext, FunctionField, Labeled, RecordContextProvider, defaultI18nProvider } from "react-admin";
-import { dataProvider, users } from "../../../../dataProvider";
+import { FunctionField } from "react-admin";
 import { attributeName } from "../../../../ideExtension";
 import { fieldDecorators } from "../fieldDecorators";
 
@@ -10,11 +9,17 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  decorators: [
-    ...fieldDecorators,
-  ],
+  decorators: [...fieldDecorators],
   args: {
-    source: "name"
+    source: "name",
+  },
+  argTypes: {
+    render: {
+      control: "text",
+    },
+    label: {
+      control: "text"
+    }
   },
 } satisfies Meta<typeof FunctionField>;
 
@@ -25,10 +30,18 @@ export const Default: Story = {
   render: (props) => {
     const createFunctionRender = (record: any) => {
       return (
-        <div>Custom render: {record.role} {record.name}</div>
-      )
+        <div>
+          Custom render: {record.role} {record.name}
+        </div>
+      );
     };
 
-    return <FunctionField source={attributeName("name")} render={createFunctionRender} {...props} />;
-  }
+    return (
+      <FunctionField
+        source={attributeName("name")}
+        render={createFunctionRender}
+        {...props}
+      />
+    );
+  },
 };

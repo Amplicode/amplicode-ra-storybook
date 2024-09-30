@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  TextField,
-} from "react-admin";
+import { TextField } from "react-admin";
 import { attributeName } from "../../../../ideExtension";
 import { fieldDecorators } from "../fieldDecorators";
 
@@ -11,11 +9,9 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  decorators: [
-    ...fieldDecorators,
-  ],
+  decorators: [...fieldDecorators],
   args: {
-    source: "city"
+    source: "city",
   },
 } satisfies Meta<typeof TextField>;
 
@@ -23,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (props) => {
+  render: ({ source, ...props }) => {
     return <TextField source={attributeName("city")} {...props} />;
   },
 };

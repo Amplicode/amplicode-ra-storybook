@@ -156,12 +156,24 @@ export const tasks = [
     { id: 20, name: 'Paint a Masterpiece', user_id: 5, done: true }
 ];
 
+export const competences = [
+    {id: 1, name: 'Backend Developer', description: 'Java/Spring backend development'},
+    {id: 2, name: 'Frontend Developer', description: 'TS, JS, React'},
+]
+
+export const userCompetences = [
+    {id: 1, userId: 1, competenceId: 1, grade: 'Senior'},
+    {id: 2, userId: 1, competenceId: 2, grade: 'Middle'},
+]
+
 
 export const dataProvider = fakeDataProvider({
-    users,
+    people: users,
     departments,
     roles,
-    tasks
+    tasks,
+    competences,
+    userCompetences,
 });
 
 async function delay() {

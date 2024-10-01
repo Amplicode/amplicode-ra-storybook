@@ -168,7 +168,7 @@ export const userCompetences = [
 
 
 export const dataProvider = fakeDataProvider({
-    people: users,
+    users,
     departments,
     roles,
     tasks,

@@ -34,7 +34,7 @@ export const Deafult: Story = {
                     setModifiedData(listContext.data);
                 }
 
-            }, [listContext.data, dataProvider]);
+            }, [listContext.data]);
             let value: ListControllerResult
             if (listContext.isLoading
                 || listContext.isPending

@@ -14,12 +14,9 @@ import {
   TopToolbar,
   useSaveContext,
 } from "react-admin";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
 import { dataProvider } from "../../../dataProvider";
 import React, { useState } from "react";
-import { Dialog, DialogTitle } from "@mui/material";
+import { Box, Dialog, DialogTitle, Stack, Typography } from "@mui/material";
 import { FieldValues } from "react-hook-form";
 import { WizardInfo } from "@amplicode/storybook-extensions";
 import { CreatePageWizardParams } from "../../../ideExtension";
@@ -27,7 +24,6 @@ import { CreatePageWizardParams } from "../../../ideExtension";
 const createRedirectFunc = (
   resource?: string,
   id?: Identifier,
-  _data?: Partial<RaRecord>
 ) => {
   return `/redirect/to/${resource}/${id}`;
 };

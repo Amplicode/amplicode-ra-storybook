@@ -15,11 +15,8 @@ import {
   SimpleForm,
   CreateButton,
 } from "react-admin";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { WizardInfo } from "@amplicode/storybook-extensions";
-import { Button } from "@mui/material";
+import { generatorProp, WizardInfo } from "@amplicode/storybook-extensions";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { delayDataProvider } from "../../../dataProvider";
 import { CreatePageWizardParams } from "../../../ideExtension";
 
@@ -40,31 +37,6 @@ const infiniteDecorator = (Story: () => JSX.Element) => (
     <Resource name="users" list={Story} />
   </AdminContext>
 );
-
-function generatorProp(config: {
-  description?: string;
-  generatorId: string;
-  hideInStoryBook?: undefined | true;
-  defaultValue?: any;
-}) {
-  const result: any = {
-    // type: "object"
-  };
-
-  if (config.hideInStoryBook) {
-    result.table = { disable: true };
-  }
-
-  if (config.description) {
-    result.description = config.description;
-  }
-
-  if (config.defaultValue) {
-    result.defaultValue = config.defaultValue;
-  }
-
-  return result;
-}
 
 const CustomPagination = (props: PaginationProps) => (
   <>

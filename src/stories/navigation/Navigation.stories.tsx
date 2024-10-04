@@ -1,13 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Box, Button, Input, Paper, TextField } from "@mui/material";
+import { Box, Button, Input, Paper, Stack, TextField, Typography } from "@mui/material";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import React from "react";
 import { MemoryRouter, Route, Routes } from "react-router";
-import Stack from "@mui/material/Stack";
 import { GenerationInstructions } from "@amplicode/storybook-extensions";
 import { useCreatePath } from "react-admin";
 import { users } from "../../dataProvider";
-import Typography from "@mui/material/Typography";
 import { resourceName } from "../../ideExtension";
 import { AnyPropsComponent } from "../../utils";
 

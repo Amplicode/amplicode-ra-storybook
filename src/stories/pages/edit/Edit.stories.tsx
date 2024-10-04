@@ -17,13 +17,11 @@ import {
   TopToolbar,
   useEditContext,
 } from "react-admin";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
 import { dataProvider } from "../../../dataProvider";
 import React from "react";
 import { WizardInfo } from "@amplicode/storybook-extensions";
 import { CreatePageWizardParams } from "../../../ideExtension";
+import { Box, Stack, Typography } from "@mui/material";
 
 const handleClick = () => {
   console.log("Custom action result");
@@ -47,7 +45,6 @@ const CustomEditAside = () => (
 const editRedirectFunc = (
   resource?: string,
   id?: Identifier,
-  _data?: Partial<RaRecord>
 ) => {
   return `/redirect/to/${resource}/${id}`;
 };

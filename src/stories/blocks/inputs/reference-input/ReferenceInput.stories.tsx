@@ -49,7 +49,6 @@ const meta = {
       exclude: [
         "source",
         "reference",
-        "enableGetChoices",
         "filter",
         "label",
         "page",
@@ -74,9 +73,6 @@ const meta = {
       control: "text",
     },
     reference: {
-      control: "text",
-    },
-    enableGetChoices: {
       control: "text",
     },
     filter: {

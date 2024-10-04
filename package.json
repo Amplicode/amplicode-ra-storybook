@@ -17,7 +17,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@amplicode/storybook-extensions": "^0.9.0",
+    "@amplicode/storybook-extensions": "^0.9.1",
     "dayjs": "^1.11.13",
     "ra-data-fakerest": "^5.2.1",
     "react": "^18.3.1",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",
     "@eslint/js": "^9.9.0",
+    "@mui/material": "^5.16.7",
     "@storybook/addon-essentials": "^8.3.3",
     "@storybook/addon-interactions": "^8.3.3",
     "@storybook/addon-links": "^8.3.3",

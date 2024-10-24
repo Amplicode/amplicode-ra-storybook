@@ -10,8 +10,7 @@ import {
   defaultI18nProvider,
 } from "react-admin";
 import { dataProvider } from "../../../dataProvider";
-import { WizardInfo } from "@amplicode/storybook-extensions";
-import { CreatePageWizardParams } from "../../../ideExtension";
+import { resourceName } from "../../../ideExtension";
 import { Card } from "@mui/material";
 
 
@@ -41,10 +40,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-  render: ({ ...props }) => {
+export const Default: Story= {
+  render: ({ resource, ...props }) => {
     return (
-      <ShowBase {...props}>
+      <ShowBase resource={resource} {...props}>
         <Card sx={{width: 300}}>
         <SimpleShowLayout>
           <TextField source="id" />
@@ -55,12 +54,9 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
       </ShowBase>
     );
   },
-
-  wizardName: "pageWizard",
-  info: {
-    pageType: "Show",
-    readonlyPageType: true,
-  },
+  args: {
+    resource: resourceName('user'),
+  }
 };
 
 

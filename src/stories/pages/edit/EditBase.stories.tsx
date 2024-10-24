@@ -1,47 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
   AdminContext,
-  Button,
-  CreateButton,
-  Datagrid,
   DateInput,
   defaultI18nProvider,
   Edit,
   EditBase,
   Identifier,
-  List,
-  RaRecord,
   ResourceContextProvider,
   SimpleForm,
-  TextField,
   TextInput,
-  TopToolbar,
-  useEditContext,
 } from "react-admin";
 import { dataProvider } from "../../../dataProvider";
 import React from "react";
-import { WizardInfo } from "@amplicode/storybook-extensions";
-import { CreatePageWizardParams } from "../../../ideExtension";
-import { Box, Card, Stack, Typography } from "@mui/material";
+import { resourceName } from "../../../ideExtension";
+import { Card } from "@mui/material";
 
-const handleClick = () => {
-  console.log("Custom action result");
-};
-
-const CustomEditActions = () => (
-  <TopToolbar>
-    <Button color="primary" onClick={handleClick} label="Custom Action" />
-  </TopToolbar>
-);
-
-const CustomEditAside = () => (
-  <Box sx={{ paddingX: 4, paddingY: 8, width: 300 }}>
-    <Stack spacing={2}>
-      <Typography variant="h6">Aside content</Typography>
-      <Typography>Additional aside content</Typography>
-    </Stack>
-  </Box>
-);
 
 const editRedirectFunc = (
   resource?: string,
@@ -93,10 +66,10 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-  render: ({ ...props }) => {
+export const Default: Story ={
+  render: ({ resource, ...props }) => {
     return (
-      <EditBase resource={"users"} {...props}>
+      <EditBase resource={resource} {...props}>
         <Card sx={{width: 300}}>
         <SimpleForm>
           <TextInput source="id" />
@@ -107,12 +80,9 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
       </EditBase>
     );
   },
-
-  wizardName: "pageWizard",
-  info: {
-    pageType: "Edit",
-    readonlyPageType: true,
-  },
+  args: {
+    resource: resourceName('user'),
+  }
 };
 
 const defaultDecorator = (Story: () => React.JSX.Element) => (

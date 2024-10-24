@@ -1,26 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
     AdminContext,
-    Datagrid,
-    DateField,
     List,
-    TextField,
     defaultI18nProvider,
-    InfiniteList,
     Resource,
-    SearchInput,
     TextInput,
-    Pagination,
-    PaginationProps,
-    SimpleForm,
-    CreateButton,
     useListContext,
     ListBase,
 } from "react-admin";
-import { generatorProp, topLevel, WizardInfo } from "@amplicode/storybook-extensions";
-import { Box, Button, Card, Stack, Typography } from "@mui/material";
+import { generatorProp, topLevel } from "@amplicode/storybook-extensions";
+import { Card } from "@mui/material";
 import { delayDataProvider } from "../../../dataProvider";
-import { CreatePageWizardParams } from "../../../ideExtension";
+import { resourceName } from "../../../ideExtension";
 
 const defaultDecorator = (Story: () => JSX.Element) => (
     <AdminContext
@@ -70,8 +61,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 
-export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-    render: ({ ...props }) => {
+export const Default: Story= {
+    render: ({ resource, ...props }) => {
         const CustomList = topLevel(() => {
             const { data, isLoading, error } = useListContext();
             if (isLoading) return <>Loading</>;
@@ -86,17 +77,14 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
         });
 
         return (
-            <ListBase {...props}>
+            <ListBase resource={resource} {...props}>
                 <Card sx={{ width: 200 }}>
                     <CustomList />
                 </Card>
             </ListBase>
         );
     },
-
-    wizardName: "pageWizard",
-    info: {
-        pageType: "List",
-        readonlyPageType: true,
-    },
+    args: {
+        resource: resourceName("user"),
+    }
 };

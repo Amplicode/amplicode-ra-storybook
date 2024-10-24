@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
   AdminContext,
-  Button,
   Create,
   CreateBase,
   DateInput,
@@ -11,11 +10,11 @@ import {
   SimpleForm,
   TextInput,
   Title,
-  TopToolbar,
 } from "react-admin";
 import { dataProvider } from "../../../dataProvider";
 import React from "react";
-import { Box, Card, Stack, Typography } from "@mui/material";
+import { Card } from "@mui/material";
+import { resourceName } from "../../../ideExtension";
 
 const createRedirectFunc = (
   resource?: string,
@@ -25,10 +24,6 @@ const createRedirectFunc = (
 };
 
 const createTransformFunc = (record: any) => ({...record});
-
-const handleClick = () => {
-  console.log("Custom action result");
-};
 
 const meta = {
   title: "Pages/Create/Base",
@@ -66,9 +61,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: ({ ...props }) => {
+  render: ({ resource, ...props }) => {
     return (
-      <CreateBase {...props}>
+      <CreateBase resource={resource} {...props}>
         <Title title={"Create"}/>
         <Card sx={{width: '300px'}}>
         <SimpleForm>
@@ -80,6 +75,9 @@ export const Default: Story = {
       </CreateBase>
     );
   },
+  args: {
+    resource: resourceName('user'),
+  }
 };
 
 const defaultDecorator = (Story: () => React.JSX.Element) => (

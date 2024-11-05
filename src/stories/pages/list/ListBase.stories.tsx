@@ -71,7 +71,7 @@ export const Default: Story= {
             return <>
                 Users
                 <ul>
-                    {data?.map(item => <li>{item.name}</li>)}
+                    {data?.map(item => <li key={item.id}>{item.name}</li>)}
                 </ul>
             </>
         });

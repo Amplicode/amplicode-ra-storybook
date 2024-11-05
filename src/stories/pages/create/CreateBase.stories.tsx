@@ -65,7 +65,7 @@ export const Default: Story = {
     return (
       <CreateBase resource={resource} {...props}>
         <Title title={"Create"}/>
-        <Card sx={{width: '300px'}}>
+        <Card>
         <SimpleForm>
           <TextInput source="id" />
           <TextInput source="name" />
@@ -76,7 +76,7 @@ export const Default: Story = {
     );
   },
   args: {
-    resource: resourceName('user'),
+    resource: resourceName('users'),
   }
 };
 

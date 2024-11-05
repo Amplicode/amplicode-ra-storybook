@@ -44,7 +44,7 @@ export const Default: Story= {
   render: ({ resource, ...props }) => {
     return (
       <ShowBase resource={resource} {...props}>
-        <Card sx={{width: 300}}>
+        <Card>
         <SimpleShowLayout>
           <TextField source="id" />
           <TextField source="name" />
@@ -55,7 +55,7 @@ export const Default: Story= {
     );
   },
   args: {
-    resource: resourceName('user'),
+    resource: resourceName('users'),
   }
 };
 

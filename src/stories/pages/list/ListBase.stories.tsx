@@ -78,13 +78,13 @@ export const Default: Story= {
 
         return (
             <ListBase resource={resource} {...props}>
-                <Card sx={{ width: 200 }}>
+                <Card>
                     <CustomList />
                 </Card>
             </ListBase>
         );
     },
     args: {
-        resource: resourceName("user"),
+        resource: resourceName("users"),
     }
 };

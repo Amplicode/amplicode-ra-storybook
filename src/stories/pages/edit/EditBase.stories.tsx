@@ -70,7 +70,7 @@ export const Default: Story ={
   render: ({ resource, ...props }) => {
     return (
       <EditBase resource={resource} {...props}>
-        <Card sx={{width: 300}}>
+        <Card>
         <SimpleForm>
           <TextInput source="id" />
           <TextInput source="name" />
@@ -81,7 +81,7 @@ export const Default: Story ={
     );
   },
   args: {
-    resource: resourceName('user'),
+    resource: resourceName('users'),
   }
 };
 

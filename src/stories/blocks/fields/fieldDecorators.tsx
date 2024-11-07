@@ -11,6 +11,7 @@ import {
   ReferenceArrayField,
   TextField,
   ReferenceField,
+  ReferenceManyCount,
 } from "react-admin";
 import { AdminStoryContext } from "../../../utils";
 import { MemoryRouter } from "react-router";
@@ -62,6 +63,15 @@ const FIELD_STORIES_MAP: Record<string, () => JSX.Element> = {
         source="department_id"
         reference="departments"
         sortable={false}
+      />
+    );
+  },
+  ReferenceManyCount: () => {
+    return (
+      <ReferenceManyCount
+        target="user_id"
+        reference="tasks"
+        label="Goals count"
       />
     );
   },

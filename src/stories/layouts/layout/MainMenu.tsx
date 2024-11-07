@@ -1,5 +1,5 @@
 import { Menu } from "react-admin";
-import { HorizontalMenu } from "./landing-layout/HorizontalMenu";
+import { HorizontalMenu } from "./container-layout/HorizontalMenu";
 
 // export const MainMenu = () => {
 //   return (

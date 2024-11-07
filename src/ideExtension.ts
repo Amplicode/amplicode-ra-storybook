@@ -8,10 +8,11 @@ export function resourceName(
     generatorOptions: {
         title?: string,
         allowContext?: boolean,
-        resourceId?: string,
+        resourceId: string,
     } = {
         title: "Resource Name",
-        allowContext: true
+        allowContext: true,
+        resourceId: 'referenced_resource'
     },
 ) {
     return storyResource
@@ -22,13 +23,14 @@ export function attributeName(
     generatorOptions: {
         resourceSelectTitle?: string,
         attributeSelectTitle?: string,
-        resourceId?: string,
+        resourceId: string,
         attributeId?: string,
         allowResourceContext?: boolean
     } = {
         resourceSelectTitle: "Resource Name",
         attributeSelectTitle: "Attribute Name",
-        allowResourceContext: true
+        allowResourceContext: true,
+        resourceId: 'resource'
     },
 ) {
     return storyAttribute;

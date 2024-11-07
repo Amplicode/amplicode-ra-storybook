@@ -51,6 +51,8 @@ const CreateAside = () => {
   )
 };
 
+const createTransformFunc = (record: any) => ({...record});
+
 const meta = {
   title: "Pages/Create",
   component: Create as any,
@@ -90,7 +92,15 @@ const meta = {
     },
     mutationOptions: {
       control: "text"
-    }
+    },
+    transform: {
+      control: "select",
+      options: ["default", "createTransformFn"],
+      mapping: {
+        default: undefined,
+        createTransformFn: createTransformFunc,
+      },
+    },
   },
 } satisfies Meta<typeof Create>;
 

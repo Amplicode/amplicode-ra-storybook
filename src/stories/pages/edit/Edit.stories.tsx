@@ -49,6 +49,8 @@ const editRedirectFunc = (
   return `/redirect/to/${resource}/${id}`;
 };
 
+const createTransformFunc = (record: any) => ({...record});
+
 const meta = {
   title: "Pages/Edit",
   component: Edit,
@@ -95,7 +97,15 @@ const meta = {
     },
     mutationOptions: {
       control: "text"
-    }
+    },
+    transform: {
+      control: "select",
+      options: ["default", "createTransformFn"],
+      mapping: {
+        default: undefined,
+        createTransformFn: createTransformFunc,
+      },
+    },
   },
 } satisfies Meta<typeof Edit>;
 

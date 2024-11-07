@@ -84,10 +84,12 @@ export const DisplayByRecordRepresentation: Story = {
         source={attributeName("department_id", {
           resourceSelectTitle: "Parent Resource Name",
           attributeSelectTitle: "Reference Attribute Name",
+          resourceId: "resource",
         })}
         reference={resourceName("departments", {
           title: "Child Resource Name",
           allowContext: false,
+          resourceId: "referenced_resource",
         })}
       />
     );
@@ -101,10 +103,12 @@ export const DisplayWithCustomField: Story = {
         source={attributeName("department_id", {
           resourceSelectTitle: "Parent Resource Name",
           attributeSelectTitle: "Reference Attribute Name",
+          resourceId: "resource",
         })}
         reference={resourceName("departments", {
           title: "Child Resource Name",
           allowContext: false,
+          resourceId: "referenced_resource",
         })}
       >
         <FunctionField
@@ -123,6 +127,7 @@ export const ChipReference: Story = {
         source={attributeName("department_id", {
           resourceSelectTitle: "Parent Resource Name",
           attributeSelectTitle: "Reference Attribute Name",
+          resourceId: "resource",
         })}
         reference={resourceName("departments", {
           title: "Referenced Resource Name",

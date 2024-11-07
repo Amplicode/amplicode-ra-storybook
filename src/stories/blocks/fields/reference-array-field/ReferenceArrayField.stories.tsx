@@ -99,10 +99,12 @@ export const Default: Story = {
         source={attributeName("role_ids", {
           resourceSelectTitle: "Parent Resource Name",
           attributeSelectTitle: "Reference Attribute Name",
+          resourceId: "resource",
         })}
         reference={resourceName("roles", {
           title: "Child Resource Name",
           allowContext: false,
+          resourceId: "referenced_resource",
         })}
         {...props}
       />
@@ -117,6 +119,7 @@ export const ManualChips: Story = {
         source={attributeName("role_ids", {
           resourceSelectTitle: "Parent Resource Name",
           attributeSelectTitle: "Reference Attribute Name",
+          resourceId: "resource",
         })}
         reference={resourceName("roles", {
           title: "Child Resource Name",
@@ -145,6 +148,7 @@ export const ManualTextField: Story = {
         source={attributeName("role_ids", {
           resourceSelectTitle: "Parent Resource Name",
           attributeSelectTitle: "Reference Attribute Name",
+          resourceId: "resource",
         })}
         reference={resourceName("roles", {
           title: "Child Resource Name",

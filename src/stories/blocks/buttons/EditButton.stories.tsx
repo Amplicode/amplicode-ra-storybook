@@ -9,7 +9,6 @@ import {
 import React from "react";
 import { AnyPropsComponent } from "../../../utils";
 import { dataProvider, users } from "../../../dataProvider";
-import { replaceOnGenerate } from "@amplicode/storybook-extensions";
 
 const meta = {
   title: "Buttons/EditButton",
@@ -60,24 +59,6 @@ export const Filled: Story = {
   args: {
     variant: "contained",
   },
-};
-
-export const WithState: Story = {
-  name: "Edit with predefined record attributes",
-  render: ({ ...props }) => {
-    return <EditButton {...props} />;
-  },
-  args: {
-    state: replaceOnGenerate(
-      {},
-      {
-        record: {
-          /*default record*/
-        },
-      }
-    ),
-  },
-  decorators: [(Story) => <Story />],
 };
 
 const defaultDecorator = (Story: () => React.JSX.Element) => {

@@ -69,7 +69,7 @@ const InspectorAside = () => (
 );
 
 const meta = {
-  title: "Pages/List",
+  title: "Pages/Lists/List",
   component: List as any,
   decorators: [(Story) => defaultDecorator(Story)],
   args: {},
@@ -147,7 +147,7 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </List>
     );
@@ -167,7 +167,7 @@ export const Empty: Story = {
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </List>
     );
@@ -187,7 +187,7 @@ export const Filter: Story = {
           <TextField source="id" />
           <TextField source="name" />
           <TextField source="city" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </List>
     );
@@ -201,7 +201,7 @@ export const PermanentFilter: Story = {
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </List>
     );
@@ -238,7 +238,7 @@ export const Aside: Story = {
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </List>
     );
@@ -265,7 +265,7 @@ export const Infinite: Story = {
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
-          <DateField source="birthday" />
+          <DateField source="date" />
         </Datagrid>
       </InfiniteList>
     );

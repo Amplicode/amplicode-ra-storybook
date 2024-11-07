@@ -7,7 +7,6 @@ import {
 } from "react-admin";
 import React from "react";
 import { dataProvider } from "../../../dataProvider";
-import { replaceOnGenerate } from "@amplicode/storybook-extensions";
 
 const meta = {
   title: "Buttons/CreateButton",
@@ -58,24 +57,6 @@ export const Filled: Story = {
   args: {
     variant: "contained",
   },
-};
-
-export const WithState: Story = {
-  name: "Create with predefined record attributes",
-  render: ({ ...props }) => {
-    return <CreateButton {...props} />;
-  },
-  args: {
-    state: replaceOnGenerate(
-      {},
-      {
-        record: {
-          /*default record*/
-        },
-      }
-    ),
-  },
-  decorators: [(Story) => <Story />],
 };
 
 const defaultDecorator = (Story: () => React.JSX.Element) => {

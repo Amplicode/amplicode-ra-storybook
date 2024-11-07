@@ -41,7 +41,7 @@ const ExampleFooter = () => {
 
 const DefaultUserMenu = <UserMenu />;
 
-export const LandingLayout = (props: LayoutProps) => {
+export const ContainerLayout = (props: LayoutProps) => {
   const {
     appBar: AppBar = StyledAppBar,
     children,

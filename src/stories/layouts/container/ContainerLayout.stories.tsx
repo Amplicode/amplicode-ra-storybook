@@ -3,24 +3,22 @@ import {
   Admin,
   CustomRoutes,
   EditGuesser,
-  Layout,
   LayoutProps,
   ListGuesser,
-  Menu,
   Resource,
   ShowGuesser,
 } from "react-admin";
-import { dataProvider } from "../../dataProvider";
+import { dataProvider } from "../../../dataProvider";
 import fakeDataProvider from "ra-data-fakerest";
 import { replaceOnGenerate } from "@amplicode/storybook-extensions";
-import { AnyPropsComponent } from "../../utils";
-import { LandingLayout } from "./layout/landing-layout/LandingLayout";
-import { HorizontalMenu } from "./layout/landing-layout/HorizontalMenu";
+import { AnyPropsComponent } from "../../../utils";
+import { ContainerLayout } from "../layout/container-layout/ContainerLayout";
+import { HorizontalMenu } from "../layout/container-layout/HorizontalMenu";
 import { Route } from "react-router-dom";
 
 const meta = {
-  title: "Layouts",
-  component: AnyPropsComponent,
+  title: "Layouts/Container",
+  component: Admin,
   parameters: {
     layout: "fullscreen",
   },
@@ -29,54 +27,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  name: "Default Layout",
-  render: () => {
-    const MainMenu = () => {
-      return (
-        <Menu>
-          <Menu.ResourceItems />
-        </Menu>
-      );
-    };
-
-    const AppLayout = (props: LayoutProps) => (
-      <Layout {...props} menu={MainMenu} />
-    );
-
-    return (
-      <Admin
-        dataProvider={replaceOnGenerate(dataProvider, fakeDataProvider({}))}
-        layout={AppLayout}
-      >
-        <Resource
-          name="users"
-          edit={EditGuesser}
-          show={ShowGuesser}
-          list={ListGuesser}
-          recordRepresentation={"name"}
-        />
-        <Resource
-          name="departments"
-          edit={EditGuesser}
-          show={ShowGuesser}
-          list={ListGuesser}
-          recordRepresentation={"name"}
-        />
-        <Resource
-          name="roles"
-          edit={EditGuesser}
-          show={ShowGuesser}
-          list={ListGuesser}
-          recordRepresentation={"name"}
-        />
-      </Admin>
-    );
-  },
-};
-
-export const Landing: Story = {
-  name: "Landing Layout",
+export const Container: Story = {
+  name: "Container Layout",
   render: () => {
     const MainMenu = () => {
       return (
@@ -90,7 +42,7 @@ export const Landing: Story = {
     };
 
     const AppLayout = (props: LayoutProps) => (
-      <LandingLayout {...props} menu={MainMenu} userMenu={true} />
+      <ContainerLayout {...props} menu={MainMenu} userMenu={true} />
     );
 
     return (

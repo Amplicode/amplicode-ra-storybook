@@ -11,9 +11,9 @@ import {
   defaultI18nProvider,
 } from "react-admin";
 import { dataProvider } from "../../../dataProvider";
-import { WizardInfo } from "@amplicode/storybook-extensions";
-import { CreatePageWizardParams } from "../../../ideExtension";
 import { Box, Stack, Typography } from "@mui/material";
+import { resourceName } from "../../../ideExtension";
+import { GenerationInstructions } from "@amplicode/storybook-extensions";
 
 const handleClick = () => {
   console.log("Custom action result");
@@ -76,23 +76,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-  render: ({ ...props }) => {
+export const Default: Story = {
+  render: ({ resource, ...props }) => {
     return (
-      <Show {...props}>
+      <Show resource={resource} {...props}>
         <SimpleShowLayout>
-          <TextField source="id" />
-          <TextField source="name" />
-          <DateField source="date" />
+            <TextField source="id" />
+            <GenerationInstructions.Exclude>
+              <TextField source="name" />
+              <DateField source="date" />
+          </GenerationInstructions.Exclude>
         </SimpleShowLayout>
       </Show>
     );
   },
-
-  wizardName: "pageWizard",
-  info: {
-    pageType: "Show",
-    readonlyPageType: true,
+  args: {
+    resource: resourceName('users'),
   },
 };
 

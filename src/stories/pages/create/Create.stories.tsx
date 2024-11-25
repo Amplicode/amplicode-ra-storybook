@@ -6,7 +6,6 @@ import {
   DateInput,
   defaultI18nProvider,
   Identifier,
-  RaRecord,
   required,
   ResourceContextProvider,
   SimpleForm,
@@ -18,8 +17,8 @@ import { dataProvider } from "../../../dataProvider";
 import React, { useState } from "react";
 import { Box, Dialog, DialogTitle, Stack, Typography } from "@mui/material";
 import { FieldValues } from "react-hook-form";
-import { WizardInfo } from "@amplicode/storybook-extensions";
-import { CreatePageWizardParams } from "../../../ideExtension";
+import { resourceName } from "../../../ideExtension";
+import { GenerationInstructions } from "@amplicode/storybook-extensions";
 
 const createRedirectFunc = (
   resource?: string,
@@ -107,24 +106,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-  render: ({ ...props }) => {
+export const Default: Story = {
+  render: ({ resource, ...props }) => {
     return (
-      <Create {...props}>
+      <Create resource={resource} {...props}>
         <SimpleForm>
-          <TextInput source="id" />
-          <TextInput source="name" />
-          <DateInput source="date" />
+          <GenerationInstructions.Exclude>
+            <TextInput source="id" />
+            <TextInput source="name" />
+            <DateInput source="date" />
+          </GenerationInstructions.Exclude>
         </SimpleForm>
       </Create>
     );
   },
-
-  wizardName: "pageWizard",
-  info: {
-    pageType: "Create",
-    readonlyPageType: true,
-  },
+  args: {
+    resource: resourceName("users")
+  }
 };
 
 export const CustomActions: Story = {

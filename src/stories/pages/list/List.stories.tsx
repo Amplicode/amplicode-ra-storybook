@@ -15,10 +15,10 @@ import {
   SimpleForm,
   CreateButton,
 } from "react-admin";
-import { generatorProp, WizardInfo } from "@amplicode/storybook-extensions";
+import { GenerationInstructions, generatorProp } from "@amplicode/storybook-extensions";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { delayDataProvider } from "../../../dataProvider";
-import { CreatePageWizardParams } from "../../../ideExtension";
+import { resourceName } from "../../../ideExtension";
 
 const defaultDecorator = (Story: () => JSX.Element) => (
   <AdminContext
@@ -140,23 +140,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-  render: ({ ...props }) => {
+export const Default: Story = {
+  render: ({ resource, ...props }) => {
     return (
-      <List {...props}>
+      <List resource={resource} {...props}>
         <Datagrid>
           <TextField source="id" />
-          <TextField source="name" />
-          <DateField source="date" />
+          <GenerationInstructions.Exclude>
+            <TextField source="name" />
+            <DateField source="date" />
+          </GenerationInstructions.Exclude>
         </Datagrid>
       </List>
     );
-  },
-
-  wizardName: "pageWizard",
-  info: {
-    pageType: "List",
-    readonlyPageType: true,
+  },  
+  args: {
+    resource: resourceName('users')
   },
 };
 
@@ -223,7 +222,7 @@ export const PermanentFilter: Story = {
 };
 
 export const Aside: Story = {
-  render: ({ ...props }) => {
+  render: ({ resource, ...props }) => {
     const Aside = () => (
       <Box sx={{ paddingX: 4, paddingY: 8, width: 300 }}>
         <Stack spacing={2}>
@@ -234,7 +233,7 @@ export const Aside: Story = {
     );
 
     return (
-      <List aside={<Aside />} {...props}>
+      <List resource={resource} aside={<Aside />} {...props}>
         <Datagrid>
           <TextField source="id" />
           <TextField source="name" />

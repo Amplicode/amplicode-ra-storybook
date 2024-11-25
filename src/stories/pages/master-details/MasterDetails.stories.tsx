@@ -19,8 +19,7 @@ import { MemoryRouter, Route, Routes } from "react-router";
 import { AdminStoryContext } from "../../../utils";
 import { Box, Drawer, IconButton, Stack, SxProps, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { WizardInfo } from "@amplicode/storybook-extensions";
-import { CreatePageWizardParams } from "../../../ideExtension";
+import { resourceName } from "../../../ideExtension";
 
 const meta = {
   title: "Pages/MasterDetails",
@@ -40,16 +39,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-  render: ({ ...props }) => {
+export const Default: Story = {
+  render: ({ resource, ...props }) => {
     const location = useLocation();
     const navigate = useNavigate();
 
     const handleClose = useCallback(() => {
-      navigate("/users");
+      navigate(`/${resource}`);
     }, [navigate]);
 
-    const match = matchPath("/users/:id", location.pathname);
+    const match = matchPath(`/${resource}/:id`, location.pathname);
 
     const DetailsView = ({ id }: { id: string }) => {
       return (
@@ -93,6 +92,7 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
     return (
       <Box display="flex">
         <List
+          resource={resource}
           sx={{
             flexGrow: 1,
             transition: (theme: any) =>
@@ -120,12 +120,9 @@ export const Default: Story & WizardInfo<CreatePageWizardParams> = {
       </Box>
     );
   },
-
-  wizardName: "pageWizard",
-  info: {
-    pageType: "MasterDetails",
-    readonlyPageType: true,
-  },
+  args: {
+    resource: resourceName('users'),
+  }
 };
 
 const defaultDecorator = (Story: () => React.JSX.Element) => {

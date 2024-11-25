@@ -9,7 +9,6 @@ import {
   Edit,
   Identifier,
   List,
-  RaRecord,
   ResourceContextProvider,
   SimpleForm,
   TextField,
@@ -19,9 +18,9 @@ import {
 } from "react-admin";
 import { dataProvider } from "../../../dataProvider";
 import React from "react";
-import { WizardInfo } from "@amplicode/storybook-extensions";
-import { CreatePageWizardParams } from "../../../ideExtension";
 import { Box, Stack, Typography } from "@mui/material";
+import { resourceName } from "../../../ideExtension";
+import { GenerationInstructions } from "@amplicode/storybook-extensions";
 
 const handleClick = () => {
   console.log("Custom action result");
@@ -111,23 +110,22 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Default: Story & WizardInfo<CreatePageWizardParams> = {
-  render: ({ ...props }) => {
+export const Default: Story = {
+  render: ({ resource, ...props }) => {
     return (
-      <Edit resource={"users"} {...props}>
+      <Edit resource={resource} {...props}>
         <SimpleForm>
-          <TextInput source="id" />
-          <TextInput source="name" />
-          <DateInput source="date" />
+          <GenerationInstructions.Exclude>
+            <TextInput source="id" />
+            <TextInput source="name" />
+            <DateInput source="date" />
+          </GenerationInstructions.Exclude>
         </SimpleForm>
       </Edit>
     );
   },
-
-  wizardName: "pageWizard",
-  info: {
-    pageType: "Edit",
-    readonlyPageType: true,
+  args: {
+    resource: resourceName("users"),
   },
 };
 

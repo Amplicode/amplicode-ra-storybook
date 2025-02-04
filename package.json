@@ -1,6 +1,6 @@
 {
   "name": "@amplicode/amplicode-ra-storybook",
-  "version": "0.9.12",
+  "version": "0.9.15",
   "description": "Amplicode Storybook for React Admin",
   "repository": "https://github.com/Amplicode/amplicode-ra-storybook",
   "brandInfo": {

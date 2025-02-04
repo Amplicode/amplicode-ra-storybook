@@ -8,7 +8,7 @@ export function resourceName(
     generatorOptions: {
         title?: string,
         allowContext?: boolean,
-        resourceId: string,
+        resourceId?: string,
     } = {
         title: "Resource Name",
         allowContext: true,
@@ -23,7 +23,7 @@ export function attributeName(
     generatorOptions: {
         resourceSelectTitle?: string,
         attributeSelectTitle?: string,
-        resourceId: string,
+        resourceId?: string,
         attributeId?: string,
         allowResourceContext?: boolean
     } = {

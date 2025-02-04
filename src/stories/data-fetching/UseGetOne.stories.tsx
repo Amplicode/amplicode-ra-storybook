@@ -4,13 +4,13 @@ import {
   defaultI18nProvider, LoadingIndicator, TextField,
   useGetOne,
 } from "react-admin";
-import { delayDataProvider } from "../../../dataProvider";
+import { delayDataProvider } from "../../dataProvider";
 import React from "react";
 import { GenerationInstructions } from "@amplicode/storybook-extensions";
-import { resourceName } from "../../../ideExtension";
+import { resourceName } from "../../ideExtension";
 
 const meta = {
-  title: "DataProvider/UseGetOne",
+  title: "DataFetching/UseGetOne",
   parameters: {
     layout: "centered",
   },

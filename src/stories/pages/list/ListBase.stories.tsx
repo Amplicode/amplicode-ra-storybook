@@ -65,7 +65,7 @@ export const Default: Story = {
     const CustomList = topLevel(() => {
       const { data, isLoading, error } = useListContext();
       if (isLoading) return <>Loading</>;
-      if (error) return <>{error}</>;
+      if (error) return <>{error.message}</>;
       if (!data || data.length === 0) return <>No data</>;
       return (
         <>
